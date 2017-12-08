@@ -1,0 +1,6 @@
+<% @lists.each do |list| %>
+  <%= list.name %> | 
+  <% list.users.each do |user| %>
+    <%= user.email %><br>
+  <% end %>
+<% end %>

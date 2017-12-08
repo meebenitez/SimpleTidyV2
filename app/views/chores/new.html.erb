@@ -1,0 +1,15 @@
+<h1>Chore</h1>
+
+
+<%= form_for list_chores_path(@list.id) do |f| %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

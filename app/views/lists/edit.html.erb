@@ -1,0 +1,12 @@
+<%= @list.name %>
+<p>
+<% @list.chores.each do |chore| %>
+    <%= chore.name %> | <%= link_to "Delete Chore", [@list, chore], method: :delete %><br>
+<% end %>
+</p>
+<p>
+<%= form_for([@list, @list.chores.new]) do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Add new chore' %>
+<% end %>
+</p>

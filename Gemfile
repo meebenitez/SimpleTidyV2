@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
  gem 'devise'
  gem 'omniauth-facebook'
  gem 'figaro'
+ gem 'cancan'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
