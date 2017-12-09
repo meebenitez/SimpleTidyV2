@@ -13,3 +13,170 @@
  *= require_tree .
  *= require_self
  */
+@media screen {
+  /* --- Reset Styles --- */
+  * {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+
+
+
+
+
+  /* --- Welcome Page Styles --- */
+  body {
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: Sans-Serif;
+    line-height: 18px;
+  }
+
+
+
+
+  h1 {
+    font-size: 36px;
+    line-height: 54px;
+  }
+
+  h2 {
+    border-bottom: 2px solid #ccc;
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 16px;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 36px;
+  }
+
+  p {
+    margin-bottom: 18px;
+  }
+
+  img {
+    border-radius: 50%;
+}
+
+  .main {
+    overflow: hidden;
+  }
+
+  .content {
+    float: left;
+    width: 60%; /* 480px / 800px */
+  }
+
+  .sidebar {
+    background: #eee;
+    border: 1px solid #ccc;
+    float: right;
+    padding: 2.08333333333%; /* 5px / 240px */
+    width: 30%; /* 240px / 800px */
+  }
+
+  .sidebar ul {
+    font-size: 14px;
+  }
+
+  .branding {
+    clear: both;
+  }
+
+  footer.branding {
+    border-top: 2px solid #ccc;
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    border-radius: 25px;
+    margin-left: 25%;
+    margin-right: auto;
+    background-color: #FFFFFF;
+}
+
+.column1 {
+    float: left;
+    width: 70%;
+    padding: 10px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    margin-left: 15%;
+    margin-right: auto;
+    background-color: #FFFFFF;
+}
+.column2 {
+    float: left;
+    width: 70%;
+    padding: 10px;
+    margin-left: 15%;
+    margin-right: auto;
+    background-color: #FFFFFF;
+}
+.column3 {
+    float: left;
+    width: 70%;
+    padding: 10px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-left: 15%;
+    margin-right: auto;
+    background-color: #FFFFFF;
+}
+.minicolumn {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+
+
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    width: auto;
+  }
+
+  .content, .sidebar {
+    float: none;
+    width: 100%;
+  }
+
+  .sidebar {
+    background: transparent;
+    border: none;
+    border-top: 2px solid #ccc;
+    padding: 0;
+  }
+
+
+}

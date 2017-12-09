@@ -3,12 +3,16 @@ class ListsController < ApplicationController
   #load_and_authorize_resource
 
   def index
-    authorize! :index, List
-    @lists = List.all
+    if can? :read, List
+      @lists = current_user.lists
+    else
+      redirect_to root_path
+    end
   end
 
 
   def show
+    authorize! :index, List
     @list = List.find(params[:id])
   end
 
@@ -27,6 +31,12 @@ class ListsController < ApplicationController
       render :new
     end
   end
+
+  def join
+    @list = List.find(params[:id])
+    @list.users << current_user
+  end
+
 
   def edit
     @list = List.find(params[:id])

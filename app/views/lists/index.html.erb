@@ -1,6 +1,64 @@
-<% @lists.each do |list| %>
-  <%= list.name %> | 
+
+
+
+
+
+<html>
+  <body>
+<!--    <% @lists.each do |list| %>
+  <ul>List Name: <%= list.name %> | 
   <% list.users.each do |user| %>
-    <%= user.email %><br>
+    <li>Admin: <%= list.admin_id %></li>
+    <li>Users: <%= user.email %> | <%= list.id %></li>
   <% end %>
-<% end %>
+  </ul>
+<% end %> -->
+    <div class="row">
+      <div class="column_clear">
+        <b>Names of chore list members</b><br>
+        <% @lists.each do |list| %>
+          <% list.users.each do |user| %>
+          <img src="<%= user.imgurl %>">
+          <% end %>
+        <% end %> 
+      </div>
+    </div>
+      <br>
+    <div class="row">
+      <div class="column1">
+        <h2>Daily</h2>
+    
+          <div class="minicolumn" >
+            mini column
+          </div>
+   
+      </div>
+    </div>
+    <div class="row">
+      <div class="column1">
+        <h2>Weekly</h2>
+    
+          <div class="minicolumn" >
+            mini column
+          </div>
+   
+      </div>
+    </div>
+    <div class="row">
+      <div class="column1">
+        <h2>Monthly</h2>
+    
+          <div class="minicolumn" >
+            mini column
+          </div>
+   
+      </div>
+    </div>
+    
+    <center><div class="row">
+    <h2>Edit your chore tracker</h2>
+    </div></center>
+
+
+
+

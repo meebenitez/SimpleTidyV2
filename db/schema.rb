@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171208173858) do
+ActiveRecord::Schema.define(version: 20171209081415) do
 
   create_table "chores", force: :cascade do |t|
     t.string "name"
+    t.integer "list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.boolean "accepted"
+    t.datetime "exp_date"
+    t.string "email"
+    t.string "invite_code"
     t.integer "list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,7 +59,9 @@ ActiveRecord::Schema.define(version: 20171208173858) do
     t.string "name"
     t.boolean "member", default: true
     t.boolean "admin", default: false
+    t.string "imgurl"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["imgurl"], name: "index_users_on_imgurl"
     t.index ["name"], name: "index_users_on_name"
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

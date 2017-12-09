@@ -6,6 +6,7 @@ class Ability
       if user.admin?
         can :manage, :all
       else
+        can :manage, List, admin_id: user.id
         can :read, List do |list|
           list.users.include?(user)
         end
