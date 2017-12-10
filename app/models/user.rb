@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :lists_users
   has_many :lists, through: :lists_users
   has_many :chores, through: :lists
-  has_many :invites
+  #has_many :invites
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

@@ -26,7 +26,7 @@ class ListsController < ApplicationController
     @list  = List.create(list_params)
     @list.users << current_user
     @list.admin_id = current_user.id
-    #binding.pry
+    binding.pry
     if @list.save
       #binding.pry
       redirect_to @list
