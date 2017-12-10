@@ -1,0 +1,55 @@
+
+      <div class="dummycolumn">
+        .<br>.<br>.<br>
+      </div>
+
+
+      <div class="column1">
+          <center><h1>Simple Tidy</h1></center>
+      
+      </div>
+
+      
+
+      <div class="column1">
+        <h2>Daily</h2>
+          <div class="minicolumn" >
+            chores
+          </div>
+   
+      </div>
+
+      <div class="column1">
+        <h2>Weekly</h2>
+    
+          <div class="minicolumn" >
+            chores
+          </div>
+   
+      </div>
+
+      <div class="column1">
+        <h2>Monthly</h2>
+    
+          <div class="minicolumn" >
+            chores
+          </div>
+   
+      </div>
+      <div class="column1_center">
+        <h2></h2>
+      </div>
+      <div class="column1_center">
+        <div class="alignright">
+          <% @lists.each do |list| %>
+            <% list.users.each do |user| %>
+              <img src="<%= user.imgurl %>">
+            <% end %>
+          <% end %>
+        </div>
+        <div style="clear: both;"></div>
+      </div>
+        
+    </div>
+          
+

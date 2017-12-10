@@ -1,63 +1,29 @@
 
+<div class="dummycolumn">
+  .<br>.<br>.<br>
+</div>
 
 
-
-
-<html>
-  <body>
-<!--    <% @lists.each do |list| %>
-  <ul>List Name: <%= list.name %> | 
-  <% list.users.each do |user| %>
-    <li>Admin: <%= list.admin_id %></li>
-    <li>Users: <%= user.email %> | <%= list.id %></li>
+<div class="column1">
+    <center>
+      <h1>Welcome, <%= current_user.name %></h1>
+      <h3>Select the list you want to work on.</h3>
+    </center>
+</div>
+<div class="column1">
+  <% @lists.each do |list| %>
+    <%= list.name %>
   <% end %>
-  </ul>
-<% end %> -->
-    <div class="row">
-      <div class="column_clear">
-        <b>Names of chore list members</b><br>
-        <% @lists.each do |list| %>
-          <% list.users.each do |user| %>
-          <img src="<%= user.imgurl %>">
-          <% end %>
-        <% end %> 
-      </div>
-    </div>
-      <br>
-    <div class="row">
-      <div class="column1">
-        <h2>Daily</h2>
-    
-          <div class="minicolumn" >
-            mini column
-          </div>
-   
-      </div>
-    </div>
-    <div class="row">
-      <div class="column1">
-        <h2>Weekly</h2>
-    
-          <div class="minicolumn" >
-            mini column
-          </div>
-   
-      </div>
-    </div>
-    <div class="row">
-      <div class="column1">
-        <h2>Monthly</h2>
-    
-          <div class="minicolumn" >
-            mini column
-          </div>
-   
-      </div>
-    </div>
-    
-    <center><div class="row">
-    <h2>Edit your chore tracker</h2>
-    </div></center>
+</div>
+
+<div class="container">
+  <img class="list" src="images/clean_kitchen_final2.jpg" alt="kitchen" />
+  <div class="imgtxt">
+    HOME
+  </div>
+</div>
+
+
 
 
 

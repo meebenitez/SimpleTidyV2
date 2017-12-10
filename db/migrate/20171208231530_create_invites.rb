@@ -6,6 +6,7 @@ class CreateInvites < ActiveRecord::Migration[5.1]
       t.string :email
       t.string :invite_code
       t.integer :list_id
+      t.integer :user_id
 
       t.timestamps
     end

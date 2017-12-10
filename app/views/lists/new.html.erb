@@ -3,6 +3,11 @@
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %><br>
+      Invites:
+      <%= f.fields_for :invites do |invite| %>
+        <%= invite.label :email %>
+        <%= invite.text_field :email %>
+      <% end %>
   </div>
 
   <div class="actions">

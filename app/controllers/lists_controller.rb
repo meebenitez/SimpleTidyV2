@@ -18,14 +18,17 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
+    @list.invites.build
   end
 
 
   def create
-    @list  = List.new(list_params)
+    @list  = List.create(list_params)
     @list.users << current_user
     @list.admin_id = current_user.id
+    #binding.pry
     if @list.save
+      #binding.pry
       redirect_to @list
     else
       render :new
@@ -45,7 +48,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name)
+    params.require(:list).permit(:name, invites_attributes: [:email])
   end
 
 

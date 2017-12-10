@@ -1,26 +1,80 @@
-<h2>Log in</h2>
+<div class="dummycolumn">
+        .<br>.<br>.<br>
+</div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+      <div class="column1">
+        <center>
+          <h1>Simple Tidy</h1>
+          <h3>Your simple housekeeping app</h3>
+        </center>
+      </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
+      
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+      <div class="column1">
+        <div class="signin">
+            <div class="alignleft_signin">
+              <h2>Log in</h2>
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="field">
+                  <%= f.label :email %><br />
+                  <%= f.email_field :email, autofocus: true %>
+                </div>
 
-<%= render "devise/shared/links" %>
+
+                <div class="field">
+                  <%= f.label :password %><br />
+                  <%= f.password_field :password, autocomplete: "off" %>
+                </div>
+
+          
+
+
+                  <% if devise_mapping.rememberable? -%>
+                    <div class="field">
+                      <%= f.check_box :remember_me %>
+                      <%= f.label :remember_me %> 
+                    </div>
+                  <% end -%>
+    
+                  
+                <div class="actions">
+                  <%= f.submit "Log in" %><br>
+                  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                        <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+                      <% end -%>
+                </div>
+              <% end %>
+              
+          </div>
+
+          <div class="alignright">
+            <br>
+            <h3>Want it simpler?</h3>
+            <br>
+              <center>
+                <%- if devise_mapping.omniauthable? %>
+                  <%- resource_class.omniauth_providers.each do |provider| %>
+                    <%= link_to "Sign in with Facebook", omniauth_authorize_path(resource_name, provider), :class => "facebook" %>
+                  <% end -%>
+                <% end -%>
+              </center>
+            <br>
+            <br>
+            
+            <h3>No Facebook?  No Account?</h3>
+            <div class="actions">
+              <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+              <% end -%>
+                  
+            </div>
+          </div>
+
+           <div style="clear: both;"></div>
+        </div>
+
+
+
+
