@@ -3,6 +3,11 @@
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %><br>
+      List Type:<br>
+      <%= f.radio_button :list_type, 'Home' %> Home<br />
+      <%= f.radio_button :list_type, 'Car' %> Car<br />
+      <%= f.radio_button :list_type, 'Tech' %> Tech<br />
+      <%= f.radio_button :list_type, 'Custom' %> Custom<br />
       Invites:
       <%= f.fields_for :invites do |invite| %>
         <%= invite.label :email %>

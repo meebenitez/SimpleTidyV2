@@ -56,23 +56,28 @@
 
   img.list {
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
   }
 
   .container {
     position: relative;
     text-align: center;
+    display: inline-block;
+    padding: 15px;
 }
 
 .imgtxt {
     position: absolute;
-    top: 75%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 30px;
+    font-size: 15px;
     line-height: 36px;
-    color: white;
+    border-radius: 15px;
+    padding: 3px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
     font-family: 'Lobster', cursive;
   }
 

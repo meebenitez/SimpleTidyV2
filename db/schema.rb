@@ -14,6 +14,10 @@ ActiveRecord::Schema.define(version: 20171209081415) do
 
   create_table "chores", force: :cascade do |t|
     t.string "name"
+    t.string "frequency"
+    t.string "time_of_day"
+    t.string "status", default: "not done"
+    t.string "past_due", default: "f"
     t.integer "list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

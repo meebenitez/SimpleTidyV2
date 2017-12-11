@@ -26,7 +26,17 @@ class ListsController < ApplicationController
     @list  = List.create(list_params)
     @list.users << current_user
     @list.admin_id = current_user.id
-    binding.pry
+    #Seed starter chores
+    Chore::HOME_DATA[:chores].each do |chore|
+      new_chore = @list.chores.new
+      chore.each_with_index do |attribute, i|
+        new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
+      end
+      new_chore.save
+    end
+    #list.chores.make_chores(@list)
+
+    #binding.pry
     if @list.save
       #binding.pry
       redirect_to @list
@@ -48,7 +58,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, invites_attributes: [:email])
+    params.require(:list).permit(:name, :list_type, invites_attributes: [:email])
   end
 
 

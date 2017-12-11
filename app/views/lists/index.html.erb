@@ -6,22 +6,51 @@
 
 <div class="column1">
     <center>
-      <h1>Welcome, <%= current_user.name %></h1>
-      <h3>Select the list you want to work on.</h3>
+      <h1>Welcome, <span style="color:#FF1654"><%= current_user.name %></span></h1>
+      <h3>Select a list to work on or create a new one.</h3>
     </center>
 </div>
 <div class="column1">
+  <center>
   <% @lists.each do |list| %>
-    <%= list.name %>
+    <% if list.list_type == "Home" %>
+      <div class="container">
+        <%= link_to image_tag("clean_kitchen_final2.jpg", :class => "list"), list_path(list.id) %>
+        <div class="imgtxt">
+          <%= list.name %>
+        </div>
+      </div>
+    <% elsif list.list_type == "Car" %>
+      <div class="container">
+        <%= link_to image_tag("car_interior_final2.jpg", :class => "list"), list_path(list.id) %>
+        <div class="imgtxt">
+          <%= list.name %>
+        </div>
+      </div>
+    <% elsif list.list_type == "Tech" %>
+        <div class="container">
+          <%= link_to image_tag("laptop_final2.jpg", :class => "list"), list_path(list.id) %>
+          <div class="imgtxt">
+            <%= list.name %>
+          </div>
+        </div>
+    <% else list.list_type == "Custom" %>
+        <div class="container">
+          <%= link_to image_tag("clean_kitchen_final2.jpg", :class => "list"), list_path(list.id) %>
+          <div class="imgtxt">
+            <%= list.name %>
+          </div>
+        </div>
+    <% end %>
   <% end %>
+  <div class="container">
+    <%= link_to image_tag("plus.png", :class => "list"), new_list_path %>
+    </div>
+  </div>
+</center>
 </div>
 
-<div class="container">
-  <img class="list" src="images/clean_kitchen_final2.jpg" alt="kitchen" />
-  <div class="imgtxt">
-    HOME
-  </div>
-</div>
+
 
 
 
