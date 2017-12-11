@@ -3,53 +3,80 @@
         .<br>.<br>.<br>
       </div>
 
-
+        <div class="column1">
+          <h1><span style="color:#FFB96B"><%= @list.name %></span></h1>
+      </div>
+  
       <div class="column1">
-          <center><h1>Simple Tidy</h1></center>
-      
+          <center><h5>Daily</h5></center>
+          <% create_chore_array("daily", @list.chores).each_slice(slice_count(create_chore_array("daily", @list.chores).count)) do |chores| %>
+            <div class="minicolumn">
+              <% chores.each do |chore| %>
+                <% if chore.past_due == true %>
+                  <% if chore.time_of_day == "morning" %>
+                    <br><input type="chore_pastdue" value="☀ <%= chore.name %>">
+                  <% elsif chore.time_of_day == "evening" %>
+                    <br><input type="chore_pastdue" value="☾ <%= chore.name %>">
+                  <% else %>
+                    <br><input type="chore_pastdue" value="<%= chore.name %>">
+                  <% end %>
+                <% elsif chore.time_of_day == "morning" %>
+                  <br><input type="chore" value="☀ <%= chore.name %>">
+                <% elsif chore.time_of_day == "evening" %>
+                  <br><input type="chore" value="☾ <%= chore.name %>">
+                <% else %>
+                  <br><input type="chore" value="<%= chore.name %>">
+                <% end %>
+              <% end %>
+            </div>
+        <% end %>
       </div>
 
-      
-
       <div class="column1">
-        <h2>Daily</h2>
-          <div class="minicolumn" >
-            chores
-          </div>
-   
+        <center><h2>Weekly</h2></center>
+          <% create_chore_array("weekly", @list.chores).each_slice(slice_count(create_chore_array("weekly", @list.chores).count)) do |chores| %>
+            <div class="minicolumn">
+              <% chores.each do |chore| %>
+                <% if chore.past_due == true %>
+                    <br><input type="chore_pastdue" value="<%= chore.name %>">
+                <% else %>
+                  <br><input type="chore" value="<%= chore.name %>">
+                <% end %>
+              <% end %>
+            </div>
+        <% end %>
       </div>
 
       <div class="column1">
-        <h2>Weekly</h2>
-    
-          <div class="minicolumn" >
-            chores
-          </div>
-   
-      </div>
-
-      <div class="column1">
-        <h2>Monthly</h2>
-    
-          <div class="minicolumn" >
-            chores
-          </div>
-   
+        <center><h2>Monthly</h2></center>
+          <% create_chore_array("monthly", @list.chores).each_slice(slice_count(create_chore_array("monthly", @list.chores).count)) do |chores| %>
+            <div class="minicolumn">
+              <% chores.each do |chore| %>
+                <% if chore.past_due == true %>
+                    <br><input type="chore_pastdue" value="<%= chore.name %>">
+                <% else %>
+                  <br><input type="chore" value="<%= chore.name %>">
+                <% end %>
+              <% end %>
+            </div>
+        <% end %>
       </div>
       <div class="column1_center">
         <h2></h2>
       </div>
       <div class="column1_center">
         <div class="alignright">
-          <% @lists.each do |list| %>
-            <% list.users.each do |user| %>
+          <% @list.users.each do |user| %>
               <img src="<%= user.imgurl %>">
             <% end %>
-          <% end %>
         </div>
+
         <div style="clear: both;"></div>
       </div>
         
     </div>
           
 
+<% if can? :update, @list %><p><%= link_to 'Edit list', edit_list_path(@list.id) %></p><% end %>
+
+<p><%= link_to 'join_list', join_list_path(@list) %></p>

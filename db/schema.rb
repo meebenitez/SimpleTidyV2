@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20171209081415) do
     t.string "status", default: "not done"
     t.string "past_due", default: "f"
     t.integer "list_id"
+    t.datetime "reset_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

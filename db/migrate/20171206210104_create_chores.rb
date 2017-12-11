@@ -7,6 +7,7 @@ class CreateChores < ActiveRecord::Migration[5.1]
       t.string :status, :default => "not done"
       t.string :past_due, :default => false
       t.integer :list_id
+      t.datetime :reset_time
 
       t.timestamps
     end

@@ -31,12 +31,14 @@ class ListsController < ApplicationController
       new_chore = @list.chores.new
       chore.each_with_index do |attribute, i|
         new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
+        new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency)
       end
       new_chore.save
+      #binding.pry
     end
     #list.chores.make_chores(@list)
 
-    #binding.pry
+    binding.pry
     if @list.save
       #binding.pry
       redirect_to @list

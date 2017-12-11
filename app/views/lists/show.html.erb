@@ -1,16 +1,1 @@
-<%= @list.name %>
-
-<p>
-<% @list.chores.each do |chore| %>
-  <%= chore.name %><br>
-<% end %>
-</p>
-<% if can? :update, @list %><p><%= link_to 'Edit list', edit_list_path(@list.id) %></p><% end %>
-
-<p><%= link_to 'join_list', join_list_path(@list) %></p>
-<p>
-  <% @list.invites.each do |invite| %>
-    <%= invite.email %>
-  <% end %>
-
-</p>
+<%= render 'tidylist' %>

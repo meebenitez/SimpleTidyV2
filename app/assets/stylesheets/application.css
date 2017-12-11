@@ -42,6 +42,13 @@
     text-align: center;
   }
 
+  h5 {
+    border-top: 2px solid #ccc;
+    font-size: 24px;
+    line-height: 36px;
+    font-family: 'Lobster', cursive;
+  }
+
 
 
 
@@ -146,8 +153,9 @@
 
   .minicolumn {
       float: left;
-      width: 50%;
+      width: 47%;
       padding: 10px;
+      text-align: left;
   }
 
   .dummycolumn {
@@ -159,6 +167,10 @@
       margin-right: auto;
       color: #FFFFFF;
   }
+
+
+  
+
   .signin {
     float: left;
       width: 80%;
@@ -232,6 +244,42 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: #b2dbbf;
 }
+
+input[type=chore] {
+    width: 90%;
+    background-color: #70c1b3;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+}
+
+input[type=chore]:hover {
+    background-color: #b2dbbf;
+}
+
+input[type=chore_pastdue] {
+    width: 90%;
+    background-color: #FF1654;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+}
+
+input[type=chore_pastdue]:hover {
+    background-color: #b2dbbf;
+}
+
+
 
 .facebook {
     width: 100%;
