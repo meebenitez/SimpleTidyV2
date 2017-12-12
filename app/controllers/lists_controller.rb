@@ -15,9 +15,9 @@ class ListsController < ApplicationController
   def show
     authorize! :index, List
     @list = List.find(params[:id])
-    @daily_chores = create_chore_array("daily", @list.chores)
-    @weekly_chores = create_chore_array("weekly", @list.chores)
-    @monthly_chores = create_chore_array("monthly", @list.chores)
+    @daily_chores = create_chore_array_view("daily", @list.chores)
+    @weekly_chores = create_chore_array_view("weekly", @list.chores)
+    @monthly_chores = create_chore_array_view("monthly", @list.chores)
   end
 
   def new
@@ -57,6 +57,9 @@ class ListsController < ApplicationController
 
   def edit
     @list = List.find(params[:id])
+    @daily_chores = create_chore_array_edit("daily", @list.chores)
+    @weekly_chores = create_chore_array_edit("weekly", @list.chores)
+    @monthly_chores = create_chore_array_edit("monthly", @list.chores)
   end
 
   private

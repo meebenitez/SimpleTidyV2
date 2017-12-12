@@ -1,0 +1,120 @@
+
+
+
+
+      <div class="dummycolumn">
+        .<br>.<br>.<br>
+      </div>
+
+        <div class="column1_header">
+          <div class="alignleft_header">
+            <center><h1><%= @list.name %></h1></center>
+          </div>
+          <div class="alignright_header">
+            <br>
+            <% @list.users.each do |user| %>
+              <img class="photo" src="<%= user.imgurl %>">
+            <% end %>
+            <% if can? :update, @list %>
+              <%= link_to image_tag("edit_icon.png", :class => "edit"), edit_list_path(@list.id) %>
+            <% end %>
+          </div>
+          
+          <div style="clear: both;"></div>
+      </div>
+
+      <div class="column1_line">
+
+        <%= form_for list_chores_path(@list.id) do |f| %>
+          <div class="field">
+            <%= f.label :name %><br>
+            <%= f.text_field :name %><br>
+          </div>
+
+
+          <div class="field">
+            <%= f.radio_button :frequency, 'Daily' %> Daily<br>
+            <div id="reveal_if_active" style="display:none;">
+                <%= f.radio_button :time_of_day, 'Morning' %> Morning<br>
+                <%= f.radio_button :time_of_day, 'Evening' %> Evening<br>
+                <%= f.radio_button :time_of_day, nil %> Any Time<br>
+            </div>
+            <%= f.radio_button :frequency, 'Weekly', {:class => "show_time_of_day show_time_of_day_no"} %> Weekly<br>
+
+
+
+          </div>
+
+
+          <script type="text/javascript">
+              var checkbox = document.getElementById('_lists_6_chores_frequency_daily');
+              var details_div = document.getElementById('reveal_if_active');
+              checkbox.onchange = function() {
+              if(this.checked) {
+                details_div.style['display'] = 'block';
+              } else {
+                details_div.style['display'] = 'none';
+              }
+            };
+          </script>
+
+
+          
+
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+
+        <% end %>
+      </div>
+  
+      <div class="column1_line">
+          <center>
+            <h2>Daily</h2>
+            </center>
+          <% @daily_chores.each_slice(slice_count(@daily_chores.count)) do |chores| %>
+            <div class="minicolumn_edit">
+              <% chores.each do |chore| %>
+                  <% if chore.time_of_day == "morning" %>  
+                  <br>☀ <%= chore.name %> <%= link_to "Delete", [@list, chore], method: :delete %>
+                  <% elsif chore.time_of_day == "evening" %>
+                  <br>☾ <%= chore.name %> <%= link_to "Delete", [@list, chore], method: :delete %>              
+                  <% else %>
+                  <br><%= chore.name %> <%= link_to "Delete", [@list, chore], method: :delete %>
+                  <% end %>
+              <% end %>
+            </div>
+          <% end %>
+      </div>
+
+      <div class="column1_line">
+        <center>
+          <h2>Weekly</h2>
+        </center>
+          <% @weekly_chores.each_slice(slice_count(@weekly_chores.count)) do |chores| %>
+            <div class="minicolumn_edit">
+              <% chores.each do |chore| %>
+                <br><%= chore.name %> <%= link_to "Delete", [@list, chore], method: :delete %>                
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+      <div class="column1_line">
+        <center>
+          <h2>Monthly</h2>
+        </center>
+          <% @monthly_chores.each_slice(slice_count(@monthly_chores.count)) do |chores| %>
+            <div class="minicolumn_edit">
+              <% chores.each do |chore| %>
+                <br><%= chore.name %> <%= link_to "Delete", [@list, chore], method: :delete %>                
+              <% end %>
+            </div>
+          <% end %>
+      </div>
+      
+    </div>
+          
+<p><%= link_to 'join_list', join_list_path(@list) %></p>
+
+

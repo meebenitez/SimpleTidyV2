@@ -23,23 +23,23 @@
       <div class="column1_line">
           <center>
             <h2>Daily</h2>
-            Complete all to stay on track.
+            Complete all today to stay on track.
             </center>
           <% @daily_chores.each_slice(slice_count(@daily_chores.count)) do |chores| %>
             <div class="minicolumn">
               <% chores.each do |chore| %>
                 <% if chore.past_due == true %>
                   <% if chore.time_of_day == "morning" %>
-                  <br><%= button_to "☀" + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_past_due" %>
+                  <br><%= button_to "☀ " + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_past_due" %>
                   <% elsif chore.time_of_day == "evening" %>
-                  <br><%= button_to "☾" + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_past_due" %>                
+                  <br><%= button_to "☾ " + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_past_due" %>                
                   <% else %>
                   <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_past_due" %>                
                   <% end %>
                 <% elsif chore.time_of_day == "morning" %>
-                  <br><%= button_to "☀" + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_daily" %>
+                  <br><%= button_to "☀ " + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_daily" %>
                 <% elsif chore.time_of_day == "evening" %>
-                  <br><%= button_to "☾" + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_daily" %>                
+                  <br><%= button_to "☾ " + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_daily" %>                
                 <% else %>
                   <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_daily" %>                
                 <% end %>

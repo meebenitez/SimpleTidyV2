@@ -8,7 +8,7 @@ module ChoresHelper
      end
   end
 
-  def create_chore_array(frequency, all_chores)
+  def create_chore_array_view(frequency, all_chores)
     sorted_chores = []
     all_chores.each do |chore|
       if chore.frequency == frequency && chore.status == "not done"
@@ -18,8 +18,19 @@ module ChoresHelper
         sorted_chores << chore
       end
     end
-    #binding.pry
     sorted_chores
   end
+
+
+  def create_chore_array_edit(frequency, all_chores)
+    sorted_chores = []
+    all_chores.each do |chore|
+      if chore.frequency == frequency
+        sorted_chores << chore
+      end
+    end
+    sorted_chores
+  end
+
 
 end

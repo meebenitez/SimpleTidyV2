@@ -14,11 +14,6 @@
   }
 
 
-  h1 {
-    font-size: 40px;
-    line-height: 54px;
-    font-family: 'Lobster', cursive;
-  }
    h1 {
     font-size: 40px;
     line-height: 54px;
@@ -163,6 +158,20 @@
       margin-right: auto;
 
   }
+
+  .edit_container {
+    display: flex;
+  }
+  .edit_container > div {
+    flex: 1;
+    height: 500px;
+    overflow-y: auto;
+  }
+
+  .border {
+    border: 2px solid #ccc;
+  }
+
   .column1_nopadding {
       text-align: left;
       float: left;
@@ -203,6 +212,12 @@
       text-align: center;
   }
 
+  .minicolumn_edit {
+    float: left;
+      width: 50%;
+      text-align: left;
+  }
+
   .dummycolumn {
       float: left;
       width: 70%;
@@ -213,8 +228,11 @@
       color: #FFFFFF;
   }
 
+  #reveal_if_active {
+    
 
-  
+  }
+
 
   .signin {
     float: left;
@@ -229,6 +247,19 @@
     float: left;
     padding: 10px;
   }
+  .alignleft_list {
+    width: 30%;
+    float: left;
+    padding: 10px;
+    overflow-y: scroll;
+  }
+  .alignright_list {
+    width: 70%;
+    float: right;
+    padding: 10px;
+  }
+  
+
    .alignleft_header {
     display:inline-block;
   }
