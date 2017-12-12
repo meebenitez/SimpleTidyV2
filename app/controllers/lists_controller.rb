@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+  include ChoresHelper
   before_action :authenticate_user!
   #load_and_authorize_resource
 
@@ -14,6 +15,9 @@ class ListsController < ApplicationController
   def show
     authorize! :index, List
     @list = List.find(params[:id])
+    @daily_chores = create_chore_array("daily", @list.chores)
+    @weekly_chores = create_chore_array("weekly", @list.chores)
+    @monthly_chores = create_chore_array("monthly", @list.chores)
   end
 
   def new
