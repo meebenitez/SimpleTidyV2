@@ -18,7 +18,7 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
-    @list.invites.build
+    #@list.invites.build
   end
 
 
@@ -37,8 +37,6 @@ class ListsController < ApplicationController
       #binding.pry
     end
     #list.chores.make_chores(@list)
-
-    binding.pry
     if @list.save
       #binding.pry
       redirect_to @list

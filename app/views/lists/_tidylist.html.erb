@@ -3,59 +3,75 @@
         .<br>.<br>.<br>
       </div>
 
-        <div class="column1">
-          <h1><span style="color:#FFB96B"><%= @list.name %></span></h1>
+        <div class="column1_header">
+          <div class="alignleft_header">
+            <center><h1><%= @list.name %></h1></center>
+          </div>
+          <div class="alignright_header">
+            <br>
+            <% if can? :update, @list %>
+              <%= link_to image_tag("edit_icon.png", :class => "edit"), edit_list_path(@list.id) %>
+            <% end %>
+          </div>
+          
+          <div style="clear: both;"></div>
       </div>
   
-      <div class="column1">
-          <center><h5>Daily</h5></center>
+      <div class="column1_line">
+          <center><h2>Daily</h2></center>
           <% create_chore_array("daily", @list.chores).each_slice(slice_count(create_chore_array("daily", @list.chores).count)) do |chores| %>
             <div class="minicolumn">
               <% chores.each do |chore| %>
                 <% if chore.past_due == true %>
                   <% if chore.time_of_day == "morning" %>
-                    <br><input type="chore_pastdue" value="☀ <%= chore.name %>">
+                  <br><%= button_to "☀" + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_past_due" %>
                   <% elsif chore.time_of_day == "evening" %>
-                    <br><input type="chore_pastdue" value="☾ <%= chore.name %>">
+                  <br><%= button_to "☾" + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_past_due" %>                
                   <% else %>
-                    <br><input type="chore_pastdue" value="<%= chore.name %>">
+                  <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_past_due" %>                
                   <% end %>
                 <% elsif chore.time_of_day == "morning" %>
-                  <br><input type="chore" value="☀ <%= chore.name %>">
+                  <br><%= button_to "☀" + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_daily" %>
                 <% elsif chore.time_of_day == "evening" %>
-                  <br><input type="chore" value="☾ <%= chore.name %>">
+                  <br><%= button_to "☾" + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_daily" %>                
                 <% else %>
-                  <br><input type="chore" value="<%= chore.name %>">
+                  <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_daily" %>                
                 <% end %>
               <% end %>
             </div>
         <% end %>
       </div>
 
-      <div class="column1">
-        <center><h2>Weekly</h2></center>
+      <div class="column1_line">
+        <center>
+          <h2>Weekly</h2>
+          <strong>Goal:</strong> Complete 2 today to stay on track.
+        </center>
           <% create_chore_array("weekly", @list.chores).each_slice(slice_count(create_chore_array("weekly", @list.chores).count)) do |chores| %>
             <div class="minicolumn">
               <% chores.each do |chore| %>
                 <% if chore.past_due == true %>
-                    <br><input type="chore_pastdue" value="<%= chore.name %>">
+                  <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_past_due" %>                
                 <% else %>
-                  <br><input type="chore" value="<%= chore.name %>">
+                  <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_weekly" %>                
                 <% end %>
               <% end %>
             </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
 
-      <div class="column1">
-        <center><h2>Monthly</h2></center>
+      <div class="column1_line">
+        <center>
+          <h2>Monthly</h2>
+          <strong>Goal:</strong> Complete 1 today to stay on track.
+        </center>
           <% create_chore_array("monthly", @list.chores).each_slice(slice_count(create_chore_array("monthly", @list.chores).count)) do |chores| %>
             <div class="minicolumn">
               <% chores.each do |chore| %>
                 <% if chore.past_due == true %>
-                    <br><input type="chore_pastdue" value="<%= chore.name %>">
+                  <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_past_due" %>                
                 <% else %>
-                  <br><input type="chore" value="<%= chore.name %>">
+                  <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_monthly" %>                
                 <% end %>
               <% end %>
             </div>

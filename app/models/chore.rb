@@ -59,4 +59,9 @@ class Chore < ApplicationRecord
     end
   end
 
+  def complete_chore(chore)
+    chore.status = "done"
+  end
+
+
 end

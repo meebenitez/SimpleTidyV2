@@ -18,6 +18,16 @@ class ChoresController < ApplicationController
     redirect_to list_path(@chore.list)
   end
 
+  def show
+  end
+
+  def complete
+    @chore = Chore.find(params[:id])
+    @chore.update(status: "done")
+    redirect_to list_path(@chore.list)
+  end
+
+
   def destroy
     @chore = @list.chores.find(params[:id])
     @chore.destroy

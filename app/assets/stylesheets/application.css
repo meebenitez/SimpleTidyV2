@@ -19,12 +19,17 @@
     line-height: 54px;
     font-family: 'Lobster', cursive;
   }
+   h1 {
+    font-size: 40px;
+    line-height: 54px;
+    display: inline-block;
+    font-family: 'Lobster', cursive;
+  }
 
   h2 {
-    border-top: 2px solid #ccc;
     font-size: 24px;
     line-height: 36px;
-    margin-bottom: 16px;
+    text-indent: 15px;
     font-family: 'Lobster', cursive;
   }
 
@@ -59,6 +64,12 @@
 
   img {
     border-radius: 50%;
+  }
+
+  img.edit {
+    width: 25px;
+    height: 25px;
+
   }
 
   img.list {
@@ -117,6 +128,12 @@
 
   }
 
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
   .column1 {
       text-align: left;
       float: left;
@@ -124,7 +141,35 @@
       padding: 10px;
       margin-left: 15%;
       margin-right: auto;
+
   }
+  .column1_line {
+      text-align: left;
+      float: left;
+      width: 70%;
+      padding: 10px;
+      margin-left: 15%;
+      margin-right: auto;
+      border-top: 2px solid #ccc;
+
+  }
+  .column1_header {
+      text-align: left;
+      float: left;
+      width: 70%;
+      padding-left: 10px;
+      margin-left: 15%;
+      margin-right: auto;
+
+  }
+  .column1_nopadding {
+      text-align: left;
+      float: left;
+      width: 70%;
+      margin-left: 15%;
+      margin-right: auto;
+  }
+
   .column1_right {
       text-align: right;
       float: left;
@@ -153,9 +198,8 @@
 
   .minicolumn {
       float: left;
-      width: 47%;
-      padding: 10px;
-      text-align: left;
+      width: 50%;
+      text-align: center;
   }
 
   .dummycolumn {
@@ -183,6 +227,13 @@
     width: 50%;
     float: left;
     padding: 10px;
+  }
+   .alignleft_header {
+    display:inline-block;
+  }
+  .alignright_header {
+    display:inline-block;
+    float: right;
   }
   .alignleft_signin {
     width: 50%;
@@ -245,7 +296,7 @@ input[type=submit]:hover {
     background-color: #b2dbbf;
 }
 
-input[type=chore] {
+input.chore_daily {
     width: 90%;
     background-color: #70c1b3;
     color: white;
@@ -258,13 +309,13 @@ input[type=chore] {
     font-size: 14px;
 }
 
-input[type=chore]:hover {
+input.chore_daily:hover {
     background-color: #b2dbbf;
 }
 
-input[type=chore_pastdue] {
+input.chore_weekly {
     width: 90%;
-    background-color: #FF1654;
+    background-color: #F9C563;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -275,8 +326,42 @@ input[type=chore_pastdue] {
     font-size: 14px;
 }
 
-input[type=chore_pastdue]:hover {
-    background-color: #b2dbbf;
+input.chore_weekly:hover {
+    background-color: #F9EC95;
+}
+
+input.chore_monthly {
+    width: 90%;
+    background-color: #247BA0;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+}
+
+input.chore_monthly:hover {
+    background-color: #86CAE8;
+}
+
+input.chore_pastdue {
+    width: 90%;
+    background-color: #FF3067;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+}
+
+input.chore_pastdue:hover {
+    background-color: #FF779B;
 }
 
 

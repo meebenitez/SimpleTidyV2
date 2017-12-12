@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root 'welcome#home'
 
   resources :lists do
-    resources :chores, only: [:create, :destroy]
+    resources :chores do
+      get 'complete', :on => :member
+    end
   end
   resources :users
 
