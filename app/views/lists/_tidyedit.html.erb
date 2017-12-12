@@ -31,30 +31,24 @@
             <%= f.text_field :name %><br>
           </div>
 
-
-          <div class="field">
+        <div class="field">
             <%= f.radio_button :frequency, 'Daily' %> Daily<br>
-            <div id="reveal_if_active" style="display:none;">
+            <div id="#time_of_day" style="display:none;">
                 <%= f.radio_button :time_of_day, 'Morning' %> Morning<br>
                 <%= f.radio_button :time_of_day, 'Evening' %> Evening<br>
                 <%= f.radio_button :time_of_day, nil %> Any Time<br>
             </div>
-            <%= f.radio_button :frequency, 'Weekly', {:class => "show_time_of_day show_time_of_day_no"} %> Weekly<br>
-
-
-
+            <%= f.radio_button :frequency, 'Weekly' %> Weekly<br>
           </div>
-
-
           <script type="text/javascript">
-              var checkbox = document.getElementById('_lists_6_chores_frequency_daily');
-              var details_div = document.getElementById('reveal_if_active');
+              var checkbox = document.getElementById('_lists_<%= @list.id %>_chores_frequency_daily');
+              var details_div = document.getElementById('#time_of_day');
               checkbox.onchange = function() {
               if(this.checked) {
-                details_div.style['display'] = 'block';
-              } else {
-                details_div.style['display'] = 'none';
-              }
+                 details_div.style['display'] = 'block';
+               } else {
+                 details_div.style['display'] = 'none';
+               }
             };
           </script>
 

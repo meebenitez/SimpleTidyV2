@@ -228,10 +228,6 @@
       color: #FFFFFF;
   }
 
-  #reveal_if_active {
-    
-
-  }
 
 
   .signin {
@@ -286,7 +282,7 @@
 /*-------------------fields*/
 
 input[type=text], select {
-    width: 100px;
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -294,6 +290,18 @@ input[type=text], select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+input[type=name], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
 input[type=email], select {
     width: 100%;
     padding: 12px 20px;
