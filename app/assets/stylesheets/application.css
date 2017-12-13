@@ -124,6 +124,10 @@
 
   }
 
+  .buttons {
+    display: none;
+  }
+
   .row:after {
     content: "";
     display: table;
@@ -228,6 +232,45 @@
       color: #FFFFFF;
   }
 
+  .chore_edit_daily {
+    width: 80%;
+    background-color: #989898;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+}
+
+.chore_edit_weekly {
+    width: 80%;
+    background-color: #787878;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+}
+
+.chore_edit_monthly {
+    width: 80%;
+    background-color: #282828;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+}
+
 
 
   .signin {
@@ -311,6 +354,17 @@ input[type=email], select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+input[type=invite], select {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
 input[type=password], select {
     width: 100%;
     padding: 12px 20px;
@@ -335,6 +389,7 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: #b2dbbf;
 }
+
 
 input.chore_daily {
     width: 90%;

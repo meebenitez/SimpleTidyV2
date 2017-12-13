@@ -50,6 +50,14 @@
 </center>
 </div>
 
+<div>
+  List invites: </div>
+  <% @invites.each do |invite| %>
+    <%= list_name invite.list_id %>
+  <% end %>
+
+</div>
+
 
 
 

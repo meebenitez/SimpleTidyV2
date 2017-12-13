@@ -25,10 +25,9 @@ ActiveRecord::Schema.define(version: 20171209081415) do
   end
 
   create_table "invites", force: :cascade do |t|
-    t.boolean "accepted"
+    t.string "status", default: "open"
     t.datetime "exp_date"
     t.string "email"
-    t.string "invite_code"
     t.integer "list_id"
     t.integer "user_id"
     t.datetime "created_at", null: false

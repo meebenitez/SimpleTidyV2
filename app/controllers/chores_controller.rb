@@ -1,5 +1,7 @@
 class ChoresController < ApplicationController
   before_action :set_list, only: [:show, :new, :create, :edit, :update, :destroy]
+  respond_to :html, :json
+  
 
   def create
     @chore = @list.chores.new(chore_params)
@@ -32,7 +34,7 @@ class ChoresController < ApplicationController
     @chore = @list.chores.find(params[:id])
     @chore.destroy
     flash[:notice] = "deleted"
-    redirect_to @list
+    redirect_to edit_list_path(@list)
   end
 
   private 

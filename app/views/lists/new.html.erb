@@ -9,8 +9,8 @@
       <%= f.radio_button :list_type, 'Tech' %> Tech<br />
       <%= f.radio_button :list_type, 'Custom' %> Custom<br />
       Invites:
-      <%= f.fields_for :invites, @list.invites.build do |invite| %>
-        <%= invite.label :email %>
+      <%= f.fields_for :invites do |invite| %>
+        <br><%= invite.label :email %>
         <%= invite.text_field :email %>
       <% end %>
   </div>

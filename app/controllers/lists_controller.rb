@@ -6,6 +6,8 @@ class ListsController < ApplicationController
   def index
     if can? :read, List
       @lists = current_user.lists
+      @invites = current_user.invites.select {|invite| invite.status == "open" }
+      #binding.pry
     else
       redirect_to root_path
     end
@@ -22,7 +24,9 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
-    #@list.invites.build
+    @list.invites.build
+    @list.invites.build
+    @list.invites.build
   end
 
 
@@ -31,18 +35,60 @@ class ListsController < ApplicationController
     @list.users << current_user
     @list.admin_id = current_user.id
     #Seed starter chores
-    Chore::HOME_DATA[:chores].each do |chore|
-      new_chore = @list.chores.new
-      chore.each_with_index do |attribute, i|
-        new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
-        new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency)
+
+    if @list.list_type == "Home"
+      Chore::HOME_DATA[:chores].each do |chore|
+        new_chore = @list.chores.new
+        chore.each_with_index do |attribute, i|
+          new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
+          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency)
+        end
+        new_chore.save
+        #binding.pry
       end
-      new_chore.save
-      #binding.pry
+    elsif @list.list_type == "Car"
+      Chore::CAR_DATA[:chores].each do |chore|
+        new_chore = @list.chores.new
+        chore.each_with_index do |attribute, i|
+          new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
+          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency)
+        end
+        new_chore.save
+        #binding.pry
+      end
+    elsif @list.list_type == "Tech"
+      Chore::TECH_DATA[:chores].each do |chore|
+        new_chore = @list.chores.new
+        chore.each_with_index do |attribute, i|
+          new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
+          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency)
+        end
+        new_chore.save
+        #binding.pry
+      end
+    else
+      Chore::CUSTOM_DATA[:chores].each do |chore|
+        new_chore = @list.chores.new
+        chore.each_with_index do |attribute, i|
+          new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
+          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency)
+        end
+        new_chore.save
+        #binding.pry
+      end
     end
+    
+    # assign invites
+    @list.invites.each do |invite|
+      if User.find_by(email: invite.email)
+        @user = User.find_by(email: invite.email)
+        @user.invites << invite
+      end
+    end
+
+
     #list.chores.make_chores(@list)
     if @list.save
-      #binding.pry
       redirect_to @list
     else
       render :new
@@ -65,7 +111,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, :list_type, invites_attributes: [:email])
+    params.require(:list).permit(:name, :list_type, invites_attributes: [:email, :status])
   end
 
 

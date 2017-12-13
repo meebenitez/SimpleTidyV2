@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
   
 
-  resources :invites
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root 'welcome#home'
 
   resources :lists do
+    resources :chores
     resources :chores do
       get 'complete', :on => :member
     end
+    resources :invites
   end
   resources :users
 

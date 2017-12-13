@@ -10,4 +10,5 @@ class ApplicationController < ActionController::Base
     #binding.pry
     request.env['omniauth.origin'] || lists_path
   end
+
 end

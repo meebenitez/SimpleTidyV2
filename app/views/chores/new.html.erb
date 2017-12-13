@@ -1,15 +1,35 @@
-<h1>Chore</h1>
+ <script type="text/javascript">
+    function resetradio () {
+      var radio = document.getElementsByName('/lists/<%= @list.id %>/chores[frequency]')[0];
+      var buttons = document.querySelector('.buttons');
+      var radios = document.getElementsByName('/lists/<%= @list.id %>/chores[time_of_day]');
+      radios[0].checked = false;
+      if (radio.checked == true) {
+          buttons.style.display = 'block';
+      }
+      else {
+          buttons.style.display = 'none';
+      }
+  }
 
 
-<%= form_for list_chores_path(@list.id) do |f| %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
-  </div>
+  function setradio () {
+      var radio = document.getElementsByName('/lists/<%= @list.id %>/chores[frequency]')[0];
+      if (radio.checked == false) {
+          radio.checked = true;
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      }
+  }
+</script>
 
-<% end %>
+
+<div class="dummycolumn">
+        .<br>.<br>.<br>
+      </div>
+
+        <div class="column1_header">
+          <h1><%= @list.name %></h1>
+        </div>
+
+        <%= render 'chores/chore' %>
