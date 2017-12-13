@@ -98,6 +98,10 @@ class ListsController < ApplicationController
   def join
     @list = List.find(params[:id])
     @list.users << current_user
+    invite = current_user.invites.find_by(list_id: @list.id)
+    invite.status = "closed"
+    redirect_to @list
+
   end
 
 

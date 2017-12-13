@@ -355,15 +355,7 @@ input[type=email], select {
     box-sizing: border-box;
 }
 
-input[type=invite], select {
-    width: 30%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+
 
 input[type=password], select {
     width: 100%;
@@ -402,6 +394,7 @@ input.chore_daily {
     cursor: pointer;
     text-align: center;
     font-size: 14px;
+    white-space: normal;
 }
 
 input.chore_daily:hover {
@@ -419,6 +412,8 @@ input.chore_weekly {
     cursor: pointer;
     text-align: center;
     font-size: 14px;
+    white-space: normal;
+
 }
 
 input.chore_weekly:hover {
@@ -436,6 +431,8 @@ input.chore_monthly {
     cursor: pointer;
     text-align: center;
     font-size: 14px;
+    white-space: normal;
+
 }
 
 input.chore_monthly:hover {
