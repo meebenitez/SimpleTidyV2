@@ -80,8 +80,7 @@ class ListsController < ApplicationController
     
     # assign invites
     @list.invites.each do |invite|
-      if User.find_by(email: invite.email)
-        @user = User.find_by(email: invite.email)
+      if @user = User.find_by(email: invite.email)
         @user.invites << invite
       end
     end
@@ -97,10 +96,14 @@ class ListsController < ApplicationController
 
   def join
     @list = List.find(params[:id])
-    @list.users << current_user
-    invite = current_user.invites.find_by(list_id: @list.id)
-    invite.status = "closed"
-    redirect_to @list
+    if !@list.users.find_by(id: current_user.id)
+      @list.users << current_user
+      invite = current_user.invites.find_by(list_id: @list.id)
+      invite.status = "closed"
+      redirect_to @list
+    else
+      redirect_to @list
+    end
 
   end
 

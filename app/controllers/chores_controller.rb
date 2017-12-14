@@ -40,7 +40,7 @@ class ChoresController < ApplicationController
   private 
     
     def chore_params
-      params.require(:chore).permit(:name)
+      params.require(:chore).permit(:name, :frequency, :time_of_day)
     end
 
     def set_list

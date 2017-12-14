@@ -32,5 +32,10 @@ module ChoresHelper
     sorted_chores
   end
 
+  def update_chore_goals(goal)
+    #PLACEHOLDER -- dynamically change goal message
+  end
+
+
 
 end

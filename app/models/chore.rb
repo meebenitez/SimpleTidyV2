@@ -1,5 +1,6 @@
 class Chore < ApplicationRecord
   belongs_to :list
+  validates :name, presence: true
 
   HOME_DATA = {
     :chore_keys =>
@@ -36,17 +37,7 @@ class Chore < ApplicationRecord
   }
 
 
-  def make_chores(list)
-    HOME_DATA[:chores].each do |chore|
-      new_chore = Chore.new
-      chore.each_with_index do |attributes, i|
-        new_chore.send(DATA[:chore_keys][i]+"=", attribute)
-      end
-      new_chore.save
-      list.chores << new_chore
-    end
-  end
-
+#Create the time a "completed" chore will show back up on the list
   def self.set_reset(now, frequency)
     if frequency == "daily"
       reset_time = now - now.strftime("%H").to_i.hours - now.strftime("%M").to_i.minutes - now.strftime("%S").to_i.seconds + 1.days
@@ -62,6 +53,11 @@ class Chore < ApplicationRecord
   def complete_chore(chore)
     chore.status = "done"
   end
+
+  def calculate_chore_goal(frequency, count)
+    #PLACEHOLDER -- calculate how many weekly/monthly chores must be completed daily to stay on track
+  end
+
 
 
 end

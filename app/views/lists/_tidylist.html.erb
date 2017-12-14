@@ -5,13 +5,10 @@
       </div>
 
         <div class="column1_header">
-          <div class="alignleft_header">
-            <center><h1><%= @list.name %></h1></center>
-          </div>
           <div class="alignright_header">
             <br>
             <% @list.users.each do |user| %>
-              <img class="photo" src="<%= user.imgurl %>">
+              <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %>
             <% end %>
             <% if can? :update, @list %>
               <%= link_to image_tag("edit_icon.png", :class => "edit"), edit_list_path(@list.id) %>
@@ -23,8 +20,8 @@
   
       <div class="column1_line">
           <center>
-            <h2>Daily</h2>
-            Complete all today to stay on track.
+            <h1>Daily</h1>
+            <br>Complete all tasks today to stay on track.
             </center>
           <% @daily_chores.each_slice(slice_count(@daily_chores.count)) do |chores| %>
             <div class="minicolumn">
@@ -51,8 +48,8 @@
 
       <div class="column1_line">
         <center>
-          <h2>Weekly</h2>
-          Complete 2 today to stay on track.
+          <h1>Weekly</h1>
+          <br>Complete 2 today to stay on track.
         </center>
           <% @weekly_chores.each_slice(slice_count(@weekly_chores.count)) do |chores| %>
             <div class="minicolumn">
@@ -69,8 +66,8 @@
 
       <div class="column1_line">
         <center>
-          <h2>Monthly</h2>
-          Complete 1 today to stay on track.
+          <h1>Monthly</h1>
+          <br>Complete 1 today to stay on track.
         </center>
           <% @monthly_chores.each_slice(slice_count(@monthly_chores.count)) do |chores| %>
             <div class="minicolumn">

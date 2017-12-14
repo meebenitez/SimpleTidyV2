@@ -1,27 +1,4 @@
- <script type="text/javascript">
-    function resetradio () {
-      var radio = document.getElementsByName('/lists/<%= @list.id %>/chores[frequency]')[0];
-      var buttons = document.querySelector('.buttons');
-      var radios = document.getElementsByName('/lists/<%= @list.id %>/chores[time_of_day]');
-      radios[0].checked = false;
-      if (radio.checked == true) {
-          buttons.style.display = 'block';
-      }
-      else {
-          buttons.style.display = 'none';
-      }
-  }
 
-
-
-  function setradio () {
-      var radio = document.getElementsByName('/lists/<%= @list.id %>/chores[frequency]')[0];
-      if (radio.checked == false) {
-          radio.checked = true;
-
-      }
-  }
-</script>
 
 
 <div class="dummycolumn">
