@@ -39,14 +39,15 @@ class Chore < ApplicationRecord
 
 #Create the time a "completed" chore will show back up on the list
   def self.set_reset(now, frequency)
+    subtract_time = now - now.strftime("%H").to_i.hours - now.strftime("%M").to_i.minutes - now.strftime("%S").to_i.seconds
     if frequency == "daily"
-      reset_time = now - now.strftime("%H").to_i.hours - now.strftime("%M").to_i.minutes - now.strftime("%S").to_i.seconds + 1.days
+      reset_time = subtract_time + 1.days
     elsif frequency == "biweekly"
-      reset_time = now - now.strftime("%H").to_i.hours - now.strftime("%M").to_i.minutes - now.strftime("%S").to_i.seconds + 3.days
+      reset_time = subtract_time + 3.days
     elsif frequency == "weekly"
-      reset_time = now - now.strftime("%H").to_i.hours - now.strftime("%M").to_i.minutes - now.strftime("%S").to_i.seconds + 1.weeks
+      reset_time = subtract_time + 1.weeks
     else
-      reset_time = now - now.strftime("%H").to_i.hours - now.strftime("%M").to_i.minutes - now.strftime("%S").to_i.seconds + 1.months
+      reset_time = subtract_time + 1.months
     end
   end
 
