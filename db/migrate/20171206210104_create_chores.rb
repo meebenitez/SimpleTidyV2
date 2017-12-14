@@ -5,7 +5,7 @@ class CreateChores < ActiveRecord::Migration[5.1]
       t.string :frequency
       t.string :time_of_day, :default => nil
       t.string :status, :default => "not done"
-      t.string :past_due, :default => false
+      t.boolean :past_due, :default => false
       t.integer :list_id
       t.datetime :reset_time
 

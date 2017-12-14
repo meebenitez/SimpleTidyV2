@@ -2,6 +2,8 @@ class Chore < ApplicationRecord
   belongs_to :list
   validates :name, presence: true
 
+
+#### THESE NEED A NEW HOME ###########
   HOME_DATA = {
     :chore_keys =>
       ["name", "frequency", "time_of_day", "status", "past_due"],
@@ -71,12 +73,14 @@ class Chore < ApplicationRecord
 
 
 #Create the time a "completed" chore will show back up on the list
-  def self.set_reset(now, frequency)
+  def self.set_reset(now, frequency, time_of_day)
     subtract_time = now - now.strftime("%H").to_i.hours - now.strftime("%M").to_i.minutes - now.strftime("%S").to_i.seconds
     if frequency == "daily"
-      reset_time = subtract_time + 1.days
-    elsif frequency == "biweekly"
-      reset_time = subtract_time + 3.days
+      if time_of_day == "morning"
+        reset_time = subtract_time + 12.hours
+      else
+        reset_time = subtract_time + 1.days
+      end
     elsif frequency == "weekly"
       reset_time = subtract_time + 1.weeks
     else

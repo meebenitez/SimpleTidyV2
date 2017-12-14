@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20171209081415) do
     t.string "frequency"
     t.string "time_of_day"
     t.string "status", default: "not done"
-    t.string "past_due", default: "f"
+    t.boolean "past_due", default: false
     t.integer "list_id"
     t.datetime "reset_time"
     t.datetime "created_at", null: false

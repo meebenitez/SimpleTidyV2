@@ -18,6 +18,7 @@ class ListsController < ApplicationController
     authorize! :index, List
     @list = List.find(params[:id])
     @daily_chores = create_chore_array_view("daily", @list.chores)
+    binding.pry
     @weekly_chores = create_chore_array_view("weekly", @list.chores)
     @monthly_chores = create_chore_array_view("monthly", @list.chores)
   end
@@ -41,7 +42,7 @@ class ListsController < ApplicationController
         new_chore = @list.chores.new
         chore.each_with_index do |attribute, i|
           new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
-          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency)
+          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency, new_chore.time_of_day)
         end
         new_chore.save
         #binding.pry
@@ -51,27 +52,17 @@ class ListsController < ApplicationController
         new_chore = @list.chores.new
         chore.each_with_index do |attribute, i|
           new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
-          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency)
+          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency, new_chore.time_of_day)
         end
         new_chore.save
         #binding.pry
       end
-    elsif @list.list_type == "Tech"
+    else @list.list_type == "Tech"
       Chore::TECH_DATA[:chores].each do |chore|
         new_chore = @list.chores.new
         chore.each_with_index do |attribute, i|
           new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
-          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency)
-        end
-        new_chore.save
-        #binding.pry
-      end
-    else
-      Chore::CUSTOM_DATA[:chores].each do |chore|
-        new_chore = @list.chores.new
-        chore.each_with_index do |attribute, i|
-          new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
-          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency)
+          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency, new_chore.time_of_day)
         end
         new_chore.save
         #binding.pry
