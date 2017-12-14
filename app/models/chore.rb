@@ -16,9 +16,9 @@ class Chore < ApplicationRecord
       ["Water plants", "daily", nil, "not done", false],
       ["Vacuum high-traffic areas", "daily", nil, "not done", false],
       ["10 minute tidy bedrooms", "daily", "evening", "not done", false],
-      ["Tidy desk areas", "biweekly", nil, "not done", false],
-      ["Complete a load of laundry", "biweekly", nil, "not done", false],
-      ["Pay bills", "biweekly", nil, "not done", false],
+      ["Tidy desk areas", "weekly", nil, "not done", false],
+      ["Complete a load of laundry", "weekly", nil, "not done", false],
+      ["Pay bills", "weekly", nil, "not done", false],
       ["Vacuum or sweep all floors", "biweekly", nil, "not done", false],
       ["Mop hard floors", "weekly", nil, "not done", false],
       ["Wipe down light switches and door handles", "weekly", nil, "not done", false],
@@ -32,6 +32,39 @@ class Chore < ApplicationRecord
       ["Wash ceiling light fixtures, wipe fan blades", "monthly", nil, "not done", false],
       ["Dust, vacuum or wash window coverings", "monthly", nil, "not done", false],
 
+    ]
+
+  }
+
+  CAR_DATA = {
+    :chore_keys =>
+      ["name", "frequency", "time_of_day", "status", "past_due"],
+    :chores => [
+      ["Test", "daily", nil, "not done", false],
+      ["Test", "weekly", nil, "not done", false],
+      ["Test", "monthly", nil, "not done", false],
+    ]
+
+  }
+
+  TECH_DATA = {
+    :chore_keys =>
+      ["name", "frequency", "time_of_day", "status", "past_due"],
+    :chores => [
+      ["Test", "daily", nil, "not done", false],
+      ["Test", "weekly", nil, "not done", false],
+      ["Test", "monthly", nil, "not done", false],
+    ]
+
+  }
+
+  CUSTOM_DATA = {
+    :chore_keys =>
+      ["name", "frequency", "time_of_day", "status", "past_due"],
+    :chores => [
+      ["Test", "daily", nil, "not done", false],
+      ["Test", "weekly", nil, "not done", false],
+      ["Test", "monthly", nil, "not done", false],
     ]
 
   }
