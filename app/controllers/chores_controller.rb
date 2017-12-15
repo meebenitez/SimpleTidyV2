@@ -5,6 +5,8 @@ class ChoresController < ApplicationController
 
   def create
     @chore = @list.chores.new(chore_params)
+    @chore.reset_time = Chore.set_reset(Time.now, @chore.frequency, @chore.time_of_day)
+
     if @chore.save
       flash[:notice] = "Success"
       redirect_to edit_list_path(@list.id)
@@ -25,7 +27,7 @@ class ChoresController < ApplicationController
 
   def complete
     @chore = Chore.find(params[:id])
-    @chore.update(status: "done")
+    Chore.complete_chore(@chore)
     redirect_to list_path(@chore.list)
   end
 

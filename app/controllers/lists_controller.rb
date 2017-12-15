@@ -17,8 +17,8 @@ class ListsController < ApplicationController
   def show
     authorize! :index, List
     @list = List.find(params[:id])
+    Chore.check_past_due(@list.chores)
     @daily_chores = create_chore_array_view("daily", @list.chores)
-    binding.pry
     @weekly_chores = create_chore_array_view("weekly", @list.chores)
     @monthly_chores = create_chore_array_view("monthly", @list.chores)
   end
@@ -45,7 +45,6 @@ class ListsController < ApplicationController
           new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency, new_chore.time_of_day)
         end
         new_chore.save
-        #binding.pry
       end
     elsif @list.list_type == "Car"
       Chore::CAR_DATA[:chores].each do |chore|
@@ -53,8 +52,8 @@ class ListsController < ApplicationController
         chore.each_with_index do |attribute, i|
           new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
           new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency, new_chore.time_of_day)
+          new_chore.save
         end
-        new_chore.save
         #binding.pry
       end
     else @list.list_type == "Tech"
@@ -75,7 +74,6 @@ class ListsController < ApplicationController
         @user.invites << invite
       end
     end
-
 
     #list.chores.make_chores(@list)
     if @list.save
@@ -104,6 +102,12 @@ class ListsController < ApplicationController
     @daily_chores = create_chore_array_edit("daily", @list.chores)
     @weekly_chores = create_chore_array_edit("weekly", @list.chores)
     @monthly_chores = create_chore_array_edit("monthly", @list.chores)
+  end
+
+  def update
+    @list = List.find(params[:id])
+    @list.update(list_params)
+    redirect_to edit_list_path(@list)
   end
 
   private

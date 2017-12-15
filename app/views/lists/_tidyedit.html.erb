@@ -3,12 +3,19 @@
         
       </div>
 
+
+
+
+
         <div class="column1_header">
           <div class="alignleft_header">
-            <center>
-              <br>
-              <h2>Edit / <%= link_to 'View', list_path(@list) %></h2>
-            </center>
+            <% if @list.list_type == 'Home' %>
+              <%= link_to image_tag("house.png", :class=> "logo"), @list %>
+            <% elsif %>
+              <%= link_to image_tag("laptop.png", :class=> "logo"), @list %>
+            <% else %>
+              <%= link_to image_tag("car.png", :class=> "logo"), @list %>
+            <% end %>
           </div>
           <div class="alignright_header">
             <br>
@@ -20,10 +27,17 @@
           
           <div style="clear: both;"></div>
       </div>
-
+      <div class="column1_line">
+        <center>
+          <%= form_for(@list) do |f| %>
+            <%= f.text_field :name, :value => @list.name, :class => 'edit_name' %><br>
+            <%= f.submit 'Edit Name', :class => 'edit_name_button' %>
+          <% end %>
+        </center>
+      </div>
       <div class="column1_line">
           <center>
-            <h1 style="color: #70c1b3 ">Daily</h1>
+            <br><h1 style="color: #70c1b3 ">Daily</h1>
           </center>
           <% @daily_chores.each_slice(slice_count(@daily_chores.count)) do |chores| %>
             <div class="minicolumn">
@@ -55,9 +69,9 @@
             <center>
               <h2 style="color: #70c1b3 ">Create a new Daily Chore</h2>
               <%= f.text_field :name %><br>
-              <%= f.radio_button :time_of_day, 'Morning' %> Morning | 
-              <%= f.radio_button :time_of_day, 'Evening' %> Evening |
-              <%= f.radio_button :time_of_day, 'Any Time', :checked => 'checked' %> Any Time
+              <%= f.radio_button :time_of_day, 'morning' %> Morning | 
+              <%= f.radio_button :time_of_day, 'evening' %> Evening |
+              <%= f.radio_button :time_of_day, nil, :checked => 'checked' %> Any Time
             </center>
           </div>
 

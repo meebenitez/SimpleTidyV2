@@ -8,13 +8,12 @@ module ChoresHelper
      end
   end
 
+
+
   def create_chore_array_view(frequency, all_chores)
     sorted_chores = []
     all_chores.each do |chore|
       if chore.frequency == frequency && chore.status == "not done"
-        if Time.now > chore.reset_time
-          chore.past_due = true
-        end
         sorted_chores << chore
       end
     end

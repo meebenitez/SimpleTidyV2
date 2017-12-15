@@ -82,14 +82,35 @@ class Chore < ApplicationRecord
         reset_time = subtract_time + 1.days
       end
     elsif frequency == "weekly"
-      reset_time = subtract_time + 1.weeks
+      reset_time = subtract_time + 7.days
     else
       reset_time = subtract_time + 1.months
     end
   end
 
-  def complete_chore(chore)
-    chore.status = "done"
+
+  def self.complete_chore(chore)
+    status = "done"
+    reset_time = set_reset(Time.now, chore.frequency, chore.time_of_day)
+    chore.update(reset_time: reset_time, status: status)
+  end
+
+  def self.check_past_due(all_chores)
+    all_chores.each do |chore|
+      if Time.now > chore.reset_time  && chore.status == "not done"
+        chore.update(past_due: true)
+      end
+    end
+  end
+
+  def set_chore_status(all_chores)
+    now = Time.now
+    all_chores.each do |chore|
+      if chore.status == "done" && chore.reset_time <= now
+        new_reset = set_reset(Time.now, chore.frequency, chore.time_of_day) 
+        chore.update(reset_time: new_reset, status: "not done")
+      end
+    end
   end
 
   def calculate_chore_goal(frequency, count)
