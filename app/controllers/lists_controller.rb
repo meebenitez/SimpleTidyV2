@@ -110,6 +110,13 @@ class ListsController < ApplicationController
     redirect_to edit_list_path(@list)
   end
 
+  def destroy
+    @list = List.find(params[:id])
+    @list.destroy
+    flash[:notice] = "deleted"
+    redirect_to lists_path
+  end
+
   private
 
   def list_params

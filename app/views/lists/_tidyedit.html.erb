@@ -10,11 +10,11 @@
         <div class="column1_header">
           <div class="alignleft_header">
             <% if @list.list_type == 'Home' %>
-              <%= link_to image_tag("house.png", :class=> "logo"), @list %>
+              <%= link_to image_tag("house.png", :class=> "logo"), @list %> <%= @list.name %>
             <% elsif %>
-              <%= link_to image_tag("laptop.png", :class=> "logo"), @list %>
+              <%= link_to image_tag("laptop.png", :class=> "logo"), @list %> <%= @list.name %>
             <% else %>
-              <%= link_to image_tag("car.png", :class=> "logo"), @list %>
+              <%= link_to image_tag("car.png", :class=> "logo"), @list %> <%= @list.name %>
             <% end %>
           </div>
           <div class="alignright_header">
@@ -146,6 +146,9 @@
 
             <% end %>
           </div>
+      </div>
+      <div class="column1_line">
+        <center><h2><%= link_to 'Delete This List', list_path(@list.id), :method=>"delete" %></h2></center>
       </div>
       
     </div>

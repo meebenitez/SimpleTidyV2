@@ -53,7 +53,10 @@
 <div>
   List invites: </div>
   <% @invites.each do |invite| %>
-    <%= link_to (list_name invite.list_id), join_list_path(invite.list_id)  %>
+    <% if (list_name invite.list_id) != nil %>
+      <%= link_to (list_name invite.list_id), join_list_path(invite.list_id)  %>
+    <% else %>
+    <% end %>
   <% end %>
 
 </div>

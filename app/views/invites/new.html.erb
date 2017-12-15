@@ -16,9 +16,16 @@
         <% end %>
         <h2 style="color: #70c1b3 "><%= @list.name %></h2>
         Current Members<br>
-        <% @list.users.each do |user| %>
-          <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %>
-        <% end %>
+            <% @list.users.each do |user| %>
+              <% if user == current_user %>
+                <img src= "<%= user.imgurl %>" class="photo"><br>
+                You<br><br>
+              <% else %>
+                <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %><br>
+                <%= user.name %><br>
+                Remove<br>
+              <% end %>
+            <% end %>
         <br>
         Want to invite more people?<br>
         Enter their emails below.<br>
