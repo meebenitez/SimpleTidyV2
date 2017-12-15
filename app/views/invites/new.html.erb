@@ -1,0 +1,36 @@
+<div class="dummycolumn">
+  .<br>.<br>.<br>
+</div>
+
+<div class="column1_header">
+  <%= form_for([@list, @list.invites.new]) do |f| %>
+    <center>
+    <div class="field">
+      
+        <% if @list.list_type == 'Home' %>
+          <%= link_to image_tag("house.png", :class=> "logo"), @list %>
+        <% elsif %>
+          <%= link_to image_tag("laptop.png", :class=> "logo"), @list %>
+        <% else %>
+          <%= link_to image_tag("car.png", :class=> "logo"), @list %>
+        <% end %>
+        <h2 style="color: #70c1b3 "><%= @list.name %></h2>
+        Current Members<br>
+        <% @list.users.each do |user| %>
+          <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %>
+        <% end %>
+        <br>
+        Want to invite more people?<br>
+        Enter their emails below.<br>
+        <%= f.text_field :email, :class => "email_invite" %><br>
+        <%= f.text_field :email, :class => "email_invite" %><br>
+        <%= f.text_field :email, :class => "email_invite" %><br>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Send Invites", :class => "edit_name_button" %>
+    </div>
+    </center>
+
+  <% end %>
+</div>

@@ -1,21 +1,44 @@
-<%= form_for(@list) do |f| %>
+<div class="dummycolumn">
+  .<br>.<br>.<br>
+</div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
-      List Type:<br>
-      <%= f.radio_button :list_type, 'Home' %> Home<br />
-      <%= f.radio_button :list_type, 'Car' %> Car<br />
-      <%= f.radio_button :list_type, 'Tech' %> Tech<br />
-      Invites:
-      <%= f.fields_for :invites do |invite| %>
-        <br><%= invite.label :email %>
-        <%= invite.text_field :email %>
-      <% end %>
-  </div>
+<div class="column1_header">
+  <center>
+    <h1>Create a New List</h1>
+    <%= form_for(@list) do |f| %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      <div class="field">
+        This list will be for tidying your... <br><br>
+        | <%= f.radio_button :list_type, 'Home' %> House  | 
+        <%= f.radio_button :list_type, 'Car' %> Car  |
+        <%= f.radio_button :list_type, 'Tech' %>  Tech<br><br>
+        Now give it a name...<br>
+        <%= f.text_field :name, :value => "My Tidy Home", :class => 'edit_name' %>
+          <br>
+          <br>
+          <br>
+          Would you like to invite anyone to help out with this list?<br>
+          Enter their emails below.<br>
+          <%= f.fields_for :invites do |invite| %>
+            <%= invite.text_field :email, :class =>"email_invite" %>
+          <% end %>
+      </div>
 
-<% end %>
+      <div class="actions">
+        <%= f.submit "Let's get started!", :class => 'edit_name_button'%>
+      </div>
+
+    <% end %>
+  </center>
+</div>
+
+
+
+
+
+
+
+
+
+
+
