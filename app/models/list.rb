@@ -5,6 +5,7 @@ class List < ApplicationRecord
   has_many :invites
 
   accepts_nested_attributes_for :invites , reject_if: proc { |attributes| attributes['email'].blank? }
+  #accepts_nested_attributes_for :users
 
   validates :name, presence: true
   

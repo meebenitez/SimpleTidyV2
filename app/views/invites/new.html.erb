@@ -3,7 +3,6 @@
 </div>
 
 <div class="column1_header">
-  <%= form_for([@list, @list.invites.new]) do |f| %>
     <center>
     <div class="field">
       
@@ -23,19 +22,18 @@
               <% else %>
                 <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %><br>
                 <%= user.name %><br>
-                Remove<br>
+                <%= link_to 'Remove', remove_from_list_path(@list.id, :user => user.id) %>
               <% end %>
             <% end %>
         <br>
-        Want to invite more people?<br>
-        Enter their emails below.<br>
-        <%= f.text_field :email, :class => "email_invite" %><br>
-        <%= f.text_field :email, :class => "email_invite" %><br>
-        <%= f.text_field :email, :class => "email_invite" %><br>
+        Want to invite another person?<br>
+        Enter their email below.<br>
+        <%= form_for([@list, @list.invites.new]) do |f| %>
+          <%= f.text_field :email, :class =>"email_invite" %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Send Invites", :class => "edit_name_button" %>
+      <%= f.submit "Send Invite", :class => "edit_name_button" %>
     </div>
     </center>
 

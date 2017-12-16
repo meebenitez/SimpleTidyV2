@@ -16,11 +16,14 @@ class ListsController < ApplicationController
 
   def show
     authorize! :index, List
-    @list = List.find(params[:id])
-    Chore.check_past_due(@list.chores)
-    @daily_chores = create_chore_array_view("daily", @list.chores)
-    @weekly_chores = create_chore_array_view("weekly", @list.chores)
-    @monthly_chores = create_chore_array_view("monthly", @list.chores)
+    if @list = List.find_by(id: params[:id])
+      Chore.check_past_due(@list.chores)
+      @daily_chores = create_chore_array_view("daily", @list.chores)
+      @weekly_chores = create_chore_array_view("weekly", @list.chores)
+      @monthly_chores = create_chore_array_view("monthly", @list.chores)
+    else
+      redirect_to lists_path
+    end
   end
 
   def new
@@ -96,6 +99,13 @@ class ListsController < ApplicationController
 
   end
 
+  def remove_user
+    @list = List.find(params[:id])
+    @list.users.delete(params[:user])
+    redirect_to new_list_invite_path(@list.id)
+  end
+
+
 
   def edit
     @list = List.find(params[:id])
@@ -122,6 +132,7 @@ class ListsController < ApplicationController
   def list_params
     params.require(:list).permit(:name, :list_type, invites_attributes: [:email, :status])
   end
+
 
 
 

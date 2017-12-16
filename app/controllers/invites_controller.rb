@@ -1,11 +1,18 @@
 class InvitesController < ApplicationController
   before_action :set_list, only: [:show, :new, :create, :edit, :update, :destroy]
 
+  def new
+    @invite = Invite.new
+  end
 
   def create
-    @invite = @list.invites.new(invite_params)
-
+    @invite = @list.invites.create(invite_params)
     if @invite.save
+      @list.invites.each do |invite|
+      if @user = User.find_by(email: invite.email)
+        @user.invites << invite
+      end
+    end
       flash[:notice] = "Success"
       redirect_to edit_list_path(@list.id)
     else
