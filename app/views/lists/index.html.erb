@@ -6,7 +6,7 @@
 
 <div class="column1">
     <center>
-      <h1>Welcome, <span style="color:##FF3067"><%= current_user.name %></span></h1>
+      <h1>Welcome, <h1><span style="color: #FF3067"><%= current_user.name %></span></h1>
       <h3>Select a list to work on or create a new one.</h3>
     </center>
 </div>
@@ -15,51 +15,55 @@
   <% @lists.each do |list| %>
     <% if list.list_type == "Home" %>
       <div class="container">
-        <%= link_to image_tag("clean_kitchen_final2.jpg", :class => "list"), list_path(list.id) %>
+        <%= link_to image_tag("house.png", :class => "list_icon"), list_path(list.id) %><br>
         <div class="imgtxt">
           <%= list.name %>
         </div>
       </div>
     <% elsif list.list_type == "Car" %>
       <div class="container">
-        <%= link_to image_tag("car_interior_final2.jpg", :class => "list"), list_path(list.id) %>
+        <%= link_to image_tag("car.png", :class => "list_icon"), list_path(list.id) %><br>
         <div class="imgtxt">
           <%= list.name %>
         </div>
       </div>
-    <% elsif list.list_type == "Tech" %>
-        <div class="container">
-          <%= link_to image_tag("laptop_final2.jpg", :class => "list"), list_path(list.id) %>
-          <div class="imgtxt">
-            <%= list.name %>
-          </div>
+    <% else %>
+      <div class="container">
+        <%= link_to image_tag("laptop.png", :class => "list_icon"), list_path(list.id) %><br>
+        <div class="imgtxt">
+          <%= list.name %>
         </div>
-    <% else list.list_type == "Custom" %>
-        <div class="container">
-          <%= link_to image_tag("clean_kitchen_final2.jpg", :class => "list"), list_path(list.id) %>
-          <div class="imgtxt">
-            <%= list.name %>
-          </div>
-        </div>
+      </div>
     <% end %>
   <% end %>
   <div class="container">
-    <%= link_to image_tag("plus.png", :class => "list"), new_list_path %>
-    </div>
+    <%= link_to image_tag("plus.png", :class => "list_icon"), new_list_path %><br>
+    <div class="imgtxt">
+        Add List
+      </div>
   </div>
-</center>
-</div>
 
-<div>
-  List invites: </div>
+ <div class="column1">
+  <center>
+    <br><br>
   <% @invites.each do |invite| %>
     <% if (list_name invite.list_id) != nil %>
+      <span style="color: orange">Your Invites!</span><br>
       <%= link_to (list_name invite.list_id), join_list_path(invite.list_id)  %>
     <% else %>
     <% end %>
   <% end %>
-
+</center>
 </div>
+
+
+
+  </div>
+</center>
+</div>
+
+
+ 
 
 
 

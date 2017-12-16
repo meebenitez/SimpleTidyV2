@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   #before_action :authenticate_user!
 
   def index
+    redirect_to lists_path
   end
 
   def after_sign_in_path_for(resource)

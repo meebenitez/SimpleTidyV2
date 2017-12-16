@@ -86,6 +86,7 @@ class ListsController < ApplicationController
     end
   end
 
+  #User accepts an invite to a list
   def join
     @list = List.find(params[:id])
     if !@list.users.find_by(id: current_user.id)
@@ -99,13 +100,12 @@ class ListsController < ApplicationController
 
   end
 
+  #User is removed from a list by the admin
   def remove_user
     @list = List.find(params[:id])
     @list.users.delete(params[:user])
     redirect_to new_list_invite_path(@list.id)
   end
-
-
 
   def edit
     @list = List.find(params[:id])
