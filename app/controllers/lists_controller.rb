@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   include ChoresHelper
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :join, :remove_user]
   before_action :authenticate_user!
   #load_and_authorize_resource
 
@@ -13,24 +14,19 @@ class ListsController < ApplicationController
     end
   end
 
-
-  def show
-    authorize! :index, List
-    if @list = List.find_by(id: params[:id])
-      Chore.check_past_due(@list.chores)
-      @daily_chores = create_chore_array_view("daily", @list.chores)
-      @weekly_chores = create_chore_array_view("weekly", @list.chores)
-      @monthly_chores = create_chore_array_view("monthly", @list.chores)
-    else
-      redirect_to lists_path
-    end
-  end
-
   def new
     @list = List.new
     @list.invites.build
     @list.invites.build
     @list.invites.build
+  end
+
+  def show
+    authorize! :index, List
+    Chore.check_past_due(@list.chores)
+    @daily_chores = create_chore_array_view("daily", @list.chores)
+    @weekly_chores = create_chore_array_view("weekly", @list.chores)
+    @monthly_chores = create_chore_array_view("monthly", @list.chores)
   end
 
 
@@ -39,44 +35,9 @@ class ListsController < ApplicationController
     @list.users << current_user
     @list.admin_id = current_user.id
     #Seed starter chores
-
-    if @list.list_type == "Home"
-      Chore::HOME_DATA[:chores].each do |chore|
-        new_chore = @list.chores.new
-        chore.each_with_index do |attribute, i|
-          new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
-          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency, new_chore.time_of_day)
-        end
-        new_chore.save
-      end
-    elsif @list.list_type == "Car"
-      Chore::CAR_DATA[:chores].each do |chore|
-        new_chore = @list.chores.new
-        chore.each_with_index do |attribute, i|
-          new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
-          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency, new_chore.time_of_day)
-          new_chore.save
-        end
-        #binding.pry
-      end
-    else @list.list_type == "Tech"
-      Chore::TECH_DATA[:chores].each do |chore|
-        new_chore = @list.chores.new
-        chore.each_with_index do |attribute, i|
-          new_chore.send(Chore::HOME_DATA[:chore_keys][i]+"=", attribute)
-          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency, new_chore.time_of_day)
-        end
-        new_chore.save
-        #binding.pry
-      end
-    end
-    
+    List.create_starter_list(@list)
     # assign invites
-    @list.invites.each do |invite|
-      if @user = User.find_by(email: invite.email)
-        @user.invites << invite
-      end
-    end
+    List.send_invites_on_list_create(@list)
 
     #list.chores.make_chores(@list)
     if @list.save
@@ -88,7 +49,6 @@ class ListsController < ApplicationController
 
   #User accepts an invite to a list
   def join
-    @list = List.find(params[:id])
     if !@list.users.find_by(id: current_user.id)
       @list.users << current_user
       invite = current_user.invites.find_by(list_id: @list.id)
@@ -102,26 +62,22 @@ class ListsController < ApplicationController
 
   #User is removed from a list by the admin
   def remove_user
-    @list = List.find(params[:id])
     @list.users.delete(params[:user])
     redirect_to edit_list_path(@list.id)
   end
 
   def edit
-    @list = List.find(params[:id])
     @daily_chores = create_chore_array_edit("daily", @list.chores)
     @weekly_chores = create_chore_array_edit("weekly", @list.chores)
     @monthly_chores = create_chore_array_edit("monthly", @list.chores)
   end
 
   def update
-    @list = List.find(params[:id])
     @list.update(list_params)
     redirect_to edit_list_path(@list)
   end
 
   def destroy
-    @list = List.find(params[:id])
     @list.destroy
     flash[:notice] = "deleted"
     redirect_to lists_path
@@ -131,6 +87,10 @@ class ListsController < ApplicationController
 
   def list_params
     params.require(:list).permit(:name, :list_type, invites_attributes: [:email, :status])
+  end
+
+  def set_list
+    @list = List.find(params[:id])
   end
 
 

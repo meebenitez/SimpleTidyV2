@@ -14,4 +14,34 @@ class List < ApplicationRecord
    # self.admin = admin
   #end
 
+  def self.grab_starter_chores(list_type)
+    if list_type == "Home"
+        Chore::HOME_DATA
+      elsif list_type == "Car"
+        Chore::CAR_DATA
+      else
+        Chore::TECH_DATA
+      end
+  end
+
+  def self.create_starter_list(list)
+    starter_chores = grab_starter_chores(list.list_type)
+      starter_chores[:chores].each do |chore|
+        new_chore = list.chores.new
+        chore.each_with_index do |attribute, i|
+          new_chore.send(starter_chores[:chore_keys][i]+"=", attribute)
+          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency, new_chore.time_of_day)
+        end
+        new_chore.save
+      end
+  end
+
+  def self.send_invites_on_list_create(list)
+    list.invites.each do |invite|
+      if user = User.find_by(email: invite.email)
+        user.invites << invite
+      end
+    end
+  end
+
 end
