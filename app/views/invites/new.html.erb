@@ -5,14 +5,7 @@
 <div class="column1_header">
     <center>
     <div class="field">
-      
-        <% if @list.list_type == 'Home' %>
-          <%= link_to image_tag("house.png", :class=> "logo"), @list %>
-        <% elsif %>
-          <%= link_to image_tag("laptop.png", :class=> "logo"), @list %>
-        <% else %>
-          <%= link_to image_tag("car.png", :class=> "logo"), @list %>
-        <% end %>
+        <%= link_to image_tag((list_type_photo @list), :class=> "logo"), @list %>
         <h2 style="color: #70c1b3 "><%= @list.name %></h2>
         Current Members<br>
             <% @list.users.each do |user| %>
@@ -28,14 +21,18 @@
         <br>
         Want to invite another person?<br>
         Enter their email below.<br>
-        <%= form_for([@list, @list.invites.new]) do |f| %>
+        <%= form_for list_invites_path(@list.id) do |f| %>
           <%= f.text_field :email, :class =>"email_invite" %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Send Invite", :class => "edit_name_button" %>
+        <%= f.submit "Send Invite", :class => "edit_name_button" %>
+      <% end %>
     </div>
     </center>
 
-  <% end %>
+  
+  <% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 </div>
