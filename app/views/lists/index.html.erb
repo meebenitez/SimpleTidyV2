@@ -32,7 +32,7 @@
     <br><br>
   <% @invites.each do |invite| %>
     <% if (list_name invite.list_id) != nil  && invite.status != "closed" %>
-      <span style="color: orange">Your Invites!</span><br>
+      <span style="color: orange">Invite:</span>
       <%= link_to (list_name invite.list_id), join_list_path(invite.list_id)  %>
     <% else %>
     <% end %>

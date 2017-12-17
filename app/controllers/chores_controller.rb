@@ -1,5 +1,5 @@
 class ChoresController < ApplicationController
-  before_action :set_list, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :set_list, only: [:new, :create, :edit, :update, :destroy]
   respond_to :html, :json
   
   def new

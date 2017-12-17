@@ -6,16 +6,21 @@ class InvitesController < ApplicationController
 
   def create
     @invite = @list.invites.new(invite_params)
-    if @invite.save
-      @list.invites.each do |invite|
-        if @user = User.find_by(email: invite.email)
-          @user.invites << invite
+    if @invite.email != current_user.email
+      if @invite.save
+        @list.invites.each do |invite|
+          if @user = User.find_by(email: invite.email)
+            @user.invites << invite
+          end
         end
+        flash[:notice] = "Success"
+        redirect_to edit_list_path(@list.id)
+      else
+        flash[:notice] = "Oh no!"
+        redirect_to edit_list_path(@list.id)
       end
-      flash[:notice] = "Success"
-      redirect_to edit_list_path(@list.id)
     else
-      flash[:notice] = "Oh no!"
+      flash[:notice] = "Can't send an invite to yourself, silly!"
       redirect_to edit_list_path(@list.id)
     end
   end

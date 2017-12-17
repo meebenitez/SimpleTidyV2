@@ -14,6 +14,8 @@ class List < ApplicationRecord
    # self.admin = admin
   #end
 
+
+
   def self.grab_starter_chores(list_type)
     if list_type == "Home"
         Chore::HOME_DATA
@@ -23,6 +25,7 @@ class List < ApplicationRecord
         Chore::TECH_DATA
       end
   end
+
 
   def self.create_starter_list(list)
     starter_chores = grab_starter_chores(list.list_type)

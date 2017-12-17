@@ -8,7 +8,6 @@ class ListsController < ApplicationController
     if can? :read, List
       @lists = current_user.lists
       @invites = current_user.invites.select {|invite| invite.status == "open" }
-      #binding.pry
     else
       redirect_to root_path
     end
@@ -16,9 +15,9 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
-    @list.invites.build
-    @list.invites.build
-    @list.invites.build
+    3.times do
+      @list.invites.build
+    end
   end
 
   def show
@@ -53,6 +52,7 @@ class ListsController < ApplicationController
       @list.users << current_user
       invite = current_user.invites.find_by(list_id: @list.id)
       invite.status = "closed"
+      invite.save
       redirect_to @list
     else
       redirect_to @list
