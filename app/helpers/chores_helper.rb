@@ -20,6 +20,19 @@ module ChoresHelper
     sorted_chores
   end
 
+  def decide_button_class(past_due_status, frequency)
+    if past_due_status == true
+      "chore_pastdue"
+    elsif frequency == "daily"
+      "chore_daily"
+    elsif frequency == "weekly"
+      "chore_weekly"
+    else
+      "chore_monthly"
+    end
+  end
+
+
 
   def create_chore_array_edit(frequency, all_chores)
     sorted_chores = []
