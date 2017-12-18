@@ -1,5 +1,6 @@
       <div class="dummycolumn">
         .<br>.<br>.<br>
+
         
       </div>
 
@@ -17,7 +18,7 @@
       <div class="column1_line">
         <center>
           <%= form_for(@list) do |f| %>
-            <%= f.text_field :name, :value => @list.name, :class => 'edit_name' %><br>
+            <%= f.text_field :name, :value => @list.name, :class => 'edit_name', :maxlength => 15, :size => 40 %><br>
             <%= f.submit 'Change Name', :class => 'edit_name_button' %>
           <% end %>
         </center>
@@ -47,6 +48,7 @@
               <br>
               Want to invite another person?<br>
               Enter their email below.<br>
+              <%= render 'layouts/messages' %>
               <%= form_for ([@list, @list.invites.new]) do |f| %>
                 <%= f.text_field :email, :class =>"email_invite" %><br>
                 <%= f.submit "Send Invite", :class => "edit_name_button" %>
@@ -87,7 +89,7 @@
           <div class="field">
             <center>
               <h2 style="color: #70c1b3 ">Create a new Daily Chore</h2>
-              <%= f.text_field :name %><br>
+              <%= f.text_field :name, :maxlength => 100, :size => 40 %><br>
               <%= f.radio_button :time_of_day, 'morning' %> Morning | 
               <%= f.radio_button :time_of_day, 'evening' %> Evening |
               <%= f.radio_button :time_of_day, nil, :checked => 'checked' %> Any Time
@@ -123,7 +125,7 @@
               <div class="field">
                 <center>
                   <h2 style="color: #F9C563">Create a new Weekly Chore</h2>
-                  <%= f.text_field :name %><br>
+                  <%= f.text_field :name, :maxlength => 100, :size => 40 %><br>
                 </center>
               </div>
 
@@ -155,7 +157,7 @@
               <div class="field">
                 <center>
                   <h2 style="color: #247BA0">Create a new Monthly Chore</h2>
-                  <%= f.text_field :name %><br>
+                  <%= f.text_field :name, :maxlength => 100, :size => 40 %><br>
                 </center>
               </div>
 

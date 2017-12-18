@@ -8,6 +8,7 @@ class CreateChores < ActiveRecord::Migration[5.1]
       t.boolean :past_due, :default => false
       t.integer :list_id
       t.datetime :reset_time
+      t.datetime :past_due_time
 
       t.timestamps
     end

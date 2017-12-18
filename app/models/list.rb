@@ -28,15 +28,18 @@ class List < ApplicationRecord
 
 
   def self.create_starter_list(list)
+    now = Time.now
     starter_chores = grab_starter_chores(list.list_type)
-      starter_chores[:chores].each do |chore|
-        new_chore = list.chores.new
-        chore.each_with_index do |attribute, i|
-          new_chore.send(starter_chores[:chore_keys][i]+"=", attribute)
-          new_chore.reset_time = Chore.set_reset(Time.now, new_chore.frequency, new_chore.time_of_day)
-        end
+    starter_chores[:chores].each do |chore|
+      new_chore = list.chores.new
+      chore.each_with_index do |attribute, i|
+        new_chore.send(starter_chores[:chore_keys][i]+"=", attribute)
         new_chore.save
       end
+      reset_time = Chore.set_reset(now, new_chore.frequency) 
+      set_past_due = Chore.set_past_due(now, new_chore.time_of_day, reset_time)
+      new_chore.update(reset_time: reset_time, past_due_time: set_past_due)
+    end
   end
 
   def self.send_invites_on_list_create(list)

@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20171209081415) do
     t.boolean "past_due", default: false
     t.integer "list_id"
     t.datetime "reset_time"
+    t.datetime "past_due_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

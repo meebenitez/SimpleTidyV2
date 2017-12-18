@@ -7,8 +7,10 @@ class ChoresController < ApplicationController
 
 
   def create
+    now = Time.now
     @chore = @list.chores.new(chore_params)
-    @chore.reset_time = Chore.set_reset(Time.now, @chore.frequency, @chore.time_of_day)
+    @chore.reset_time = Chore.set_reset(now, @chore.frequency)
+    @chore.past_due_time = Chore.set_past_due(now, @chore.time_of_day, @chore.reset_time)
 
     if @chore.save
       flash[:notice] = "Success"

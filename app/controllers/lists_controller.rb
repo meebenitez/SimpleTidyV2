@@ -21,11 +21,13 @@ class ListsController < ApplicationController
   end
 
   def show
-    authorize! :index, List
-    Chore.check_past_due(@list.chores)
-    @daily_chores = create_chore_array_view("daily", @list.chores)
-    @weekly_chores = create_chore_array_view("weekly", @list.chores)
-    @monthly_chores = create_chore_array_view("monthly", @list.chores)
+    if can? :read, List
+      Chore.set_chore_status(@list.chores)
+      Chore.check_past_due(@list.chores)
+      @daily_chores = create_chore_array_view("daily", @list.chores)
+      @weekly_chores = create_chore_array_view("weekly", @list.chores)
+      @monthly_chores = create_chore_array_view("monthly", @list.chores)
+    end
   end
 
 
@@ -92,8 +94,6 @@ class ListsController < ApplicationController
   def set_list
     @list = List.find(params[:id])
   end
-
-
 
 
 end
