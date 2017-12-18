@@ -1,0 +1,11 @@
+<% chore_list.each_slice(slice_count(chore_list.count)) do |chores| %>
+  <div class="minicolumn">
+    <% chores.each do |chore| %>
+      <% if chore.past_due == true %>
+        <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_pastdue" %>                
+      <% else %>
+        <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "#{button_class}" %>                
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

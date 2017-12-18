@@ -54,17 +54,7 @@
           <h1>Weekly</h1>
           <br>Complete 2 today to stay on track.
         </center>
-          <% @weekly_chores.each_slice(slice_count(@weekly_chores.count)) do |chores| %>
-            <div class="minicolumn">
-              <% chores.each do |chore| %>
-                <% if chore.past_due == true %>
-                  <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_pastdue" %>                
-                <% else %>
-                  <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_weekly" %>                
-                <% end %>
-              <% end %>
-            </div>
-          <% end %>
+          <%= render partial: "minicolumn", locals: {chore_list: @weekly_chores, button_class: "chore_weekly"} %>
         </div>
 
       <div class="column1_line">
@@ -72,17 +62,7 @@
           <h1>Monthly</h1>
           <br>Complete 1 today to stay on track.
         </center>
-          <% @monthly_chores.each_slice(slice_count(@monthly_chores.count)) do |chores| %>
-            <div class="minicolumn">
-              <% chores.each do |chore| %>
-                <% if chore.past_due == true %>
-                  <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_pastdue" %>                
-                <% else %>
-                  <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "chore_monthly" %>                
-                <% end %>
-              <% end %>
-            </div>
-        <% end %>
+          <%= render partial: "minicolumn", locals: {chore_list: @monthly_chores, button_class: "chore_monthly"} %>
       </div>
       
     </div>
