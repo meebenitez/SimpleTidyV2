@@ -32,7 +32,6 @@ module ChoresHelper
   end
 
 
-
   def create_chore_array_edit(frequency, all_chores)
     sorted_chores = []
     all_chores.each do |chore|
@@ -49,10 +48,6 @@ module ChoresHelper
 
   def calculate_weekly_goal(chore_count)
     goal = (chore_count/7.to_f).ceil
-  end
-
-  def update_chore_goals(goal)
-    #PLACEHOLDER -- dynamically change goal message
   end
 
 

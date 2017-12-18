@@ -122,10 +122,4 @@ class Chore < ApplicationRecord
     end
   end
 
-  def calculate_chore_goal(frequency, count)
-    #PLACEHOLDER -- calculate how many weekly/monthly chores must be completed daily to stay on track
-  end
-
-
-
 end

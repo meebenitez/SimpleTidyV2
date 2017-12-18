@@ -5,7 +5,6 @@ class InvitesController < ApplicationController
   end
 
   def create
-    @invite = @list.invites.new(invite_params)
     if @invite.email != current_user.email && Invite.valid_email?(@invite.email)
       if @invite.save
         @list.invites.each do |invite|

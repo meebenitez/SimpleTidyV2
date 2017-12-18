@@ -1,8 +1,8 @@
 class ListsController < ApplicationController
   include ChoresHelper
   before_action :set_list, only: [:show, :edit, :update, :destroy, :join, :remove_user]
-  before_action :authenticate_user!
   #load_and_authorize_resource
+  before_action :authenticate_user!
 
   def index
     if can? :read, List
@@ -19,17 +19,6 @@ class ListsController < ApplicationController
       @list.invites.build
     end
   end
-
-  def show
-    if can? :read, List
-      Chore.set_chore_status(@list.chores)
-      Chore.check_past_due(@list.chores)
-      @daily_chores = create_chore_array_view("daily", @list.chores)
-      @weekly_chores = create_chore_array_view("weekly", @list.chores)
-      @monthly_chores = create_chore_array_view("monthly", @list.chores)
-    end
-  end
-
 
   def create
     @list  = List.create(list_params)
@@ -48,16 +37,36 @@ class ListsController < ApplicationController
     end
   end
 
+  def show
+    if @list
+      if can? :read, List
+        Chore.set_chore_status(@list.chores)
+        Chore.check_past_due(@list.chores)
+        @daily_chores = create_chore_array_view("daily", @list.chores)
+        @weekly_chores = create_chore_array_view("weekly", @list.chores)
+        @monthly_chores = create_chore_array_view("monthly", @list.chores)
+      end
+    else
+      redirect_to lists_path
+    end
+  end
+
+
   #User accepts an invite to a list
   def join
-    if !@list.users.find_by(id: current_user.id)
-      @list.users << current_user
-      invite = current_user.invites.find_by(list_id: @list.id)
-      invite.status = "closed"
-      invite.save
-      redirect_to @list
+    if @list
+      if !@list.users.find_by(id: current_user.id) #make sure user isn't already a member of the list (move this logic out eventually)
+        @list.users << current_user
+        #binding.pry
+        invite = current_user.invites.find_by(list_id: @list.id)
+        invite.status = "closed"
+        invite.save
+        redirect_to @list
+      else
+        redirect_to @list
+      end
     else
-      redirect_to @list
+      redirect_to lists_path
     end
 
   end
@@ -69,20 +78,32 @@ class ListsController < ApplicationController
   end
 
   def edit
-    @daily_chores = create_chore_array_edit("daily", @list.chores)
-    @weekly_chores = create_chore_array_edit("weekly", @list.chores)
-    @monthly_chores = create_chore_array_edit("monthly", @list.chores)
+    if @list
+      @daily_chores = create_chore_array_edit("daily", @list.chores)
+      @weekly_chores = create_chore_array_edit("weekly", @list.chores)
+      @monthly_chores = create_chore_array_edit("monthly", @list.chores)
+    else
+      redirect_to lists_path
+    end
   end
 
   def update
-    @list.update(list_params)
-    redirect_to edit_list_path(@list)
+    if @list
+      @list.update(list_params)
+      redirect_to edit_list_path(@list)
+    else
+      redirect_to lists_path
+    end
   end
 
   def destroy
-    @list.destroy
-    flash[:notice] = "deleted"
-    redirect_to lists_path
+    if @list
+      @list.destroy
+      flash[:notice] = "deleted"
+      redirect_to lists_path
+    else
+      redirect_to lists_path
+    end
   end
 
   private
@@ -92,7 +113,7 @@ class ListsController < ApplicationController
   end
 
   def set_list
-    @list = List.find(params[:id])
+    @list = List.find_by(id: params[:id])
   end
 
 

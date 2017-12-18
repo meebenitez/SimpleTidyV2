@@ -14,8 +14,6 @@ class List < ApplicationRecord
    # self.admin = admin
   #end
 
-
-
   def self.grab_starter_chores(list_type)
     if list_type == "Home"
         Chore::HOME_DATA

@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
  gem 'devise'
  gem 'omniauth-facebook'
  gem 'figaro'
- gem 'cancan'
+ gem 'cancancan'
  gem 'bootstrap-sass', '~> 3.2.0'
  gem 'jquery-rails'
 

@@ -21,6 +21,10 @@ class ChoresController < ApplicationController
     end
   end
 
+  def edit
+    @chore = Chore.find(params[:id])
+  end
+
   def update
     @chore = Chore.find(params[:id])
     @chore.update(chore_params)
