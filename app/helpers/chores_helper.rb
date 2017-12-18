@@ -9,7 +9,6 @@ module ChoresHelper
   end
 
 
-
   def create_chore_array_view(frequency, all_chores)
     sorted_chores = []
     all_chores.each do |chore|
@@ -42,6 +41,14 @@ module ChoresHelper
       end
     end
     sorted_chores
+  end
+
+  def calculate_monthly_goal(chore_count)
+    goal = (chore_count/5.to_f).ceil
+  end
+
+  def calculate_weekly_goal(chore_count)
+    goal = (chore_count/7.to_f).ceil
   end
 
   def update_chore_goals(goal)

@@ -1,0 +1,8 @@
+<center>
+  <h1><% chore_frequency %></h1>
+  <% if chore_frequency == "Weekly" %>
+    <br>Complete <%= calculate_weekly_goal(chore_count) %> a day to stay on track
+  <% else %>
+    <br>Complete <%= calculate_monthly_goal(chore_count) %> a week to stay on track
+  <% end %>
+</center>

@@ -1,5 +1,4 @@
 
-
       <div class="dummycolumn">
         .<br>.<br>.<br>
       </div>
@@ -24,25 +23,25 @@
       <div class="column1_line">
         <center>
           <h1>Daily</h1>
-          <br>Complete all tasks today to stay on track.
+          <% if @daily_chores != [] %>
+            Complete all daily chores today to stay on track.
+          <% end %>
         </center>
           <%= render partial: "minicolumn", locals: {chore_list: @daily_chores } %>
       </div>
 
       <div class="column1_line">
-        <center>
-          <h1>Weekly</h1>
-          <br>Complete 2 today to stay on track.
-        </center>
-          <%= render partial: "minicolumn", locals: {chore_list: @weekly_chores } %>
-        </div>
+        <% if @weekly_chores != [] %>
+          <%= render partial: "goal", locals: {chore_frequency: "Weekly", chore_count: @weekly_chores.count } %>
+        <% end %>
+        <%= render partial: "minicolumn", locals: {chore_list: @weekly_chores } %>
+      </div>
 
       <div class="column1_line">
-        <center>
-          <h1>Monthly</h1>
-          <br>Complete 1 today to stay on track.
-        </center>
-          <%= render partial: "minicolumn", locals: {chore_list: @monthly_chores } %>
+        <% if @monthly_chores != [] %>
+          <%= render partial: "goal", locals: {chore_frequency: "Monthly", chore_count: @monthly_chores.count } %>
+        <% end %>
+        <%= render partial: "minicolumn", locals: {chore_list: @monthly_chores } %>
       </div>
       
     </div>
