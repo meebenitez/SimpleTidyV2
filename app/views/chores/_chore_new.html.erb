@@ -1,0 +1,33 @@
+
+<div class="column1_line">
+  <center><h2>Add a New Chore</h2></center>
+  <br>
+  <%= form_for([@list, @list.chores.new]) do |f| %>
+    <div class="field">
+      <center>
+        <%= f.text_field :name, :value => "ex: make bed, feed cats, etc.", :class => 'edit_chore', :maxlength => 100, :size => 60 %><br>
+      </center>
+    </div>
+
+  <div class="field">
+    <center>
+      <h3>Frequency</h3>
+      <%= f.radio_button :frequency, 'daily', onClick: "resetradio()" %> Daily |
+      <%= f.radio_button :frequency, 'weekly', onClick: "resetradio()" %> Weekly |
+      <%= f.radio_button :frequency, 'monthly', onClick: "resetradio()" %> Monthly
+      <div class="buttons">
+        <br>
+        When should this chore be completed?<br>
+        <%= f.radio_button :time_of_day, 'Morning', onClick:"setradio()" %> Morning | 
+        <%= f.radio_button :time_of_day, 'Evening', onClick:"setradio()" %> Evening |
+        <%= f.radio_button :time_of_day, 'Any Time', onClick:"setradio()" %> Any Time
+      </div>
+    </center>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+  <% end %>
+</div>

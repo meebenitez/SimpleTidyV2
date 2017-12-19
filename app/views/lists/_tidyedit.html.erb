@@ -1,141 +1,115 @@
-      <div class="dummycolumn">
-        .<br>.<br>.<br>
-        <%= render 'layouts/messages' %>
+<script type="text/javascript">
+    function resetradio () {
+      var radio = document.getElementsByName('chore[frequency]')[0];
+      var buttons = document.querySelector('.buttons');
+      var radios = document.getElementsByName('chore[time_of_day]');
+      radios[0].checked = false;
+      if (radio.checked == true) {
+          buttons.style.display = 'block';
+      }
+      else {
+          buttons.style.display = 'none';
+      }
+  }
 
-        
+
+
+  function setradio () {
+      var radio = document.getElementsByName('chore[frequency]')[0];
+      if (radio.checked == false) {
+          radio.checked = true;
+
+      }
+  }
+</script>
+
+  <div class="dummycolumn">
+    .<br>.<br>.<br>
+    <%= render 'layouts/messages' %>
+
+    
+  </div>
+
+    <div class="column1_header">
+      <div class="alignleft_header">
+          <%= link_to image_tag((list_type_photo @list), :class=> "logo"), @list %> <%= @list.name %>
       </div>
-
-        <div class="column1_header">
-          <div class="alignleft_header">
-              <%= link_to image_tag((list_type_photo @list), :class=> "logo"), @list %> <%= @list.name %>
-          </div>
-          <div class="alignright_header">
-            <br><br>
-            (EDIT MODE)
-          </div>
-          
-          <div style="clear: both;"></div>
-      </div>
-      <div class="column1_line">
-        <center>
-          <%= form_for(@list) do |f| %>
-            <%= f.text_field :name, :value => @list.name, :class => 'edit_name', :maxlength => 15, :size => 40 %><br>
-            <%= f.submit 'Change Name', :class => 'edit_name_button' %>
-          <% end %>
-        </center>
-      </div>
-      <div class="column1_line">
-        <center>
-          <h2>Current Members</h2><br>
-          <% @list.users.each do |user| %>
-            <% if user == current_user %>
-              <div class="container">
-                You<br>
-                <img src= "<%= user.imgurl %>" class="logo"><br>
-              </div>
-            <% else %>
-              <div class="container">
-                <%= user.name %><br>
-                <%= link_to image_tag(user.imgurl, :class => "logo"), user_path(user.id) %><br>
-                <div class="imgtxt">
-                  <%= link_to 'Remove', remove_from_list_path(@list.id, :user => user.id) %>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        </center>
-          <div>
-            <center>
-              <br>
-              Want to invite another person?<br>
-              Enter their email below.<br>
-              <%= form_for ([@list, @list.invites.new]) do |f| %>
-                <%= f.text_field :email, :class =>"email_invite" %><br>
-                <%= f.submit "Send Invite", :class => "edit_name_button" %>
-              <% end %>
-            </center>
-          </div>
-      </div>
-      <div class="column1_line">
-          <center>
-            <br><h1 style="color: #70c1b3 ">Daily</h1>
-          </center>
-            <%= render partial: "minicolumn_edit", locals: {chore_list: @daily_chores } %>
-        <div class="column1">
-        <%= form_for([@list, @list.chores.new]) do |f| %>
-          <%= f.hidden_field :frequency, { :value => 'daily' } %>
-
-          <div class="field">
-            <center>
-              <h2 style="color: #70c1b3 ">Create a new Daily Chore</h2>
-              <%= f.text_field :name, :maxlength => 100, :size => 40 %><br>
-              <%= f.radio_button :time_of_day, 'morning' %> Morning | 
-              <%= f.radio_button :time_of_day, 'evening' %> Evening |
-              <%= f.radio_button :time_of_day, nil, :checked => 'checked' %> Any Time
-            </center>
-          </div>
-
-          <div class="actions">
-            <%= f.submit "Create Chore" %>
-          </div>
-
-        <% end %>
-      </div>
-      </div>
-
-      <div class="column1_line">
-        <center>
-          <h1 style="color: #F9C563">Weekly</h1>
-        </center>
-        <%= render partial: "minicolumn_edit", locals: {chore_list: @weekly_chores } %>
-      </div>
-          <div class="column1">
-            <%= form_for([@list, @list.chores.new]) do |f| %>
-              <%= f.hidden_field :frequency, { :value => 'weekly' } %>
-
-              <div class="field">
-                <center>
-                  <h2 style="color: #F9C563">Create a new Weekly Chore</h2>
-                  <%= f.text_field :name, :maxlength => 100, :size => 40 %><br>
-                </center>
-              </div>
-
-              <div class="actions">
-                <%= f.submit "Create Chore", :class => 'chore_weekly_click' %>
-              </div>
-
-            <% end %>
-          </div>
-      </div>
-
-      <div class="column1_line">
-        <center>
-          <h1 style="color: #247BA0">Monthly</h1>
-        </center>
-        <%= render partial: "minicolumn_edit", locals: {chore_list: @daily_chores } %>
-      </div>
-        <div class="column1">
-            <%= form_for([@list, @list.chores.new]) do |f| %>
-              <%= f.hidden_field :frequency, { :value => 'monthly' } %>
-              <div class="field">
-                <center>
-                  <h2 style="color: #247BA0">Create a new Monthly Chore</h2>
-                  <%= f.text_field :name, :maxlength => 100, :size => 40 %><br>
-                </center>
-              </div>
-
-              <div class="actions">
-                <%= f.submit "Create Chore", :class => 'chore_monthly_click' %>
-              </div>
-
-            <% end %>
-          </div>
-      </div>
-      <div class="column1_line">
-        <center><h2><%= link_to 'Delete This List', list_path(@list.id), :method=>"delete" %></h2></center>
+      <div class="alignright_header">
+        <br><br>
+        (EDIT MODE)
       </div>
       
-    </div>
+      <div style="clear: both;"></div>
+  </div>
+  <div class="column1_line">
+    <center>
+      <%= form_for(@list) do |f| %>
+        <%= f.text_field :name, :value => @list.name, :class => 'edit_name', :maxlength => 15, :size => 40 %><br>
+        <%= f.submit 'Change Name', :class => 'edit_name_button' %>
+      <% end %>
+    </center>
+  </div>
+  <div class="column1_line">
+    <center>
+      <h2>Current Members</h2><br>
+      <% @list.users.each do |user| %>
+        <% if user == current_user %>
+          <div class="container">
+            You<br>
+            <img src= "<%= user.imgurl %>" class="logo"><br>
+          </div>
+        <% else %>
+          <div class="container">
+            <%= user.name %><br>
+            <%= link_to image_tag(user.imgurl, :class => "logo"), user_path(user.id) %><br>
+            <div class="imgtxt">
+              <%= link_to 'Remove', remove_from_list_path(@list.id, :user => user.id) %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </center>
+      <div>
+        <center>
+          <br>
+          Want to invite another person?<br>
+          Enter their email below.<br>
+          <%= form_for ([@list, @list.invites.new]) do |f| %>
+            <%= f.text_field :email, :class =>"email_invite" %><br>
+            <%= f.submit "Send Invite", :class => "edit_name_button" %>
+          <% end %>
+        </center>
+      </div>
+  </div>
+  <div class="column1_line">
+    <center>
+      <br><h1 style="color: #70c1b3 ">Daily</h1>
+    </center>
+    <%= render partial: "minicolumn_edit", locals: {chore_list: @daily_chores } %>
+  </div>
+
+  <div class="column1_line">
+    <center>
+      <h1 style="color: #F9C563">Weekly</h1>
+    </center>
+    <%= render partial: "minicolumn_edit", locals: {chore_list: @weekly_chores } %>
+  </div>
+
+  <div class="column1_line">
+    <center>
+      <h1 style="color: #247BA0">Monthly</h1>
+    </center>
+    <%= render partial: "minicolumn_edit", locals: {chore_list: @daily_chores } %>
+  </div>
+    <div class="column1">
+        <%= render 'chores/chore_new' %>
+      </div>
+  </div>
+  <div class="column1_line">
+    <center><h2><%= link_to 'Delete This List', list_path(@list.id), :method=>"delete" %></h2></center>
+  </div>
+  
+</div>
 
       
 
