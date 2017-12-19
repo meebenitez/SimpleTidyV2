@@ -1,26 +1,27 @@
 class ChoresController < ApplicationController
-  before_action :set_list, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_list, only: [:create, :destroy]
   load_and_authorize_resource :list
   load_and_authorize_resource :chore, :through => :list
   before_action :authenticate_user!
-  
-  def new
-  end
+
 
 
   def create
-    #binding.pry
-    now = Time.now
-    @chore = @list.chores.build(chore_params)
-    @chore.reset_time = Chore.set_reset(now, @chore.frequency)
-    @chore.past_due_time = Chore.set_past_due(now, @chore.time_of_day, @chore.reset_time)
+    if @list
+      now = Time.now
+      @chore = @list.chores.build(chore_params)
+      @chore.reset_time = Chore.set_reset(now, @chore.frequency)
+      @chore.past_due_time = Chore.set_past_due(now, @chore.time_of_day, @chore.reset_time)
 
-    if @chore.save
-      flash[:notice] = "Success"
-      redirect_to edit_list_path(@list.id)
+      if @chore.save
+        flash[:notice] = "Success"
+        redirect_to edit_list_path(@list.id)
+      else
+        flash[:notice] = "Oh no!"
+        redirect_to edit_list_path(@list.id)
+      end
     else
-      flash[:notice] = "Oh no!"
-      redirect_to edit_list_path(@list.id)
+      redirect_to lists_path
     end
   end
 
@@ -34,9 +35,6 @@ class ChoresController < ApplicationController
     redirect_to list_path(@chore.list)
   end
 
-  def show
-  end
-
   def complete
     @chore = Chore.find(params[:id])
     Chore.complete_chore(@chore)
@@ -45,10 +43,14 @@ class ChoresController < ApplicationController
 
 
   def destroy
-    @chore = @list.chores.find(params[:id])
-    @chore.destroy
-    flash[:notice] = "deleted"
-    redirect_to edit_list_path(@list)
+    if @list
+      @chore = @list.chores.find(params[:id])
+      @chore.destroy
+      flash[:notice] = "deleted"
+      redirect_to edit_list_path(@list)
+    else
+      redirect_to lists_path
+    end
   end
 
   private 
@@ -58,7 +60,7 @@ class ChoresController < ApplicationController
     end
 
     def set_list
-      @list = List.find(params[:list_id])
+      @list = List.find_by(id: params[:list_id])
     end
 
 

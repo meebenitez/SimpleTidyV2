@@ -6,13 +6,22 @@
     <center><h1>Your Profile</h1></center>
   </div>
 <div class="column1_line">
-  <div class="alignright_profile">
-    <center>
+  <div class="signin">
+    <div class="alignleft_signin">
       <h3>Your Email:</h3>
       <%= current_user.email %><br><br>
       <%= render 'devise/passwords/edit_form' %>
+    </div>
+  <div class="alignright">
+    <center>
+      <br>
+      <br>
+      <br>
+      <%= image_tag(current_user.imgurl, :class => "list_icon")%><br>
+      <h2><%= current_user.name %></h2><br>
     </center>
   </div>
+  <div style="clear: both;">
 
   <div class="column1_line">
     <center>
@@ -23,9 +32,6 @@
 
   </div>
 
-
-  <div class="column1">
-    <%= link_to "Back", :back %>
-  </div>
+</div>
   
 </div>

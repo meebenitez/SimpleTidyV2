@@ -15,7 +15,8 @@ class Ability
           user.chores.include?(chore)
         end
         can :manage, Chore, :list => { :admin_id => user.id }
-        can :manage, User, id: user.id
+        #can :manage, User, id: user.id
+        can :manage, Invite, :list => { :admin_id => user.id }
       end
 
 

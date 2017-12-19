@@ -5,7 +5,7 @@
 <div class="column1_header">
   <center>
     <h2>User Profile</h2><br>
-    <img src="<%= @user.imgurl %>"><br>
+    <%= image_tag(@user.imgurl) %><br>
     <%= @user.name %><br><br>
     <% if @user == current_user %>
       <%= link_to 'Edit your Profile', edit_user_registration_path %>

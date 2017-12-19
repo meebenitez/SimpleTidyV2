@@ -1,5 +1,6 @@
 class InvitesController < ApplicationController
   before_action :set_list, only: [:show, :new, :create, :edit, :update, :destroy]
+  load_and_authorize_resource :invite, :through => :list
 
   def new
   end

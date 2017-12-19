@@ -355,6 +355,11 @@
     padding: 10px;
     border-left: 2px solid #ccc;
   }
+  .alignleft_profile {
+    width: 35%;
+    float: left;
+    padding: 10px;
+  }
   .aligncenter {
     text-align: center;
   }
