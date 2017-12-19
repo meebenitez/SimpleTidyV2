@@ -10,6 +10,7 @@ class Ability
         can :read, List do |list|
           list.users.include?(user)
         end
+        can :join, :all
       end
 
 

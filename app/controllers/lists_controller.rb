@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
   include ChoresHelper
   before_action :set_list, only: [:show, :edit, :update, :destroy, :join, :remove_user]
-  #load_and_authorize_resource
+  load_and_authorize_resource
   before_action :authenticate_user!
 
   def index
@@ -55,7 +55,8 @@ class ListsController < ApplicationController
   #User accepts an invite to a list
   def join
     if @list
-      if !@list.users.find_by(id: current_user.id) #make sure user isn't already a member of the list (move this logic out eventually)
+      #make sure user isn't already a member of the list (move this logic out eventually)
+      if !@list.users.find_by(id: current_user.id) && @list.invites.find_by(email: current_user.email)
         @list.users << current_user
         #binding.pry
         invite = current_user.invites.find_by(list_id: @list.id)
