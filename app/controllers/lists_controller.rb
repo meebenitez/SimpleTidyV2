@@ -39,13 +39,11 @@ class ListsController < ApplicationController
 
   def show
     if @list
-      if can? :read, List
-        Chore.set_chore_status(@list.chores)
-        Chore.check_past_due(@list.chores)
-        @daily_chores = create_chore_array_view("daily", @list.chores)
-        @weekly_chores = create_chore_array_view("weekly", @list.chores)
-        @monthly_chores = create_chore_array_view("monthly", @list.chores)
-      end
+      Chore.set_chore_status(@list.chores)
+      Chore.check_past_due(@list.chores)
+      @daily_chores = create_chore_array_view("daily", @list.chores)
+      @weekly_chores = create_chore_array_view("weekly", @list.chores)
+      @monthly_chores = create_chore_array_view("monthly", @list.chores)
     else
       redirect_to lists_path
     end
