@@ -35,7 +35,7 @@
   <div class="field">
     <center>
       <h3>Frequency</h3>
-      <%= f.radio_button :frequency, 'Daily', onClick: "resetradio()" %> Daily |
+      <%= f.radio_button :frequency, 'Daily', onClick: "resetradio()", :checked => @chore.frequency == "daily" %> Daily |
       <%= f.radio_button :frequency, 'Weekly', onClick: "resetradio()" %> Weekly |
       <%= f.radio_button :frequency, 'Weekly', onClick: "resetradio()" %> Monthly
       <div class="buttons">

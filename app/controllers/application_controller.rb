@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
     redirect_to lists_path
   end
   
-  
   #before_action :authenticate_user!
 
   def index
