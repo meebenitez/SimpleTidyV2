@@ -1,14 +1,17 @@
 class ChoresController < ApplicationController
   before_action :set_list, only: [:new, :create, :edit, :update, :destroy]
-  respond_to :html, :json
+  load_and_authorize_resource :list
+  load_and_authorize_resource :chore, :through => :list
+  before_action :authenticate_user!
   
   def new
   end
 
 
   def create
+    #binding.pry
     now = Time.now
-    @chore = @list.chores.new(chore_params)
+    @chore = @list.chores.build(chore_params)
     @chore.reset_time = Chore.set_reset(now, @chore.frequency)
     @chore.past_due_time = Chore.set_past_due(now, @chore.time_of_day, @chore.reset_time)
 

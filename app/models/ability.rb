@@ -11,6 +11,10 @@ class Ability
           list.users.include?(user)
         end
         can :join, :all
+        can :complete, Chore do |chore|
+          user.chores.include?(chore)
+        end
+        can :manage, Chore, :list => { :admin_id => user.id }
       end
 
 

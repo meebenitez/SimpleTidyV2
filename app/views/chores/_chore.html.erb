@@ -36,14 +36,14 @@
     <center>
       <h3>Frequency</h3>
       <%= f.radio_button :frequency, 'Daily', onClick: "resetradio()", :checked => @chore.frequency == "daily" %> Daily |
-      <%= f.radio_button :frequency, 'Weekly', onClick: "resetradio()" %> Weekly |
-      <%= f.radio_button :frequency, 'Weekly', onClick: "resetradio()" %> Monthly
+      <%= f.radio_button :frequency, 'Weekly', onClick: "resetradio()", :checked => @chore.frequency == "weekly" %> Weekly |
+      <%= f.radio_button :frequency, 'Monthly', onClick: "resetradio()", :checked => @chore.frequency == "monthly" %> Monthly
       <div class="buttons">
-      <br>
-      When should this chore be completed?<br>
-          <%= f.radio_button :time_of_day, 'Morning', onClick:"setradio()" %> Morning | 
-          <%= f.radio_button :time_of_day, 'Evening', onClick:"setradio()" %> Evening |
-          <%= f.radio_button :time_of_day, 'Any Time', onClick:"setradio()" %> Any Time
+        <br>
+        When should this chore be completed?<br>
+        <%= f.radio_button :time_of_day, 'Morning', onClick:"setradio()" %> Morning | 
+        <%= f.radio_button :time_of_day, 'Evening', onClick:"setradio()" %> Evening |
+        <%= f.radio_button :time_of_day, 'Any Time', onClick:"setradio()" %> Any Time
       </div>
     </center>
     </div>
