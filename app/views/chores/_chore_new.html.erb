@@ -1,8 +1,33 @@
+<script type="text/javascript">
+    function resetradio () {
+      var radio = document.getElementsByName('chore[frequency]')[0];
+      var buttons = document.querySelector('.buttons');
+      var radios = document.getElementsByName('chore[time_of_day]');
+      radios[0].checked = false;
+      if (radio.checked == true) {
+          buttons.style.display = 'block';
+      }
+      else {
+          buttons.style.display = 'none';
+      }
+  }
+
+
+
+  function setradio () {
+      var radio = document.getElementsByName('chore[frequency]')[0];
+      if (radio.checked == false) {
+          radio.checked = true;
+
+      }
+  }
+</script>
+
 
 <div class="column1_line">
   <center><h2>Add a New Chore</h2></center>
   <br>
-  <%= form_for([@list, @list.chores.new]) do |f| %>
+  <%= form_for([list, list.chores.new]) do |f| %>
     <div class="field">
       <center>
         <%= f.text_field :name, :value => "ex: make bed, feed cats, etc.", :class => 'edit_chore', :maxlength => 100, :size => 60 %><br>

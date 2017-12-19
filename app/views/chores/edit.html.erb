@@ -6,5 +6,5 @@
 <center>
   <h1>Edit Chore</h1> <h3>in <%= @list.name %></h3>
 </center>
-<%= render 'chore' %>
+<%= render partial: 'chore_edit', locals: {chore: @chore, list: @list } %>
 </div>

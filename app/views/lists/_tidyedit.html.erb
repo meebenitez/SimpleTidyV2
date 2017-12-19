@@ -1,27 +1,3 @@
-<script type="text/javascript">
-    function resetradio () {
-      var radio = document.getElementsByName('chore[frequency]')[0];
-      var buttons = document.querySelector('.buttons');
-      var radios = document.getElementsByName('chore[time_of_day]');
-      radios[0].checked = false;
-      if (radio.checked == true) {
-          buttons.style.display = 'block';
-      }
-      else {
-          buttons.style.display = 'none';
-      }
-  }
-
-
-
-  function setradio () {
-      var radio = document.getElementsByName('chore[frequency]')[0];
-      if (radio.checked == false) {
-          radio.checked = true;
-
-      }
-  }
-</script>
 
   <div class="dummycolumn">
     .<br>.<br>.<br>
@@ -99,10 +75,10 @@
     <center>
       <h1 style="color: #247BA0">Monthly</h1>
     </center>
-    <%= render partial: "minicolumn_edit", locals: {chore_list: @daily_chores } %>
+    <%= render partial: "minicolumn_edit", locals: {chore_list: @monthly_chores } %>
   </div>
     <div class="column1">
-        <%= render 'chores/chore_new' %>
+        <%= render partial: 'chores/chore_new', locals: {chore: @chore, list: @list } %>
       </div>
   </div>
   <div class="column1_line">
