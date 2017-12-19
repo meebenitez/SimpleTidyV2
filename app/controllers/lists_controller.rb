@@ -87,6 +87,7 @@ class ListsController < ApplicationController
 
   def edit
     if @list
+      #binding.pry
       @daily_chores = create_chore_array_edit("daily", @list.chores)
       @weekly_chores = create_chore_array_edit("weekly", @list.chores)
       @monthly_chores = create_chore_array_edit("monthly", @list.chores)

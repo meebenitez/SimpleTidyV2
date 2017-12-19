@@ -1,8 +1,8 @@
- <script type="text/javascript">
+<script type="text/javascript">
     function resetradio () {
-      var radio = document.getElementsByName('/lists/<%= @list.id %>/chores[frequency]')[0];
+      var radio = document.getElementsByName('chore[frequency]')[0];
       var buttons = document.querySelector('.buttons');
-      var radios = document.getElementsByName('/lists/<%= @list.id %>/chores[time_of_day]');
+      var radios = document.getElementsByName('chore[time_of_day]');
       radios[0].checked = false;
       if (radio.checked == true) {
           buttons.style.display = 'block';
@@ -15,7 +15,7 @@
 
 
   function setradio () {
-      var radio = document.getElementsByName('/lists/<%= @list.id %>/chores[frequency]')[0];
+      var radio = document.getElementsByName('chore[frequency]')[0];
       if (radio.checked == false) {
           radio.checked = true;
 
@@ -25,7 +25,7 @@
 
 <div class="column1_line">
 
-  <%= form_for list_chores_path(@list.id) do |f| %>
+  <%= form_for [@list, @chore] do |f| %>
     <div class="field">
       <center>
         <%= f.text_field :name, :value => @chore.name, :class => 'edit_chore' %><br>
@@ -35,9 +35,9 @@
   <div class="field">
     <center>
       <h3>Frequency</h3>
-      <%= f.radio_button :frequency, 'Daily', onClick: "resetradio()", :checked => @chore.frequency == "daily" %> Daily |
-      <%= f.radio_button :frequency, 'Weekly', onClick: "resetradio()", :checked => @chore.frequency == "weekly" %> Weekly |
-      <%= f.radio_button :frequency, 'Monthly', onClick: "resetradio()", :checked => @chore.frequency == "monthly" %> Monthly
+      <%= f.radio_button :frequency, 'daily', onClick: "resetradio()", :checked => @chore.frequency == "daily" %> Daily |
+      <%= f.radio_button :frequency, 'weekly', onClick: "resetradio()", :checked => @chore.frequency == "weekly" %> Weekly |
+      <%= f.radio_button :frequency, 'monthly', onClick: "resetradio()", :checked => @chore.frequency == "monthly" %> Monthly
       <div class="buttons">
         <br>
         When should this chore be completed?<br>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "Create Chore" %>
+      <%= f.submit %>
     </div>
 
   <% end %>

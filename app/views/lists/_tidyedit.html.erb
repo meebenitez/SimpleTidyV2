@@ -1,5 +1,6 @@
       <div class="dummycolumn">
         .<br>.<br>.<br>
+        <%= render 'layouts/messages' %>
 
         
       </div>
@@ -48,7 +49,6 @@
               <br>
               Want to invite another person?<br>
               Enter their email below.<br>
-              <%= render 'layouts/messages' %>
               <%= form_for ([@list, @list.invites.new]) do |f| %>
                 <%= f.text_field :email, :class =>"email_invite" %><br>
                 <%= f.submit "Send Invite", :class => "edit_name_button" %>
@@ -60,28 +60,7 @@
           <center>
             <br><h1 style="color: #70c1b3 ">Daily</h1>
           </center>
-          <% @daily_chores.each_slice(slice_count(@daily_chores.count)) do |chores| %>
-            <div class="minicolumn">
-              <% chores.each do |chore| %>
-                <% if chore.time_of_day == "morning" %>
-                  <div class="chore_edit">
-                    ☀ <%= chore.name %>
-                    <br>| <%= link_to '✎', edit_list_chore_path(@list, chore) %>     | <%= link_to "✖", list_chore_path(@list, chore), :method => "delete", :class => "destroy" %> |
-                  </div>
-                <% elsif chore.time_of_day == "evening" %>
-                  <div class="chore_edit">
-                    ☾ <%= chore.name %>
-                    <br>| <%= link_to '✎', edit_list_chore_path(@list, chore) %>     | <%= link_to "✖", list_chore_path(@list, chore), :method => "delete", :class => "destroy" %> |
-                  </div>
-                <% else %>
-                  <div class="chore_edit">
-                    <%= chore.name %>                    
-                    <br>| <%= link_to '✎', edit_list_chore_path(@list, chore) %>     | <%= link_to "✖", list_chore_path(@list, chore), :method => "delete", :class => "destroy" %> |
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
-        <% end %>
+            <%= render partial: "minicolumn_edit", locals: {chore_list: @daily_chores } %>
         <div class="column1">
         <%= form_for([@list, @list.chores.new]) do |f| %>
           <%= f.hidden_field :frequency, { :value => 'daily' } %>
@@ -108,16 +87,8 @@
         <center>
           <h1 style="color: #F9C563">Weekly</h1>
         </center>
-          <% @weekly_chores.each_slice(slice_count(@weekly_chores.count)) do |chores| %>
-            <div class="minicolumn">
-              <% chores.each do |chore| %>
-                <div class="chore_edit">
-                  <%= chore.name %>
-                  <br>| <%= link_to '✎', edit_list_chore_path(@list, chore) %>     | <%= link_to "✖", list_chore_path(@list, chore), :method => "delete", :class => "destroy" %> |
-                </div>
-              <% end %>
-            </div>
-          <% end %>
+        <%= render partial: "minicolumn_edit", locals: {chore_list: @weekly_chores } %>
+      </div>
           <div class="column1">
             <%= form_for([@list, @list.chores.new]) do |f| %>
               <%= f.hidden_field :frequency, { :value => 'weekly' } %>
@@ -141,16 +112,8 @@
         <center>
           <h1 style="color: #247BA0">Monthly</h1>
         </center>
-          <% @monthly_chores.each_slice(slice_count(@monthly_chores.count)) do |chores| %>
-            <div class="minicolumn">
-              <% chores.each do |chore| %>
-                <div class="chore_edit">
-                  <%= chore.name %>
-                  <br>| <%= link_to '✎', edit_list_chore_path(@list, chore) %>     | <%= link_to "✖", list_chore_path(@list, chore), :method => "delete", :class => "destroy" %> |
-                </div>
-              <% end %>
-            </div>
-        <% end %>
+        <%= render partial: "minicolumn_edit", locals: {chore_list: @daily_chores } %>
+      </div>
         <div class="column1">
             <%= form_for([@list, @list.chores.new]) do |f| %>
               <%= f.hidden_field :frequency, { :value => 'monthly' } %>

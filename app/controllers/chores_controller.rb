@@ -1,9 +1,8 @@
 class ChoresController < ApplicationController
-  before_action :set_list, only: [:create, :destroy]
+  before_action :set_list, only: [:edit, :create, :update, :destroy]
   load_and_authorize_resource :list
   load_and_authorize_resource :chore, :through => :list
   before_action :authenticate_user!
-
 
 
   def create
@@ -32,7 +31,8 @@ class ChoresController < ApplicationController
   def update
     @chore = Chore.find(params[:id])
     @chore.update(chore_params)
-    redirect_to list_path(@chore.list)
+    #binding.pry
+    redirect_to edit_list_path(@chore.list)
   end
 
   def complete

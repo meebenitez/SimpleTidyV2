@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'lists#index'
 
   resources :lists do
-    resources :chores
+    resources :chores, only: [:index, :show, :new, :edit]
     resources :chores do
       get 'complete', :on => :member
     end

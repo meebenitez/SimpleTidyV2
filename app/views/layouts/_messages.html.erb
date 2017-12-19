@@ -1,3 +1,7 @@
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><span style="color: #FF3067"><%= value %></span></div>
-<% end %>
+<div class="column1">
+  <center>
+    <% flash.each do |key, value| %>
+      <span style="color: #FF3067"><%= value %></span>
+    <% end %>
+  </center>
+</div>
