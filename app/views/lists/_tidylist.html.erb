@@ -46,5 +46,8 @@
   <% end %>
   <%= render partial: "minicolumn", locals: {chore_list: @monthly_chores } %>
 </div>
+<div class="column1_line">
+        <center><h3><%= link_to 'Unsubscribe from this List', leave_list_path(@list.id) %></h3></center>
+      </div>
 
 </div>

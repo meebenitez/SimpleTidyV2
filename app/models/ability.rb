@@ -11,6 +11,9 @@ class Ability
           list.users.include?(user)
         end
         can :join, :all
+        can :leave_list, List do |list|
+          list.users.include?(user)
+        end
         can :complete, Chore do |chore|
           user.chores.include?(chore)
         end

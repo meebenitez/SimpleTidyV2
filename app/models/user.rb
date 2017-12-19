@@ -16,7 +16,7 @@ class User < ApplicationRecord
       user.name = auth.info.name
       user.provider = auth.provider
       user.uid = auth.uid
-      user.imgurl = auth.info.image
+      user.imgurl = auth.info.image + "?type=large"
       user.password = Devise.friendly_token[0,20]
       if Invite.find_by(email: user.email)
         invite = Invite.find_by(email: user.email)
