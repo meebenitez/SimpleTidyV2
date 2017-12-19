@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20171209081415) do
     t.integer "list_id"
     t.datetime "reset_time"
     t.datetime "past_due_time"
+    t.integer "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -66,7 +67,7 @@ ActiveRecord::Schema.define(version: 20171209081415) do
     t.string "name"
     t.boolean "member", default: true
     t.boolean "admin", default: false
-    t.string "imgurl"
+    t.string "imgurl", default: "user.png"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["imgurl"], name: "index_users_on_imgurl"
     t.index ["name"], name: "index_users_on_name"

@@ -1,5 +1,10 @@
 class MyDevise::RegistrationsController < Devise::RegistrationsController
 
+  def create
+    super
+    current_user.update(name: params[:user][:name])
+  end
+
   def destroy
     current_user.lists.each do |list|
       check_list = List.find(list.id)
@@ -9,4 +14,5 @@ class MyDevise::RegistrationsController < Devise::RegistrationsController
     end
     super
   end
+
 end

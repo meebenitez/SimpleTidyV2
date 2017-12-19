@@ -347,6 +347,13 @@
     padding: 10px;
     text-align: center;
 
+
+  }
+  .alignright_profile {
+    width: 60%;
+    float: right;
+    padding: 10px;
+    border-left: 2px solid #ccc;
   }
   .aligncenter {
     text-align: center;
