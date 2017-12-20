@@ -3,14 +3,14 @@
     <div class="minicolumn">
       <% chores.each do |chore| %>
         <% if chore.time_of_day == "morning" %>
-          ☀ <%= chore.name %>
-          <br>| <%= link_to '✎', edit_list_chore_path(@list, chore) %>     | <%= link_to "✖", list_chore_path(@list, chore), :method => "delete"%> |<br>
+          <br>
+          ☀ <%= chore.name %> <%= link_to '✎', edit_list_chore_path(@list, chore) %>      <%= link_to "✖", list_chore_path(@list, chore), :method => "delete"%> <br>
         <% elsif chore.time_of_day == "evening" %>
-          ☾ <%= chore.name %>
-          <br>| <%= link_to '✎', edit_list_chore_path(@list, chore) %>     | <%= link_to "✖", list_chore_path(@list, chore), :method => "delete"%> |<br>
+          <br>
+          ☾ <%= chore.name %> <%= link_to '✎', edit_list_chore_path(@list, chore) %>      <%= link_to "✖", list_chore_path(@list, chore), :method => "delete"%> <br>
           <% else %>
-          <%= chore.name %>                    
-          <br>| <%= link_to '✎', edit_list_chore_path(@list, chore) %>     | <%= link_to "✖", list_chore_path(@list, chore), :method => "delete"%> |<br>
+          <br>
+          <%= chore.name %> <%= link_to '✎', edit_list_chore_path(@list, chore) %>      <%= link_to "✖", list_chore_path(@list, chore), :method => "delete"%> <br>
         <% end %>
       <% end %>
     </div>
