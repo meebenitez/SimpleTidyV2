@@ -1,1 +1,55 @@
-<%= render 'tidylist' %>
+<div class="dummycolumn">
+  .<br>.<br>.<br>
+</div>
+
+
+<div class="column1_header">
+  <div class="alignleft_header">
+    <%# Genereate home icon based on list type %>
+    <%= link_to image_tag((list_type_photo @list), :class=> "logo"), @list %> <%= @list.name %>
+  </div>
+  <div class="alignright_header">
+    <br>
+    <%# show list member photos %>
+    <% @list.users.each do |user| %>
+      <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %>
+    <% end %>
+    <% if can? :update, @list %>
+      <%= link_to image_tag("edit_icon.png", :class => "edit"), edit_list_path(@list.id) %>
+    <% end %>
+  </div>
+  
+  <div style="clear: both;"></div>
+</div>
+
+<div class="column1_line">
+  <%# Show chores based on frequency %>
+  <center>
+    <h1>Daily</h1><br>
+    <% if @daily_chores != [] %>
+      Complete all daily chores today to stay on track.
+    <% end %>
+  </center>
+    <%= render partial: "minicolumn", locals: {chore_list: @daily_chores } %>
+</div>
+
+<div class="column1_line">
+  <% if @weekly_chores != [] %>
+    <%= render partial: "goal", locals: {chore_frequency: "Weekly", chore_count: @weekly_chores.count } %>
+  <% end %>
+  <%= render partial: "minicolumn", locals: {chore_list: @weekly_chores } %>
+</div>
+
+<div class="column1_line">
+  <% if @monthly_chores != [] %>
+    <%= render partial: "goal", locals: {chore_frequency: "Monthly", chore_count: @monthly_chores.count } %>
+  <% end %>
+  <%= render partial: "minicolumn", locals: {chore_list: @monthly_chores } %>
+</div>
+<div class="column1_line">
+  <% if current_user.id != @list.admin_id %>
+    <center><h3><%= link_to 'Unsubscribe from this List', leave_list_path(@list.id) %></h3></center>
+    <% end %>
+</div>
+
+</div>

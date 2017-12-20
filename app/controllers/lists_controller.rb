@@ -5,6 +5,7 @@ class ListsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    #binding.pry
     if can? :read, List
       @lists = current_user.lists
       @invites = current_user.invites.select {|invite| invite.status == "open" }
