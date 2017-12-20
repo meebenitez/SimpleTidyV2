@@ -16,7 +16,7 @@ module Constants
       ["Tidy desk areas", "weekly", nil, "not done", false],
       ["Complete a load of laundry", "weekly", nil, "not done", false],
       ["Pay bills", "weekly", nil, "not done", false],
-      ["Vacuum or sweep all floors", "biweekly", nil, "not done", false],
+      ["Vacuum or sweep all floors", "weekly", nil, "not done", false],
       ["Mop hard floors", "weekly", nil, "not done", false],
       ["Wipe down light switches and door handles", "weekly", nil, "not done", false],
       ["Dust all surfaces", "weekly", nil, "not done", false],
@@ -37,9 +37,20 @@ module Constants
     :chore_keys =>
       ["name", "frequency", "time_of_day", "status", "past_due"],
     :chores => [
-      ["Test", "daily", nil, "not done", false],
-      ["Test", "weekly", nil, "not done", false],
-      ["Test", "monthly", nil, "not done", false],
+      ["Pick up all loose trash/garbage", "daily", nil, "not done", false],
+      ["Empty out door pockets", "daily", nil, "not done", false],
+      ["Empty out cupholders", "daily", nil, "not done", false],
+      ["Empty garbage bag", "weekly", nil, "not done", false],
+      ["Deep clean cupholders", "monthly", nil, "not done", false],
+      ["Wipe down dashboard", "weekly", nil, "not done", false],
+      ["Wipe down steering wheel and gearshift", "weekly", nil, "not done", false],
+      ["Deep clean door pockets", "monthly", nil, "not done", false],
+      ["Spray air conditioner treatment into air vents below windshield", "monthly", nil, "not done", false],
+      ["Clean seats (wipe down leather/vacuum upholstery)", "monthly", nil, "not done", false],
+      ["Vacuum footwells and floormats", "monthly", nil, "not done", false],
+      ["Deep clean crevices around buttons and switches", "monthly", nil, "not done", false],
+      ["Wipe down all windows with glass cleaner", "weekly", nil, "not done", false],
+      ["Clean out trunk", "weekly", nil, "not done", false],
     ]
 
   }
@@ -48,9 +59,21 @@ module Constants
     :chore_keys =>
       ["name", "frequency", "time_of_day", "status", "past_due"],
     :chores => [
-      ["Test", "daily", nil, "not done", false],
-      ["Test", "weekly", nil, "not done", false],
-      ["Test", "monthly", nil, "not done", false],
+      ["Delete 10 items of junk mail", "daily", nil, "not done", false],
+      ["Unsubscribe from 2 email lists", "daily", nil, "not done", false],
+      ["Complete any necessary app/software updates", "weekly", nil, "not done", false],
+      ["Wipe down keyboard & mouse", "weekly", nil, "not done", false],
+      ["Deep clean keyboard and mouse", "monthly", nil, "not done", false],
+      ["Tidy computer/laptop desktop", "daily", nil, "not done", false],
+      ["Delete your downloads folder", "weekly", nil, "not done", false],
+      ["Delete 10 obsolete bookmarks", "weekly", nil, "not done", false],
+      ["Sort 10 userful bookmarks", "weekly", nil, "not done", false],
+      ["Optimize computer/laptop with a cleaner software", "monthly", nil, "not done", false],
+      ["Respond to all emails", "daily", nil, "not done", false],
+      ["Unsubscribe from 5 facebook pages", "weekly", nil, "not done", false],
+      ["Clean out dust bunnies from computer", "monthly", nil, "not done", false],
+      ["Delete 20 unwanted photos from your phone", "weekly", nil, "not done", false],
+
     ]
 
   }
