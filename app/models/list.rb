@@ -16,11 +16,11 @@ class List < ApplicationRecord
 
   def self.grab_starter_chores(list_type)
     if list_type == "Home"
-        Chore::HOME_DATA
+        Constants::HOME_DATA
       elsif list_type == "Car"
-        Chore::CAR_DATA
+        Constants::CAR_DATA
       else
-        Chore::TECH_DATA
+        Constants::TECH_DATA
       end
   end
 
