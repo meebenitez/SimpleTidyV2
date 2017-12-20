@@ -35,15 +35,15 @@
   <div class="field">
     <center>
       <h3>Frequency</h3>
-      <%= f.radio_button :frequency, 'daily', onClick: "resetradio()", :checked => @chore.frequency == "daily" %> Daily |
-      <%= f.radio_button :frequency, 'weekly', onClick: "resetradio()", :checked => @chore.frequency == "weekly" %> Weekly |
-      <%= f.radio_button :frequency, 'monthly', onClick: "resetradio()", :checked => @chore.frequency == "monthly" %> Monthly
+      <%= f.radio_button :frequency, 'daily', onClick: "resetradio()", :checked => chore.frequency == "daily" %> Daily |
+      <%= f.radio_button :frequency, 'weekly', onClick: "resetradio()", :checked => chore.frequency == "weekly" %> Weekly |
+      <%= f.radio_button :frequency, 'monthly', onClick: "resetradio()", :checked => chore.frequency == "monthly" %> Monthly
       <div class="buttons">
         <br>
         When should this chore be completed?<br>
-        <%= f.radio_button :time_of_day, 'morning', onClick:"setradio()" %> Morning | 
-        <%= f.radio_button :time_of_day, 'evening', onClick:"setradio()" %> Evening |
-        <%= f.radio_button :time_of_day, nil, onClick:"setradio()" %> Any Time
+        <%= f.radio_button :time_of_day, 'morning', onClick:"setradio()", :checked => chore.time_of_day == "daily" %> Morning | 
+        <%= f.radio_button :time_of_day, 'evening', onClick:"setradio()", :checked => chore.time_of_day == "evening" %> Evening |
+        <%= f.radio_button :time_of_day, nil, onClick:"setradio()", :checked => chore.time_of_day == nil %> Any Time
       </div>
     </center>
     </div>

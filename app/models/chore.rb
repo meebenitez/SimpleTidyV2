@@ -1,6 +1,7 @@
 class Chore < ApplicationRecord
   belongs_to :list
   validates :name, presence: true
+  validates :frequency, presence: true
 
 
 #Create the time a "completed" chore will show back up on the list

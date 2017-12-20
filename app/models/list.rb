@@ -5,23 +5,18 @@ class List < ApplicationRecord
   has_many :invites
 
   accepts_nested_attributes_for :invites , reject_if: proc { |attributes| attributes['email'].blank? }
-  #accepts_nested_attributes_for :users
 
   validates :name, presence: true
-  
-  #def admin_name=(id)
-   # admin = User.find(id: id)
-   # self.admin = admin
-  #end
+
 
   def self.grab_starter_chores(list_type)
     if list_type == "Home"
-        Constants::HOME_DATA
-      elsif list_type == "Car"
-        Constants::CAR_DATA
-      else
-        Constants::TECH_DATA
-      end
+      Constants::HOME_DATA
+    elsif list_type == "Car"
+      Constants::CAR_DATA
+    else
+      Constants::TECH_DATA
+    end
   end
 
 

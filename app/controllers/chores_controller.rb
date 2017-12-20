@@ -13,10 +13,10 @@ class ChoresController < ApplicationController
       @chore.past_due_time = Chore.set_past_due(now, @chore.time_of_day, @chore.reset_time)
 
       if @chore.save
-        flash[:notice] = "Success"
+        flash[:notice] = "New Chore Successfully Created."
         redirect_to edit_list_path(@list.id)
       else
-        flash[:notice] = "Oh no!"
+        flash[:notice] = "Oh no! Try that again."
         redirect_to edit_list_path(@list.id)
       end
     else

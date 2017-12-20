@@ -1,7 +1,6 @@
 
   <div class="dummycolumn">
     .<br>.<br>.<br>
-    <%= render 'layouts/messages' %>
 
     
   </div>
@@ -19,6 +18,7 @@
   </div>
   <div class="column1_line">
     <center>
+      <%= render 'layouts/messages' %>
       <%= form_for(@list) do |f| %>
         <%= f.text_field :name, :value => @list.name, :class => 'edit_name', :maxlength => 15, :size => 40 %><br>
         <%= f.submit 'Change Name', :class => 'edit_name_button' %>
