@@ -18,10 +18,6 @@ class List < ApplicationRecord
       end
   end
 
-  def users=(users)
-    binding.pry
-  end
-
   def self.grab_starter_chores(list_type)
     if list_type == "Home"
       Constants::HOME_DATA

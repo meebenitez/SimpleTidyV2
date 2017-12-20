@@ -120,7 +120,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, :list_type, invites_attributes: [:email, :status], users_attributes: [:id])
+    params.require(:list).permit(:name, :list_type, invites_attributes: [:email, :status], users_attributes: [:id, :name])
   end
 
   def set_list

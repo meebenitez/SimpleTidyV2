@@ -4,7 +4,7 @@
 
 <%= form_for(@list) do |f| %>
   <%= f.fields_for :users do |users_fields| %>
-    <%= users_fields.text_field :id %>
+    <%= users_fields.check_box :id %>
   <% end %>
-    <%= f.submit %>
+<%= f.submit %>
 <% end %>
