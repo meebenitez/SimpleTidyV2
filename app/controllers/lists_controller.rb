@@ -34,7 +34,8 @@ class ListsController < ApplicationController
     if @list.save
       redirect_to @list
     else
-      render :new
+      flash[:notice] = "List creation failed.  Try again."
+      redirect_to new_list_path
     end
   end
 
@@ -109,7 +110,7 @@ class ListsController < ApplicationController
   def destroy
     if @list
       @list.destroy
-      flash[:notice] = "deleted"
+      flash[:notice] = "#{@list.name} was deleted."
       redirect_to lists_path
     else
       redirect_to lists_path

@@ -10,4 +10,8 @@ module ListsHelper
         url = "laptop.png"
       end
   end
+
+  def check_list_past_due(list)
+    list.chores.any? {|chore| chore.past_due == true }
+  end
 end

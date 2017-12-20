@@ -7,6 +7,7 @@ class List < ApplicationRecord
   accepts_nested_attributes_for :invites , reject_if: proc { |attributes| attributes['email'].blank? }
 
   validates :name, presence: true
+  validates :list_type, presence: true
 
 
   def self.grab_starter_chores(list_type)
