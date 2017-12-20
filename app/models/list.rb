@@ -1,5 +1,5 @@
 class List < ApplicationRecord
-  has_many :lists_users
+  has_many :lists_users, dependent: :destroy
   has_many :users, through: :lists_users
   has_many :chores
   has_many :invites
@@ -9,6 +9,18 @@ class List < ApplicationRecord
   validates :name, presence: true
   validates :list_type, presence: true
 
+  def users_attributes=(users_attributes)
+    binding.pry
+      users_attributes.values.each_with_index do |v, i|
+        user = User.find_by(i)
+        join_entry = ListsUser.find_by(user_id: user_attribute, list_id: self.id)
+        join_entry.update(admin_id: user_attribute)
+      end
+  end
+
+  def users=(users)
+    binding.pry
+  end
 
   def self.grab_starter_chores(list_type)
     if list_type == "Home"

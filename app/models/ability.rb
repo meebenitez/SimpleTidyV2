@@ -6,7 +6,7 @@ class Ability
       if user.admin?
         can :manage, :all
       else
-        can :manage, List, admin_id: user.id
+        can :manage, List, creator_id: user.id
         can :read, List do |list|
           list.users.include?(user)
         end
@@ -17,14 +17,14 @@ class Ability
         can :complete, Chore do |chore|
           user.chores.include?(chore)
         end
-        can :manage, Chore, :list => { :admin_id => user.id }
+        can :manage, Chore, :list => { :creator_id => user.id }
         #can :manage, User, id: user.id
-        can :manage, Invite, :list => { :admin_id => user.id }
+        can :manage, Invite, :list => { :creator_id => user.id }
       end
 
 
          #can :read, List, user_id: user.id
-         #can :manage, List, admin_id: user.id 
+         #can :manage, List, creator_id: user.id 
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

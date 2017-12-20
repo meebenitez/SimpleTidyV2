@@ -1,0 +1,10 @@
+<% @list.users.each do |user| %>
+  <%= user.name %> | <%= user.id %><br>
+<% end %>
+
+<%= form_for(@list) do |f| %>
+  <%= f.fields_for :users do |users_fields| %>
+    <%= users_fields.text_field :id %>
+  <% end %>
+    <%= f.submit %>
+<% end %>

@@ -9,7 +9,6 @@ class CreateChores < ActiveRecord::Migration[5.1]
       t.integer :list_id
       t.datetime :reset_time
       t.datetime :past_due_time
-      t.integer :admin_id
 
       t.timestamps
     end

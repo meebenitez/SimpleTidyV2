@@ -47,7 +47,7 @@
   <%= render partial: "minicolumn", locals: {chore_list: @monthly_chores } %>
 </div>
 <div class="column1_line">
-  <% if current_user.id != @list.admin_id %>
+  <% if current_user.id != @list.creator_id %>
     <center><h3><%= link_to 'Unsubscribe from this List', leave_list_path(@list.id) %></h3></center>
     <% end %>
 </div>

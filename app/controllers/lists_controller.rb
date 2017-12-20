@@ -24,7 +24,7 @@ class ListsController < ApplicationController
   def create
     @list  = List.create(list_params)
     @list.users << current_user
-    @list.admin_id = current_user.id
+    @list.creator_id = current_user.id
     #Seed starter chores
     List.create_starter_list(@list)
     # assign invites
@@ -79,7 +79,7 @@ class ListsController < ApplicationController
   end
 
   def leave_list
-    if current_user.id != @list.admin_id
+    if current_user.id != @list.creator_id
       @list.users.delete(current_user)
       redirect_to lists_path
     else
@@ -120,7 +120,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, :list_type, invites_attributes: [:email, :status])
+    params.require(:list).permit(:name, :list_type, invites_attributes: [:email, :status], users_attributes: [:id])
   end
 
   def set_list

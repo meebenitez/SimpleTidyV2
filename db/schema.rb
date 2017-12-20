@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20171209081415) do
     t.integer "list_id"
     t.datetime "reset_time"
     t.datetime "past_due_time"
-    t.integer "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,12 +40,13 @@ ActiveRecord::Schema.define(version: 20171209081415) do
     t.string "list_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "admin_id"
+    t.integer "creator_id"
   end
 
   create_table "lists_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "list_id"
+    t.boolean "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
