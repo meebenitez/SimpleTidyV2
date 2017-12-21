@@ -14,7 +14,7 @@ class List < ApplicationRecord
   validates :list_type, presence: true
 
   def users_attributes=(users_attributes)
-    binding.pry
+    #binding.pry
     user_ids = []
     users_attributes.values.each do |user_attribute|
       user_ids << user_attribute.values.last.to_i
@@ -27,6 +27,10 @@ class List < ApplicationRecord
         entry.update(admin: false)
       end
     end
+  end
+
+  def self.check_admin?(list, user)
+    ListsUser.find_by(list_id: list.id, user_id: user.id).admin
   end
 
 
