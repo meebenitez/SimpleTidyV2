@@ -10,13 +10,21 @@ class List < ApplicationRecord
   validates :list_type, presence: true
 
   def users_attributes=(users_attributes)
-    binding.pry
-      users_attributes.values.each_with_index do |v, i|
-        user = User.find_by(i)
-        join_entry = ListsUser.find_by(user_id: user_attribute, list_id: self.id)
-        join_entry.update(admin_id: user_attribute)
+    user_ids = []
+    users_attributes.values.each do |user_attribute|
+      user_ids << user_attribute.values.last.to_i
+    end
+    join_entries = ListsUser.jointables(self.id)
+    join_entries.each do |entry|
+      if user_ids.include?(entry.user_id)
+        entry.update(admin: true)
+        binding.pry
+      else
+        entry.update(admin: false)
       end
+    end
   end
+
 
   def self.grab_starter_chores(list_type)
     if list_type == "Home"
