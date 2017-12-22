@@ -20,6 +20,13 @@ class Ability
         can :manage, Chore, :list => { :creator_id => user.id }
         #can :manage, User, id: user.id
         can :manage, Invite, :list => { :creator_id => user.id }
+        can :edit, List do |list|
+          List.check_admin?(list, user)
+        end
+        can :manage, Chore do |chore|
+          List.check_admin?(List.find_by(id: chore.list_id), user)
+        end
+
       end
 
 

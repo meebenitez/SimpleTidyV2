@@ -4,6 +4,7 @@ class Chore < ApplicationRecord
   validates :frequency, presence: true
 
 
+
 #Create the time a "completed" chore will show back up on the list
   def self.set_reset(now, frequency)
     subtract_time = now - now.strftime("%H").to_i.hours - now.strftime("%M").to_i.minutes - now.strftime("%S").to_i.seconds

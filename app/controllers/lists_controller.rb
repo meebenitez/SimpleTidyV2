@@ -25,6 +25,7 @@ class ListsController < ApplicationController
     @list  = List.create(list_params)
     @list.users << current_user
     @list.creator_id = current_user.id
+
     #Seed starter chores
     List.create_starter_list(@list)
     # assign invites
@@ -32,6 +33,8 @@ class ListsController < ApplicationController
 
     #list.chores.make_chores(@list)
     if @list.save
+      ListsUser.set_admin(@list, current_user)
+      flash[:notice] = "List successfully created!"
       redirect_to @list
     else
       flash[:notice] = "List creation failed.  Try again."
@@ -100,6 +103,7 @@ class ListsController < ApplicationController
 
   def update
     if @list
+      binding.pry
       @list.update(list_params)
       redirect_to edit_list_path(@list)
     else

@@ -7,14 +7,14 @@ class List < ApplicationRecord
   accepts_nested_attributes_for :invites , reject_if: proc { |attributes| attributes['email'].blank? }
 
   scope :list_admin, -> (user_id) {
-  joins(lists_users: :user).where(users: {id: user_id}).where(lists_users: {admin: true})
+    joins(lists_users: :user).where(users: {id: user_id}).where(lists_users: {admin: true})
   }
 
   validates :name, presence: true
   validates :list_type, presence: true
 
   def users_attributes=(users_attributes)
-    #binding.pry
+    binding.pry
     user_ids = []
     users_attributes.values.each do |user_attribute|
       user_ids << user_attribute.values.last.to_i
@@ -32,7 +32,6 @@ class List < ApplicationRecord
   def self.check_admin?(list, user)
     ListsUser.find_by(list_id: list.id, user_id: user.id).admin
   end
-
 
   def self.grab_starter_chores(list_type)
     if list_type == "Home"

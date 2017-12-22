@@ -14,15 +14,18 @@
       
       <div style="clear: both;"></div>
   </div>
-  <div class="column1_line">
-    <center>
-      <%= render 'layouts/messages' %>
-      <%= form_for(@list) do |f| %>
-        <%= f.text_field :name, :value => @list.name, :class => 'edit_name', :maxlength => 15, :size => 40 %><br>
-        <%= f.submit 'Change Name', :class => 'edit_name_button' %>
-      <% end %>
-    </center>
-  </div>
+  
+  <% if can? :manage, @list %>
+    <div class="column1_line">
+      <center>
+        <%= render 'layouts/messages' %>
+        <%= form_for(@list) do |f| %>
+          <%= f.text_field :name, :value => @list.name, :class => 'edit_name', :maxlength => 15, :size => 40 %><br>
+          <%= f.submit 'Change Name', :class => 'edit_name_button' %>
+        <% end %>
+      </center>
+    </div>
+  <% end %>
 
   <div class="column1_line">
     <center>
@@ -48,48 +51,49 @@
         <%= render partial: 'chores/chore_new', locals: {chore: @chore, list: @list } %>
       </div>
   </div>
-  <div class="column1_line">
-    <center>
-      <h2>Current Members</h2><br>
-      <% @list.users.each do |user| %>
-        <% if user == current_user %>
-          <div class="container">
-            You<br>
-            <img src= "<%= user.imgurl %>" class="logo"><br>
-          </div>
-        <% else %>
-          <div class="container">
-            <%= user.name %><br>
-            <%= link_to image_tag(user.imgurl, :class => "logo"), user_path(user.id) %><br>
-            <div class="imgtxt">
-              <%= link_to 'Remove', remove_from_list_path(@list.id, :user => user.id) %>
+  <% if can? :manage, @list %>
+    <div class="column1_line">
+      <center>
+        <h2>Current Members</h2><br>
+        <% @list.users.each do |user| %>
+          <% if user == current_user %>
+            <div class="container">
+              You<br>
+              <img src= "<%= user.imgurl %>" class="logo"><br>
             </div>
-          </div>
-        <% end %>
-      <% end %>
-    </center>
-      <div>
-        <center>
-          <br>
-          Want to invite another person?<br>
-          Enter their email below.<br>
-          <%= form_for ([@list, @list.invites.new]) do |f| %>
-            <%= f.text_field :email, :class =>"email_invite" %><br>
-            <%= f.submit "Send Invite", :class => "edit_name_button" %>
+          <% else %>
+            <div class="container">
+              <%= user.name %><br>
+              <%= link_to image_tag(user.imgurl, :class => "logo"), user_path(user.id) %><br>
+              <div class="imgtxt">
+                <%= link_to 'Remove', remove_from_list_path(@list.id, :user => user.id) %>
+              </div>
+            </div>
           <% end %>
-        </center>
-      </div>
-  </div>
-  <div class="column1_line">
-    <center><h2><%= link_to 'Delete This List', list_path(@list.id), :method=>"delete" %></h2></center>
-  </div>
+        <% end %>
+      </center>
+        <div>
+          <center>
+            <br>
+            Want to invite another person?<br>
+            Enter their email below.<br>
+            <%= form_for ([@list, @list.invites.new]) do |f| %>
+              <%= f.text_field :email, :class =>"email_invite" %><br>
+              <%= f.submit "Send Invite", :class => "edit_name_button" %>
+            <% end %>
+          </center>
+        </div>
+    </div>
+    <div class="column1_line">
+      <center><h2><%= link_to 'Delete This List', list_path(@list.id), :method=>"delete" %></h2></center>
+    </div>
+    
   
-</div>
 
 <div class="column1_line">
   <%= render 'assign_admin' %>
 </div>
-
+<% end %>
       
 
        
