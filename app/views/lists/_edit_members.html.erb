@@ -2,6 +2,14 @@
 <div>Assigning a user as an admin allows them to create/edit/delete chores.<br><br></div>
 
 <%= form_for(list) do |f| %>
+   <div class="container" style="border: 2px solid #ccc;">
+    You<br>
+    <%= link_to image_tag(current_user.imgurl, :class => "logo"), user_path(current_user.id) %><br>
+    List Creator
+    <br>
+    <br>
+    <br>
+  </div> 
   <%= f.fields_for :users, non_creators(list, list.users) do |user_field| %>
     <%= user_field.hidden_field :id %>
     <div class="container" style="border: 2px solid #ccc;">

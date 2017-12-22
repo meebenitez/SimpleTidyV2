@@ -47,9 +47,9 @@
     </center>
     <%= render partial: "minicolumn_edit", locals: {chore_list: @monthly_chores } %>
   </div>
-    <div class="column1">
-        <%= render partial: 'chores/chore_new', locals: {chore: @chore, list: @list } %>
-      </div>
+  <div class="column1">
+    <%= render partial: 'chores/chore_new', locals: {chore: @chore, list: @list } %>
+  </div>
   </div>
   <% if can? :manage, @list %>
     <div class="column1_line">

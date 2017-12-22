@@ -19,12 +19,9 @@
         <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %>
       <% end %>
       <br>
-      <h3>Invite a friend to help you with "<%= @list.name %>"?</h3>
+      <h3>Invite another friend to help you with "<%= @list.name %>"?</h3>
       Enter their email below.<br>
-      <%= form_for ([@list, @list.invites.new]) do |f| %>
-        <%= f.text_field :email, :class =>"email_invite" %><br>
-        <%= f.submit "Send Invite", :class => "edit_name_button" %>
-      <% end %>
+      <%= render partial: 'new', locals: {list: @list} %>
       <br><br>
       <%= link_to "Back", :back %>
     </center>
