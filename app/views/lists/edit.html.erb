@@ -57,11 +57,11 @@
         <%= render partial: 'edit_members', locals: {list: @list} %>
       </center>
     </div>
-  <% end %>
     </div>
     <div class="column1_line">
       <center><h2><%= link_to 'Delete This List', list_path(@list.id), :method=>"delete" %></h2></center>
     </div>
+    <% end %>
     
 
       

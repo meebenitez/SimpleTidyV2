@@ -31,6 +31,7 @@ class ChoresController < ApplicationController
     @chore = Chore.find(params[:id])
     @chore.update(chore_params)
     #binding.pry
+    flash[:notice] = "New Chore Successfully Edited."
     redirect_to edit_list_path(@chore.list)
   end
 

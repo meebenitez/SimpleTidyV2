@@ -1,24 +1,35 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Simple Tidy
 
-Things you may want to cover:
+## Overview
 
-* Ruby version
+Create simple chore lists and invite friends to those lists to help you get the work done.
 
-* System dependencies
+## Requirements
 
-* Configuration
+Ruby 2.3.1
 
-* Database creation
+Rails 5.1.4
 
-* Database initialization
+## Installation
 
-* How to run the test suite
+Fork and clone this repository to your local environment.
 
-* Services (job queues, cache servers, search engines, etc.)
+Install Gems:
 
-* Deployment instructions
+`$ bundle install`
 
-* ...
+Migrate Database:
+
+`$ rails db:migrate`
+
+To Test, run the rails server (`$ rails s`) and navigate to `http:localhost:3000`
+
+## Contributing:
+
+This app uses <a href="https://github.com/CanCanCommunity/cancancan">CanCanCan</a>, <a href="https://github.com/plataformatec/devise">Devise</a>, and <a href="https://github.com/omniauth/omniauth">Omniauth</a> for authentication and authorization.
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/meebenitez/ChoreTracker.
+
+License
+This application is available as open source under the terms of the MIT License.
