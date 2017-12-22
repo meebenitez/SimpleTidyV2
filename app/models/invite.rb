@@ -17,6 +17,13 @@ class Invite < ApplicationRecord
     list.users.exists?(email: email)
   end
 
+  #Assign invite to user if the already exist in the system
+  def self.send_invite(invite)
+    if user = User.find_by(email: invite.email)
+      user.invites << invite
+    end
+  end
+
 
 
 end

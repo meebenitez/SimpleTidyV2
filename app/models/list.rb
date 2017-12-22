@@ -29,9 +29,11 @@ class List < ApplicationRecord
     end
   end
 
+  #check if a user is a designated admin of the list
   def self.check_admin?(list, user)
     ListsUser.find_by(list_id: list.id, user_id: user.id).admin
   end
+
 
   def self.grab_starter_chores(list_type)
     if list_type == "Home"
@@ -43,7 +45,7 @@ class List < ApplicationRecord
     end
   end
 
-
+  #create starter chores for a new list
   def self.create_starter_list(list)
     now = Time.now
     starter_chores = grab_starter_chores(list.list_type)
@@ -59,11 +61,10 @@ class List < ApplicationRecord
     end
   end
 
+  #check if user with invite email already exists in system and "give" them the invite
   def self.send_invites_on_list_create(list)
     list.invites.each do |invite|
-      if user = User.find_by(email: invite.email)
-        user.invites << invite
-      end
+      Invite.send_invite(invite)
     end
   end
 

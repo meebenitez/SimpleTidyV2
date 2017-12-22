@@ -7,13 +7,10 @@ class InvitesController < ApplicationController
 
   def create
       @invite = @list.invites.build(invite_params)
+      #check that there is not a duplicate invite for this list and that the email is valid
       if !Invite.duplicate_invite?(@list, @invite.email) && @invite.email != current_user.email && !Invite.already_member?(@list, @invite.email)
         if @invite.save
-          @list.invites.each do |invite|
-            if @user = User.find_by(email: invite.email)
-              @user.invites << invite
-            end
-          end
+          Invite.send_invite(@invite)
           flash[:success] = "Invite successfully sent to #{@invite.email}"
           redirect_to edit_list_path(@list.id)
         else
