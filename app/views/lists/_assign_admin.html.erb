@@ -3,9 +3,10 @@
 <% end %>
 
 <%= form_for(@list) do |f| %>
-  <%= f.fields_for :users do |users_fields| %>
-    <%= users_fields.object.name %>
-      <%= users_fields.check_box :id %>
+  <%= f.fields_for :users, @list.users do |user_field| %>
+    <%= user_field.hidden_field :id %>
+    <%= user_field.object.name %>
+    <%= user_field.check_box :enable %>
   <% end %>
   <%= f.submit %>
 <% end %>

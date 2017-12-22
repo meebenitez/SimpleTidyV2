@@ -13,15 +13,19 @@ class List < ApplicationRecord
   validates :name, presence: true
   validates :list_type, presence: true
 
+
+#grab ids of admins from nested form
   def users_attributes=(users_attributes)
-    binding.pry
-    user_ids = []
+    admin_ids = []
     users_attributes.values.each do |user_attribute|
-      user_ids << user_attribute.values.last.to_i
+      if user_attribute.values[1] == "1"
+        admin_ids << user_attribute.values[0].to_i
+      end
     end
     join_entries = ListsUser.jointables(self.id)
     join_entries.each do |entry|
-      if user_ids.include?(entry.user_id)
+      binding.pry
+      if admin_ids.include?(entry.user_id)
         entry.update(admin: true)
       else
         entry.update(admin: false)
