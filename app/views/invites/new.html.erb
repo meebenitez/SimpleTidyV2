@@ -3,36 +3,29 @@
 </div>
 
 <div class="column1_header">
-    <center>
-    <div class="field">
-        <%= link_to image_tag((list_type_photo @list), :class=> "logo"), @list %>
-        <h2 style="color: #70c1b3 "><%= @list.name %></h2>
-        Current Members<br>
-            <% @list.users.each do |user| %>
-              <% if user == current_user %>
-                <img src= "<%= user.imgurl %>" class="photo"><br>
-                You<br><br>
-              <% else %>
-                <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %><br>
-                <%= user.name %><br>
-                <%= link_to 'Remove', remove_from_list_path(@list.id, :user => user.id) %>
-              <% end %>
-            <% end %>
-        <br>
-        Want to invite another person?<br>
-        Enter their email below.<br>
-        <%= form_for list_invites_path(@list.id) do |f| %>
-          <%= f.text_field :email, :class =>"email_invite" %>
+    <div class="alignleft_header">
+        <%= link_to image_tag((list_type_photo @list), :class=> "logo"), @list %> <%= @list.name %>
     </div>
-
-    <div class="actions">
+    <div class="alignright_header">
+      <br><br>
+      (EDIT MODE)
+    </div>
+    
+    <div style="clear: both;"></div>
+</div>
+  <div class="column1_line">
+    <center>
+      <% @list.users.each do |user| %>
+        <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %>
+      <% end %>
+      <br>
+      <h3>Invite a friend to help you with "<%= @list.name %>"?</h3>
+      Enter their email below.<br>
+      <%= form_for ([@list, @list.invites.new]) do |f| %>
+        <%= f.text_field :email, :class =>"email_invite" %><br>
         <%= f.submit "Send Invite", :class => "edit_name_button" %>
       <% end %>
-    </div>
+      <br><br>
+      <%= link_to "Back", :back %>
     </center>
-
-  
-  <% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-</div>
+  </div>

@@ -24,7 +24,6 @@ class List < ApplicationRecord
     end
     join_entries = ListsUser.jointables(self.id)
     join_entries.each do |entry|
-      binding.pry
       if admin_ids.include?(entry.user_id)
         entry.update(admin: true)
       else
@@ -37,6 +36,11 @@ class List < ApplicationRecord
   def self.check_admin?(list, user)
     ListsUser.find_by(list_id: list.id, user_id: user.id).admin
   end
+
+  def self.is_creator?(list, user)
+    list.creator_id == user.id
+  end
+
 
 
   def self.grab_starter_chores(list_type)

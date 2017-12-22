@@ -1,0 +1,25 @@
+<h2>Manage Your Members</h2>
+<div>Assigning a user as an admin allows them to create/edit/delete chores.<br><br></div>
+
+<%= form_for(list) do |f| %>
+  <%= f.fields_for :users, non_creators(list, list.users) do |user_field| %>
+    <%= user_field.hidden_field :id %>
+    <div class="container" style="border: 2px solid #ccc;">
+      <%= user_field.object.name %><br>
+      <%= link_to image_tag(user_field.object.imgurl, :class => "logo"), user_path(user_field.object.id) %><br>
+      <%= link_to 'Remove', remove_from_list_path(list.id, :user => user_field.object.id) %><br>
+      Admin?<br>
+      <%= user_field.check_box :enable, :checked => check_admin?(list, user_field.object)  %>
+    </div>
+  <% end %>
+  <div class="container">
+    <br>
+    <br>
+    <%= link_to image_tag("plus.png", :class => "logo"), new_list_invite_path(list) %><br>
+    <%= link_to "Invite Friends", new_list_invite_path(list) %>
+    <br>
+    <br>
+    <br>
+  </div>
+  <br><%= f.submit "Edit Members", :class => "edit_name_button" %>
+<% end %>

@@ -20,4 +20,17 @@ module ListsHelper
   end
 
 
+  #return a list of users who are only members and not the creator
+  def non_creators(list, users)
+    members = []
+    users.each do |user|
+      if !List.is_creator?(list, user)
+        members << user
+      end
+    end
+    members
+  end
+
+
+
 end

@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
   include ChoresHelper
-  before_action :set_list, only: [:show, :edit, :update, :destroy, :join, :remove_user, :leave_list]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :join, :edit_members, :remove_user, :leave_list]
   load_and_authorize_resource
   before_action :authenticate_user!
 
@@ -117,6 +117,14 @@ class ListsController < ApplicationController
     end
   end
 
+  def edit_members
+    if @list
+      
+    else
+      redirect_to list_path(@list)
+    end
+  end
+
   def destroy
     if @list
       @list.destroy
@@ -127,6 +135,7 @@ class ListsController < ApplicationController
       redirect_to lists_path
     end
   end
+
 
   private
 

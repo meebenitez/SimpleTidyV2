@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 20171209081415) do
   create_table "lists", force: :cascade do |t|
     t.string "name"
     t.string "list_type"
+    t.integer "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "creator_id"
   end
 
   create_table "lists_users", force: :cascade do |t|
