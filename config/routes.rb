@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   get '/lists/:id/join', to: 'lists#join', as: :join_list
   get '/lists/:id/remove_user', to: 'lists#remove_user', as: :remove_from_list
   get '/lists/:id/leave_list', to: 'lists#leave_list', as: :leave_list
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

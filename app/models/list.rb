@@ -10,6 +10,8 @@ class List < ApplicationRecord
     joins(lists_users: :user).where(users: {id: user_id}).where(lists_users: {admin: true})
   }
 
+  scope :where_creator, -> (user_id) { where("creator_id = ?", user_id)}
+
   validates :name, presence: true
   validates :list_type, presence: true
 
@@ -40,7 +42,6 @@ class List < ApplicationRecord
   def self.is_creator?(list, user)
     list.creator_id == user.id
   end
-
 
 
   def self.grab_starter_chores(list_type)

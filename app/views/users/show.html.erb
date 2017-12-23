@@ -11,6 +11,15 @@
       <%= link_to 'Edit your Profile', edit_user_registration_path %>
     <% end %>
     <br><br>
+
+    <h3>Lists Created:</h3>
+    <ul>
+      <% @user_created_lists.each do |list| %>
+      <li><%= list.name %></li>
+      <% end %>
+    </ul>
+
+    <br><br>
     <%= link_to "Back", :back %>
   </center>
 
