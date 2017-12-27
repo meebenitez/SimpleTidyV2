@@ -1,5 +1,5 @@
 class InvitesController < ApplicationController
-  before_action :set_list, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :set_list, only: [:new, :create]
   load_and_authorize_resource :invite, :through => :list
 
   def new
@@ -36,7 +36,10 @@ class InvitesController < ApplicationController
     end
 
     def set_list
-      @list = List.find(params[:list_id])
+      if !@list = List.find_by(id: params[:list_id])
+        flash[:notice] = "List did not exist."
+        redirect_to lists_path
+      end
     end
 
 end

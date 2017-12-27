@@ -43,38 +43,29 @@ class ListsController < ApplicationController
   end
 
   def show
-    if @list
-      #change status and past_due values
-      Chore.set_chore_status(@list.chores)
-      Chore.check_past_due(@list.chores)
-      #grab chore arrays sorted by frequency for display
-      @daily_chores = create_chore_array_view("daily", @list.chores)
-      @weekly_chores = create_chore_array_view("weekly", @list.chores)
-      @monthly_chores = create_chore_array_view("monthly", @list.chores)
-    else
-      redirect_to lists_path
-    end
+    #change status and past_due values
+    Chore.set_chore_status(@list.chores)
+    Chore.check_past_due(@list.chores)
+    #grab chore arrays sorted by frequency for display
+    @daily_chores = create_chore_array_view("daily", @list.chores)
+    @weekly_chores = create_chore_array_view("weekly", @list.chores)
+    @monthly_chores = create_chore_array_view("monthly", @list.chores)
   end
 
 
   #User accepts an invite to a list
   def join
-    if @list
-      #make sure user isn't already a member of the list and that they have an open invite exiting
-      if !@list.users.find_by(id: current_user.id) && @list.invites.exists?(email: current_user.email, status: "open")
-        @list.users << current_user
-        invite = current_user.invites.find_by(list_id: @list.id)
-        #close out the invite
-        invite.status = "closed"
-        invite.save
-        redirect_to @list
-      else
-        redirect_to @list
-      end
+    #make sure user isn't already a member of the list and that they have an open invite exiting
+    if !@list.users.find_by(id: current_user.id) && @list.invites.exists?(email: current_user.email, status: "open")
+      @list.users << current_user
+      invite = current_user.invites.find_by(list_id: @list.id)
+      #close out the invite
+      invite.status = "closed"
+      invite.save
+      redirect_to @list
     else
-      #the unlikely event that someone tries to join without using a link on their index page
-      flash[:notice] = "You cannot join that list."
-      redirect_to lists_path
+      flash[:notice] = "Not a valid invite."
+      redirect_to @list
     end
 
   end
@@ -97,43 +88,24 @@ class ListsController < ApplicationController
   end
 
   def edit
-    if @list
-      @daily_chores = create_chore_array_edit("daily", @list.chores)
-      @weekly_chores = create_chore_array_edit("weekly", @list.chores)
-      @monthly_chores = create_chore_array_edit("monthly", @list.chores)
-    else
-      flash[:notice] = "List does not exist."
-      redirect_to lists_path
-    end
+    @daily_chores = create_chore_array_edit("daily", @list.chores)
+    @weekly_chores = create_chore_array_edit("weekly", @list.chores)
+    @monthly_chores = create_chore_array_edit("monthly", @list.chores)
   end
 
   def update
-    if @list
-      @list.update(list_params)
-      redirect_to edit_list_path(@list)
-    else
-      flash[:notice] = "List does not exist."
-      redirect_to lists_path
-    end
+    @list.update(list_params)
+    redirect_to edit_list_path(@list)
   end
 
   def edit_members
-    if @list
-      
-    else
-      redirect_to list_path(@list)
-    end
+
   end
 
   def destroy
-    if @list
-      @list.destroy
-      flash[:notice] = "#{@list.name} was deleted."
-      redirect_to lists_path
-    else
-      flash[:notice] = "List does not exist"
-      redirect_to lists_path
-    end
+    @list.destroy
+    flash[:notice] = "#{@list.name} was deleted."
+    redirect_to lists_path
   end
 
 
@@ -144,7 +116,10 @@ class ListsController < ApplicationController
   end
 
   def set_list
-    @list = List.find_by(id: params[:id])
+    if !@list = List.find_by(id: params[:id])
+      flash[:notice] = "List did not exist."
+      redirect_to lists_path
+    end
   end
 
 
