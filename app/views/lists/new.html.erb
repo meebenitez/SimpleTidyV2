@@ -7,10 +7,9 @@
   <center>
     <h1>Create a New List</h1>
     <%= form_for(@list) do |f| %>
-
       <div class="field">
         This list will be for tidying your... <br><br>
-        | <%= f.radio_button :list_type, 'Home' %> House  | 
+        | <%= f.radio_button :list_type, 'Home', :checked => true %> House  | 
         <%= f.radio_button :list_type, 'Car' %> Car  |
         <%= f.radio_button :list_type, 'Tech' %>  Tech<br><br>
         Now give it a name...<br>

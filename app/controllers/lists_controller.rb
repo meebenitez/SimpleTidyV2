@@ -24,20 +24,25 @@ class ListsController < ApplicationController
   def create
     @list  = List.create(list_params)
     #add user to the list.users and then assign them as the creator
-    @list.users << current_user
-    @list.creator_id = current_user.id
+    if @list.valid?
+      @list.users << current_user
+      @list.creator_id = current_user.id
 
-    #Seed starter chores
-    List.create_starter_list(@list)
-    # assign invites
-    List.send_invites_on_list_create(@list)
+      #Seed starter chores
+      List.create_starter_list(@list)
+      # assign invites
+      List.send_invites_on_list_create(@list)
 
-    if @list.save
-      ListsUser.set_admin(@list, current_user)
-      flash[:notice] = "List successfully created!"
-      redirect_to @list
+      if @list.save
+        ListsUser.set_admin(@list, current_user)
+        flash[:notice] = "List successfully created!"
+        redirect_to @list
+      else
+        flash[:notice] = "List creation failed.  Try again."
+        redirect_to new_list_path
+      end
     else
-      flash[:notice] = "List creation failed.  Try again."
+      flash[:notice] = @list.errors.full_messages.to_sentence
       redirect_to new_list_path
     end
   end

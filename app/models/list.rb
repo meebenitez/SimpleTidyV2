@@ -4,6 +4,9 @@ class List < ApplicationRecord
   has_many :chores
   has_many :invites
 
+  validates :name, presence: true
+  validates :list_type, presence: true
+
   accepts_nested_attributes_for :invites , reject_if: proc { |attributes| attributes['email'].blank? }
 
   scope :list_admin, -> (user_id) {
@@ -12,8 +15,6 @@ class List < ApplicationRecord
 
   scope :where_creator, -> (user_id) { where("creator_id = ?", user_id)}
 
-  validates :name, presence: true
-  validates :list_type, presence: true
 
 
 #grab ids of admins from nested form
