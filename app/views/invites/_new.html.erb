@@ -1,5 +1,6 @@
 
 <%= form_for ([list, list.invites.new]) do |f| %>
+  <%= render 'layouts/messages' %>
   <%= f.text_field :email, :class =>"email_invite" %><br>
   <%= f.submit "Send Invite", :class => "edit_name_button" %>
 <% end %>

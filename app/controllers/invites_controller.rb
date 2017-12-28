@@ -14,18 +14,18 @@ class InvitesController < ApplicationController
           flash[:success] = "Invite successfully sent to #{@invite.email}"
           redirect_to edit_list_path(@list.id)
         else
-          flash[:notice] = "Oh no! Something terrible happened.  Please try again."
-          redirect_to edit_list_path(@list.id)
+          flash[:notice] = "Oh no! Please make sure you entered a valid email."
+          redirect_to new_list_invite_path(@list.id)
         end
       elsif @invite.email == current_user.email
         flash[:alert] = "You can't invite yourself."
-        redirect_to edit_list_path(@list.id)
+        redirect_to new_list_invite_path(@list.id)
       elsif Invite.already_member?(@list, @invite.email)
         flash[:alert] = "That email belongs to a current member of your list."
-        redirect_to edit_list_path(@list.id)
+        redirect_to new_list_invite_path(@list.id)
       else
         flash[:alert] = "That email already has a pending invite"
-        redirect_to edit_list_path(@list.id)
+        redirect_to new_list_invite_path(@list.id)
       end
   end
 
