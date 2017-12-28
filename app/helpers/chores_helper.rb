@@ -10,13 +10,7 @@ module ChoresHelper
 
 
   def create_chore_array_view(frequency, all_chores)
-    sorted_chores = []
-    all_chores.each do |chore|
-      if chore.frequency == frequency && chore.status == "not done"
-        sorted_chores << chore
-      end
-    end
-    sorted_chores
+    sorted_chores = all_chores.where(frequency: frequency, status: "not done")
   end
 
   def decide_button_class(past_due_status, frequency)
@@ -33,13 +27,7 @@ module ChoresHelper
 
 
   def create_chore_array_edit(frequency, all_chores)
-    sorted_chores = []
-    all_chores.each do |chore|
-      if chore.frequency == frequency
-        sorted_chores << chore
-      end
-    end
-    sorted_chores
+    sorted_chores = all_chores.where(frequency: frequency)
   end
 
   def calculate_monthly_goal(chore_count)

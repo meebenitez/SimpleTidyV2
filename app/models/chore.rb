@@ -36,16 +36,24 @@ class Chore < ApplicationRecord
   end
 
   def self.check_past_due(all_chores)
-    all_chores.each do |chore|
-      if Time.now > chore.past_due_time  && chore.status == "not done"
-        chore.update(past_due: true)
-      else
-        chore.update(past_due: false)
-      end
-    end
+    ###ASK CORINNA ABOUT REFACTORING###########
+    now = Time.now
+    all_chores.where("past_due_time <= ?", now).where(status: "not done").update(past_due: true)
+    all_chores.where("past_due_time > ?", now).update(past_due: false)
+
+
+    #now = Time.now
+    #all_chores.each do |chore|
+    #  if now > chore.past_due_time  && chore.status == "not done"
+    #    chore.update(past_due: true)
+    #  else
+    #    chore.update(past_due: false)
+    #  end
+    #end
   end
 
   def self.set_chore_status(all_chores)
+    ###ASK CORINNA ABOUT REFACTORING###########
     now = Time.now
     all_chores.each do |chore|
       if chore.status == "done" && chore.reset_time <= now
