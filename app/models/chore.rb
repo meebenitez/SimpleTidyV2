@@ -37,7 +37,8 @@ class Chore < ApplicationRecord
 
   def self.check_past_due(all_chores)
     now = Time.now
-    all_chores.where("past_due_time <= ?", now).where(status: "not done").update(past_due: true)  
+    all_chores.where("past_due_time <= ?", now).where(status: "not done").update(past_due: true)
+    all_chores.where("past_due_time > ?", now).update(past_due: false)
   end
 
   def self.set_chore_status(all_chores)
