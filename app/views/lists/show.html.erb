@@ -39,7 +39,7 @@
         <span style="color: #3d9c8c; font-size: 15px;">● Daily</span> <span style="color: rgb(231, 154, 12); font-size: 15px;"> ● Weekly</span> <span style="color: #247BA0; font-size: 15px;"> ● Monthly</span>
     </div>    
     <div class="row content padding0">
-        <%= render partial: "minicolumn", locals: {chore_list: @todo_chores.all } %>      
+        <%= render partial: "minicolumn", locals: {chore_list: @todo_chores.all, list: @list } %>      
     </div>
   </div>
 </div>
@@ -59,3 +59,21 @@
         </div>
     </div>
    
+
+
+
+
+
+    <script type="text/javascript" charset="utf-8">
+        $(function () {
+          $("#button-chore").on('click', function() {
+            var id = $(this).data("id");
+            $.get("/lists/" + id[1] + "/chores/" + id[0] + ".json", function(data) {
+                debugger;
+              // Replace text of body-id div
+              //$("#body-" + id).text(data["description"]);
+            });
+          });
+        });
+        </script>
+        

@@ -2,7 +2,7 @@
       <div class="items">
       <% chore_list.each do |chore| %>
         <% if chore.time_of_day == "morning" %>
-          <div class="item"><button class="<%= decide_button_class(chore.past_due, chore.frequency)%>">☀ <%= chore.name %></button></div>
+          <div class="item"><button class="<%= decide_button_class(chore.past_due, chore.frequency)%>" id="button-chore" data-id="<%= [chore.id, list.id] %>">☀ <%= chore.name %></button></div>
         <% elsif chore.time_of_day == "evening" %>
         <div class="item"><button class="<%= decide_button_class(chore.past_due, chore.frequency)%>">☾ <%= chore.name %></button></div>
         <% else %>

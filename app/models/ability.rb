@@ -19,6 +19,9 @@ class Ability
         can :complete, Chore do |chore|
           user.chores.include?(chore)
         end
+        can :read, Chore do |chore|
+          user.chores.include?(chore)
+        end
         can :manage, Chore, :list => { :creator_id => user.id }
         can :manage, Invite, :list => { :creator_id => user.id }
         can :edit, List do |list|
