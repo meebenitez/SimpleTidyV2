@@ -1,5 +1,5 @@
 class ChoresController < ApplicationController
-  before_action :set_list, only: [:edit, :create, :update, :destroy]
+  before_action :set_list, only: [:edit, :create, :update, :destroy, :show]
   load_and_authorize_resource :list
   load_and_authorize_resource :chore, :through => :list
   before_action :authenticate_user!
@@ -26,6 +26,11 @@ class ChoresController < ApplicationController
 
   def edit
     @chore = Chore.find(params[:id])
+  end
+
+  def show
+    @chore = Chore.find(params[:id])
+    render json: @chore, status: 200
   end
 
   def update

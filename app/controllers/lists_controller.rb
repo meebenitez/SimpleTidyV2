@@ -56,6 +56,10 @@ class ListsController < ApplicationController
     #@daily_chores = create_chore_array_view("daily", @list.chores)
     #@weekly_chores = create_chore_array_view("weekly", @list.chores)
     #@monthly_chores = create_chore_array_view("monthly", @list.chores)
+    respond_to do |f|
+      f.json { render json: @list, status: 200}
+      f.html {render :show}
+    end
   end
 
 
