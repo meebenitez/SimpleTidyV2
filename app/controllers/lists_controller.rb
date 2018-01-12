@@ -35,7 +35,7 @@ class ListsController < ApplicationController
 
       if @list.save
         ListsUser.set_admin(@list, current_user)
-        flash[:notice] = "List successfully created!"
+        flash[:notice] = ""
         redirect_to @list
       else
         flash[:notice] = "List creation failed.  Try again."
