@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+    <div class="dropdown">
+        <button class="dropbtn">☰</button><h2>SimpleTidy</h2>
+        <div class="dropdown-content">
+        <%= link_to 'Your Lists', lists_path %>
+        <%= link_to 'Your Account', edit_user_registration_path %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+        </div>
+    </div>
+<% else %>
+    <div class="dropdown">
+    <button class="dropbtn">☰</button>
+    <div class="dropdown-content">
+        <%= link_to 'Login', new_user_session_path %>
+    </div>
+    </div>
+<% end %>

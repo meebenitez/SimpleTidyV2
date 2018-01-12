@@ -1,54 +1,60 @@
-
-<div class="dummycolumn">
-  .<br>.<br>.<br>
-  <%= render 'layouts/messages' %>
+<div class="row content padding1">
+    <%= render 'layouts/messages' %><br>
 </div>
-
-
-<div class="column1">
-    <center>
-      <h1>Welcome, <span style="color: #FF3067"> <%= current_user.name %></span></h1>
-      <h3>Select a list to work on or create a new one.</h3>
-    </center>
+<div class="row content">
+  <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 text-left">
+      <%= image_tag("sweep.png", :class => "logo") %>
+      <span style="display: inline-block; vertical-align: bottom;">
+          <span style="font-size: 20px;">Welcome, <span style="color: #FF3067"> <%= current_user.name %></span>!</span>
+      </span> 
+  </div>
 </div>
-<div class="column1">
-  <center>
-  <% @lists.each do |list| %>
-    <div class="container">
-      <% if check_list_past_due list %>
-      <span style="color: #FF3067">PAST DUE</span><br>
-    <% end %>
-      <%= link_to image_tag((list_type_photo list), :class => "list_icon"), list_path(list.id) %><br>
-      <div class="imgtxt">
-        <%= list.name %>
-      </div>
+<div class="row content">
+  <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 img-rounded border padding4">
+    <h3>Let's start working on your chore lists...</h3>
+    <div class="col-xs-12 col-xs-offset-0 col-md-10 col-md-offset-1 lists">
+        <% @lists.each do |list| %>
+          <div class="list">
+            <%= link_to image_tag((list_type_photo list), :class => "list_icon"), list_path(list.id) %><br>
+            <%= list.name %><br>
+            <% if check_list_past_due list %>
+              <span style="color: #FF3067">PAST DUE</span>
+            <% end %>
+          </div>
+        <% end %>
+        <% @invites.each do |invite| %>
+        <% if (list_name invite.list_id) != nil  && invite.status != "closed" %>
+        <div class="list">  
+          <%= link_to image_tag((list_type_photo (list_object invite.list_id)), :class => "list_icon"), join_list_path(invite.list_id) %><br>
+          <%= list_name invite.list_id %></br>
+          <span style="color: orange;">INVITE</span>
+        </div>
+        <% end %>
+      <% end %>
+        <div class="list">
+            <%= link_to image_tag("plus.png", :class => "list_icon"), new_list_path %><br>
+            Create a List
+        </div>
     </div>
-  <% end %>
-  <div class="container">
-    <%= link_to image_tag("plus.png", :class => "list_icon"), new_list_path %><br>
-    <div class="imgtxt">
-        Add List
+  </div>    
+</div>
+<div class="row content">
+  <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 img-rounded index-bg border padding4">
+      <div class="col-xs-4 col-md-4 text-center right-border padding0">
+          <br>
+          <%= image_tag("star_white.png", :class => "star-index") %><br><br>
+          <span style="font-size: 19px">48 stars earned</span><br>
+          <span style="font-size: 12px">(complete your daily goals to earn stars)</span>
+      </div>
+      <div class="col-xs-8 col-md-8">
+        <h2>Tidy Tips</h2><br><br>
+        <span style="font-size: 18px;">Clean Your Microwave Naturally with a Lemon.</span><br>
+        Just squeeze some lemon juice into water, drop the rinds into the water, and microwave. As the liquid boils, it condenses on the sides of the microwave, loosening gunk and dissolving food splatters.         
+        <a href="https://www.thekitchn.com/how-to-clean-your-microwave-with-just-a-lemon-cleaning-lessons-from-the-kitchn-200294">- The Kitchn</a>   
       </div>
   </div>
-
- <div class="column1">
-  <center>
-    <br><br>
-  <% @invites.each do |invite| %>
-    <% if (list_name invite.list_id) != nil  && invite.status != "closed" %>
-      <span style="color: orange">Invite:</span>
-      <%= link_to (list_name invite.list_id), join_list_path(invite.list_id)  %>
-    <% else %>
-    <% end %>
-  <% end %>
-</center>
 </div>
 
-
-
-  </div>
-</center>
-</div>
 
 
  

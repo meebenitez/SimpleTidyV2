@@ -1,27 +1,30 @@
 module ChoresHelper
 
   def slice_count(list_count)
-     if list_count.even?
-       slice = list_count / 2
+    if list_count.even?
+       slice = list_count / 3
      else
-       slice = (list_count + 1) / 2
+       slice = (list_count + 1) / 3
      end
   end
 
+  #def create_chore_array_view(frequency, all_chores)
+  #  sorted_chores = all_chores.where(frequency: frequency, status: "not done")
+  #end
 
-  def create_chore_array_view(frequency, all_chores)
-    sorted_chores = all_chores.where(frequency: frequency, status: "not done")
+  def create_chore_array_view(all_chores)
+    sorted_chores = all_chores.where(status: "not done")
   end
 
   def decide_button_class(past_due_status, frequency)
     if past_due_status == true
-      "chore_pastdue"
+      "chore pastdue"
     elsif frequency == "daily"
-      "chore_daily"
+      "chore daily"
     elsif frequency == "weekly"
-      "chore_weekly"
+      "chore weekly"
     else
-      "chore_monthly"
+      "chore monthly"
     end
   end
 

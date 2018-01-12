@@ -1,17 +1,15 @@
 <% if chore_list != [] %>
-  <% chore_list.each_slice(slice_count(chore_list.count)) do |chores| %>
-    <div class="minicolumn">
-      <% chores.each do |chore| %>
+      <div class="items">
+      <% chore_list.each do |chore| %>
         <% if chore.time_of_day == "morning" %>
-          <br><%= button_to "☀ " + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "#{decide_button_class(chore.past_due, chore.frequency)}" %>                
+          <div class="item"><button class="<%= decide_button_class(chore.past_due, chore.frequency)%>">☀ <%= chore.name %></button></div>
         <% elsif chore.time_of_day == "evening" %>
-          <br><%= button_to "☾ " + chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "#{decide_button_class(chore.past_due, chore.frequency)}" %>
-          <% else %>
-          <br><%= button_to chore.name, complete_list_chore_path(@list, chore), :method => :get, :class => "#{decide_button_class(chore.past_due, chore.frequency)}" %>                
+        <div class="item"><button class="<%= decide_button_class(chore.past_due, chore.frequency)%>">☾ <%= chore.name %></button></div>
+        <% else %>
+        <div class="item"><button class="<%= decide_button_class(chore.past_due, chore.frequency)%>"><%= chore.name %></button></div>
         <% end %>
       <% end %>
-    </div>
-  <% end %>
+      </div
 <% else %>
 <br><br>
   <center>Woohoo!  All done! Great work!</center>

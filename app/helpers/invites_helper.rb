@@ -9,6 +9,14 @@ module InvitesHelper
     end
   end
 
+  def list_object(list_id)
+    if list = List.find_by(id: list_id)
+      list
+    else
+      nil
+    end
+  end
+
   
 
   
