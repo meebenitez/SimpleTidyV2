@@ -66,13 +66,27 @@
 
     <script type="text/javascript" charset="utf-8">
         $(function () {
-          $("#button-chore").on('click', function() {
-            var id = $(this).data("id");
-            $.get("/lists/" + id[1] + "/chores/" + id[0] + ".json", function(data) {
-                debugger;
+          $("#button-chore").on('click', function(e) {
+            var ids = $(this).data("id");
+            var url = `/lists/${ids[1]}/chores/${ids[0]}/complete`
+            $.ajax ({
+                method: "GET",
+                url: url,
+            })
+
+            e.preventDefault
+            
+            
+            
+            
+            
+
+
+
+            //$.get("/lists/" + id[1] + "/chores/" + id[0] + ".json", function(data) {
               // Replace text of body-id div
               //$("#body-" + id).text(data["description"]);
-            });
+            //});
           });
         });
         </script>

@@ -47,6 +47,7 @@ class ChoresController < ApplicationController
 
   def complete
     @chore = Chore.find(params[:id])
+    #binding.pry
     Chore.complete_chore(@chore)
     redirect_to list_path(@chore.list)
   end
