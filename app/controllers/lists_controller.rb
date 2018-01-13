@@ -53,6 +53,7 @@ class ListsController < ApplicationController
     Chore.check_past_due(@list.chores)
     #grab chore arrays sorted by frequency for display
     @todo_chores = create_chore_array_view(@list.chores)
+    @done_chores = create_chore_array_view_completed(@list.chores)
     #@daily_chores = create_chore_array_view("daily", @list.chores)
     #@weekly_chores = create_chore_array_view("weekly", @list.chores)
     #@monthly_chores = create_chore_array_view("monthly", @list.chores)

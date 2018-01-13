@@ -43,28 +43,35 @@
     </div>
     <div class="row content padding0">
         <div class="completed-chores">
+            <a href="#" class="show-completed">Show Completed Chores</a>
             <div class="completed-items">
-                
+                <% @done_chores.each do |chore| %>
+                    <div class="completed-item">
+                        <button class="chore completed" id="<%= chore.id %>">
+                            <%= chore.name %>
+                        </button>
+                    </div>
+                <% end %>
             </div>
         </div>
     </div>
   </div>
 </div>
 <div class="row content padding1">
-        <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2">
-            <div class="col-xs-12 col-md-12 height60 padding2">
-                <div class="col-xs-12 col-md-12 align-text-top text-center">
-                    <% @list.users.each do |user| %>
-                        <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %>
-                    <% end %>
-                    <% if can? :edit, @list %>
-                        <%= link_to image_tag('plus.png', :class =>"photo"), new_list_invite_path(@list.id) %>
-                    <% end %>
-                    <span style="font-size: 15px;"><br>Members</span>
-                </div>
+    <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2">
+        <div class="col-xs-12 col-md-12 height60 padding2">
+            <div class="col-xs-12 col-md-12 align-text-top text-center">
+                <% @list.users.each do |user| %>
+                    <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %>
+                <% end %>
+                <% if can? :edit, @list %>
+                    <%= link_to image_tag('plus.png', :class =>"photo"), new_list_invite_path(@list.id) %>
+                <% end %>
+                <span style="font-size: 15px;"><br>Members</span>
             </div>
         </div>
     </div>
+</div>
    
 
 
@@ -83,17 +90,14 @@
                 chore_id: ids[0],
                 list_id: ids[1]
             }).done(function(data){
-                //debugger;
-                //$.get("/lists/" + data.id + "/chores/" + this.chore_id + ".json", function(data)
-                //var chore_id = this.chore_id
                 if ($(".select-button").length === 1){
                     $(`#${this.chore_id}`).remove();
                     $("#list-container").html("<br><br><center>Woohoo!  All done! Great work!</center><br>");
                 } else {
-                    $("#list-container").load(location.href+" #list-container>*","");
+                    $("#list-container").load(location.href+" #list-container");
                 }
                 $.get("/lists/" + data.id + "/chores/" + this.chore_id + ".json", function(data) {
-                
+                console.log(`${data.id}`)
                     $(".completed-items").append(`
                     
                     <div class="completed-item">
@@ -106,9 +110,17 @@
                 })
 
             })
-
             e.preventDefault
           });
+
+          $(document).on('click', ".show-completed", function(e){
+              $(".completed-items").toggle();
+          })
+
+
+
+
+
         });
     </script>
         

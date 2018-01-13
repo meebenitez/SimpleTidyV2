@@ -16,6 +16,10 @@ module ChoresHelper
     sorted_chores = all_chores.where(status: "not done")
   end
 
+  def create_chore_array_view_completed(all_chores)
+    sorted_chores = all_chores.where(status: "done")
+  end
+
   def decide_button_class(past_due_status, frequency)
     if past_due_status == true
       "chore pastdue"
