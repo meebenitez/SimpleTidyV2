@@ -43,7 +43,9 @@
     </div>
     <div class="row content padding0">
         <div class="completed-chores">
-
+            <div class="completed-items">
+                
+            </div>
         </div>
     </div>
   </div>
@@ -92,7 +94,15 @@
                 }
                 $.get("/lists/" + data.id + "/chores/" + this.chore_id + ".json", function(data) {
                 
-                    $(".completed-chores").append(`${data.name}`)
+                    $(".completed-items").append(`
+                    
+                    <div class="completed-item">
+                        <button class="chore completed" id="${data.id}">
+                            ${data.name}
+                        </button>
+                    </div>
+                    
+                    `)
                 })
 
             })

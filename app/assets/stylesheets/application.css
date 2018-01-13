@@ -140,6 +140,18 @@
     font-family: 'Lobster', cursive;
   }
 
+  .completed-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.completed-items .completed-item {
+    flex: 1 0 25%;
+    box-sizing: border-box;
+    padding: 10px;
+    flex-basis: 30%;
+}
 
 .items {
     display: flex;
@@ -618,7 +630,7 @@ button.monthly:hover {
     background-color: #86CAE8;
 }
 
-button.done {
+button.completed {
     background-color: #b8b8b8;
 }
 
