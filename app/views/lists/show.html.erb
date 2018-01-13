@@ -41,6 +41,11 @@
     <div class="row content padding0">
         <%= render partial: "minicolumn", locals: {chore_list: @todo_chores.all, list: @list } %>      
     </div>
+    <div class="row content padding0">
+        <div class="completed-chores">
+
+        </div>
+    </div>
   </div>
 </div>
 <div class="row content padding1">
@@ -73,16 +78,23 @@
             $.ajax ({
                 method: "GET",
                 url: url,
-                chore_id: ids[0]
+                chore_id: ids[0],
+                list_id: ids[1]
             }).done(function(data){
-                
-                var chore_id = this.chore_id
+                //debugger;
+                //$.get("/lists/" + data.id + "/chores/" + this.chore_id + ".json", function(data)
+                //var chore_id = this.chore_id
                 if ($(".select-button").length === 1){
-                    $(`#${chore_id}`).remove();
+                    $(`#${this.chore_id}`).remove();
                     $("#list-container").html("<br><br><center>Woohoo!  All done! Great work!</center><br>");
                 } else {
                     $("#list-container").load(location.href+" #list-container>*","");
                 }
+                $.get("/lists/" + data.id + "/chores/" + this.chore_id + ".json", function(data) {
+                
+                    $(".completed-chores").append(`${data.name}`)
+                })
+
             })
 
             e.preventDefault

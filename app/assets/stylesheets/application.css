@@ -618,6 +618,10 @@ button.monthly:hover {
     background-color: #86CAE8;
 }
 
+button.done {
+    background-color: #b8b8b8;
+}
+
 
 input.chore_weekly_click {
     width: 100%;
