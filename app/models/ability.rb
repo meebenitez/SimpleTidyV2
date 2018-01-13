@@ -30,6 +30,9 @@ class Ability
         can :manage, Chore do |chore|
           List.check_admin?(List.find_by(id: chore.list_id), user)
         end
+        can :update, AdminUser do |admin_user|
+          admin_user.role.to_sym == :node_moderator || admin_user.id == admin.id
+        end
 
       end
 
