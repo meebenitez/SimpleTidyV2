@@ -42,8 +42,8 @@
         <%= render partial: "minicolumn", locals: {chore_list: @todo_chores.all, list: @list } %>      
     </div>
     <div class="row content padding0">
+        <div class="show-completed"><a href="">Show Completed Chores</a></div>
         <div class="completed-chores">
-            <a href="#" class="show-completed">Show Completed Chores</a>
             <div class="completed-items">
                 <% @done_chores.each do |chore| %>
                     <div class="completed-item">
@@ -94,7 +94,7 @@
                     $(`#${this.chore_id}`).remove();
                     $("#list-container").html("<br><br><center>Woohoo!  All done! Great work!</center><br>");
                 } else {
-                    $("#list-container").load(location.href+" #list-container");
+                    $("#list-container").load(location.href+" #list-container>*","");
                 }
                 $.get("/lists/" + data.id + "/chores/" + this.chore_id + ".json", function(data) {
                 console.log(`${data.id}`)
@@ -112,15 +112,21 @@
             })
             e.preventDefault
           });
-
-          $(document).on('click', ".show-completed", function(e){
-              $(".completed-items").toggle();
-          })
-
-
-
+          $('.completed-chores').hide();
+          $(document).on('click','.show-completed', function(e){
+            e.preventDefault();
+            $(this).next('.completed-chores').toggle();
+        });
 
 
         });
+
+
+        //$(function () {
+          //  $(document).on('click', ".show-completed", function(){
+            //    debugger;
+            //  $(".completed-chores").hide();
+            //})
+        //}) 
     </script>
         
