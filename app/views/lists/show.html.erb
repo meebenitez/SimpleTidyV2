@@ -97,16 +97,9 @@
                     $("#list-container").load(location.href+" #list-container>*","");
                 }
                 $.get("/lists/" + data.id + "/chores/" + this.chore_id + ".json", function(data) {
-                console.log(`${data.id}`)
-                    $(".completed-items").append(`
-                    
-                    <div class="completed-item">
-                        <button class="chore completed" id="${data.id}">
-                            ${data.name}
-                        </button>
-                    </div>
-                    
-                    `)
+                    let completedChore = new CompletedChore(data)
+                    let completedChoreHTML = completedChore.formatButton()
+                    $(".completed-items").append(completedChoreHTML);
                 })
 
             })
@@ -120,6 +113,35 @@
 
 
         });
+
+        function CompletedChore(chore){
+            this.id = chore.id
+            this.name = formatName(chore)
+            debugger;
+            this.time_of_day = chore.time_of_day
+            this.frequency = chore.frequency
+        }
+
+        function formatName(chore){
+            if (chore.time_of_day === "morning"){
+                return `☀ ${chore.name}`
+            } else if (chore.time_of_day === "evening"){
+                return `☾ ${chore.name}`
+            } else {
+                return `${chore.name}`
+            }
+        }
+
+        CompletedChore.prototype.formatButton = function() {
+            return `
+                    <div class="completed-item">
+                        <button class="chore completed" id="${this.id}">
+                            ${this.name}
+                        </button>
+                    </div>
+    
+                    `
+        }
 
 
     </script>
