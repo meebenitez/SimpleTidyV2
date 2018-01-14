@@ -42,13 +42,13 @@
         <%= render partial: "minicolumn", locals: {chore_list: @todo_chores.all, list: @list } %>      
     </div>
     <div class="row content padding0">
-        <div class="show-completed"><a href="">Show Completed Chores</a></div>
+        <div class="show-completed"><a href="">Toggle Completed Chores</a></div>
         <div class="completed-chores">
             <div class="completed-items">
                 <% @done_chores.each do |chore| %>
                     <div class="completed-item">
                         <button class="chore completed" id="<%= chore.id %>">
-                            <%= chore.name %>
+                            <%= decide_time_of_day chore %>
                         </button>
                     </div>
                 <% end %>
@@ -75,13 +75,9 @@
    
 
 
-
-
-
     <script type="text/javascript" charset="utf-8">
         $(function () {
           $(document).on('click', ".select-button", function(e) {
-            console.log("works")
             var ids = $(this).data("id");
             var url = `/lists/${ids[1]}/chores/${ids[0]}/complete`
             $.ajax ({
@@ -117,7 +113,6 @@
         function CompletedChore(chore){
             this.id = chore.id
             this.name = formatName(chore)
-            debugger;
             this.time_of_day = chore.time_of_day
             this.frequency = chore.frequency
         }

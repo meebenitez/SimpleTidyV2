@@ -1,5 +1,7 @@
 <script type="text/javascript">
-    function resetradio () {
+
+
+function resetradio () {
       var radio = document.getElementsByName('chore[frequency]')[0];
       var buttons = document.querySelector('.buttons');
       var radios = document.getElementsByName('chore[time_of_day]');
@@ -9,18 +11,32 @@
       }
       else {
           buttons.style.display = 'none';
+          radios.forEach(function(radio){
+            radio.checked = false;
+          })
       }
   }
-
-
-
   function setradio () {
       var radio = document.getElementsByName('chore[frequency]')[0];
       if (radio.checked == false) {
           radio.checked = true;
-
       }
   }
+
+
+  //$(function () {
+    //$('form').submit(function(event) {
+      //var posting = $.post(this.action, values);
+ 
+      //posting.done(function(data) {
+        // TODO: handle response
+      //});
+     // event.preventDefault();
+    //});
+  //});
+
+
+
 </script>
 
 
@@ -37,15 +53,15 @@
   <div class="field">
     <center>
       <h3>Frequency</h3>
-      <%= f.radio_button :frequency, 'daily', onClick: "resetradio()" %> Daily |
-      <%= f.radio_button :frequency, 'weekly', onClick: "resetradio()" %> Weekly |
-      <%= f.radio_button :frequency, 'monthly', onClick: "resetradio()" %> Monthly
-      <div class="buttons">
+      <%= f.radio_button :frequency, 'daily', onClick: "resetradio()", :checked => false %> Daily |
+      <%= f.radio_button :frequency, 'weekly', onClick: "resetradio()", :checked => false %> Weekly |
+      <%= f.radio_button :frequency, 'monthly', onClick: "resetradio()", :checked => false %> Monthly
+      <div class="buttons" style="display:none">
         <br>
         When should this chore be completed?<br>
-        <%= f.radio_button :time_of_day, 'morning', onClick:"setradio()" %> Morning | 
-        <%= f.radio_button :time_of_day, 'evening', onClick:"setradio()" %> Evening |
-        <%= f.radio_button :time_of_day, nil, onClick:"setradio()" %> Any Time
+        <%= f.radio_button :time_of_day, 'morning', onClick:"setradio()", :checked => false %> Morning | 
+        <%= f.radio_button :time_of_day, 'evening', onClick:"setradio()", :checked => false %> Evening |
+        <%= f.radio_button :time_of_day, '', onClick:"setradio()", :checked => false %> Any Time
       </div>
     </center>
     </div>

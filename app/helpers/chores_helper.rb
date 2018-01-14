@@ -32,6 +32,18 @@ module ChoresHelper
     end
   end
 
+  def decide_time_of_day(chore)
+    if chore.time_of_day == "morning"
+      return "☀ #{chore.name}"
+    elsif chore.time_of_day == "evening"
+      return "☾ #{chore.name}"
+    else
+      return chore.name
+    end
+  end
+
+
+
 
   def create_chore_array_edit(frequency, all_chores)
     sorted_chores = all_chores.where(frequency: frequency)
