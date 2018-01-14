@@ -61,7 +61,7 @@ function resetradio () {
         When should this chore be completed?<br>
         <%= f.radio_button :time_of_day, 'morning', onClick:"setradio()", :checked => false %> Morning | 
         <%= f.radio_button :time_of_day, 'evening', onClick:"setradio()", :checked => false %> Evening |
-        <%= f.radio_button :time_of_day, '', onClick:"setradio()", :checked => false %> Any Time
+        <%= f.radio_button :time_of_day, '', onClick:"setradio()", :checked => true %> Any Time
       </div>
     </center>
     </div>
