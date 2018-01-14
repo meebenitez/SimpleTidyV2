@@ -26,37 +26,15 @@ function resetradio () {
 
   $(function () {
     $('form').submit(function(event) {
+      var values = $(this).serialize();
       var posting = $.post(this.action, values);
- 
+      event.preventDefault();
       posting.done(function(data) {
+        //debugger;
         // TODO: handle response
       });
-      event.preventDefault();
     });
-  
-  
-    function resetradio () {
-      var radio = document.getElementsByName('chore[frequency]')[0];
-      var buttons = document.querySelector('.buttons');
-      var radios = document.getElementsByName('chore[time_of_day]');
-      radios[0].checked = false;
-      if (radio.checked == true) {
-          buttons.style.display = 'block';
-      }
-      else {
-          buttons.style.display = 'none';
-          radios.forEach(function(radio){
-            radio.checked = false;
-          })
-      }
-  }
-  function setradio () {
-      var radio = document.getElementsByName('chore[frequency]')[0];
-      if (radio.checked == false) {
-          radio.checked = true;
-      }
-  }
-  
+
   
   
   

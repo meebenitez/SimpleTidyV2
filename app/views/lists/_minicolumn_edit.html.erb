@@ -1,7 +1,6 @@
 <% if chore_list != [] %>
-  <% chore_list.each_slice(slice_count(chore_list.count)) do |chores| %>
     <div class="minicolumn">
-      <% chores.each do |chore| %>
+      <% chore_list.each do |chore| %>
         <% if chore.time_of_day == "morning" %>
           <br>
           ☀ <%= chore.name %> <%= link_to '✎', edit_list_chore_path(@list, chore) %>      <%= link_to "✖", list_chore_path(@list, chore), :method => "delete"%> <br>
@@ -14,7 +13,6 @@
         <% end %>
       <% end %>
     </div>
-  <% end %>
 <% else %>
   <br><br>
   <center>You have no chores created.</center>
