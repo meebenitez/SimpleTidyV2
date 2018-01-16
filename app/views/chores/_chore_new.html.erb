@@ -36,10 +36,47 @@ function resetradio () {
 
       event.preventDefault();
       posting.done(function(data) {
-        debugger;
+        let newChore = new NewChore(data)
+        let newChoreHTML = newChore.formatCell()
+        if (data.frequency === "daily") {
+          $("#daily").append(newChoreHTML);
+        } else if (data.frequency === "weekly") {
+          $("#weekly").append(newChoreHTML);
+        } else {
+          debugger;
+          $("#monthly").append(newChoreHTML);
+        }
+
+      
+
         // TODO: handle response
       });
     });
+
+    function NewChore(chore){
+            this.name = formatName(chore)
+            this.time_of_day = chore.time_of_day
+            this.frequency = chore.frequency
+        }
+
+        function formatName(chore){
+            if (chore.time_of_day === "morning"){
+                return `☀ ${chore.name}`
+            } else if (chore.time_of_day === "evening"){
+                return `☾ ${chore.name}`
+            } else {
+                return `${chore.name}`
+            }
+        }
+
+        NewChore.prototype.formatCell = function() {
+            return `
+                    <div class="item">
+                        <center>${this.name} <br></center>
+                    </div>
+    
+                    `
+        }
 
   
   
@@ -79,7 +116,7 @@ function resetradio () {
     </div>
 
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit 'Create Chore', :class => 'create-chore' %>
     </div>
 
   <% end %>

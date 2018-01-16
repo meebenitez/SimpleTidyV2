@@ -31,21 +31,21 @@
     <center>
       <br><h1 style="color: #70c1b3 ">Daily</h1>
     </center>
-    <%= render partial: "minicolumn_edit", locals: {chore_list: @daily_chores } %>
+    <%= render partial: "minicolumn_edit", locals: {chore_list: @daily_chores, :list_frequency => "daily" } %>
   </div>
 
   <div class="column1_line">
     <center>
       <h1 style="color: #F9C563">Weekly</h1>
     </center>
-    <%= render partial: "minicolumn_edit", locals: {chore_list: @weekly_chores } %>
+    <%= render partial: "minicolumn_edit", locals: {chore_list: @weekly_chores, :list_frequency => "weekly" } %>
   </div>
 
   <div class="column1_line">
     <center>
       <h1 style="color: #247BA0">Monthly</h1>
     </center>
-    <%= render partial: "minicolumn_edit", locals: {chore_list: @monthly_chores } %>
+    <%= render partial: "minicolumn_edit", locals: {chore_list: @monthly_chores, :list_frequency => "monthly" } %>
   </div>
   <div class="column1">
     <%= render partial: 'chores/chore_new', locals: {chore: @chore, list: @list } %>
