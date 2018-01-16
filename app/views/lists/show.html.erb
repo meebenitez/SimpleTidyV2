@@ -86,7 +86,7 @@
                 url: url,
                 chore_id: ids[0],
                 list_id: ids[1]
-            }).success(function(data){
+            }).done(function(data){
                 if ($(".select-button").length === 1){
                     $(`#${this.chore_id}`).remove();
                     $("#list-container").html("<br><br><center>Woohoo!  All done! Great work!</center><br>");
