@@ -26,11 +26,17 @@ function resetradio () {
 
   $(function () {
     $('form').submit(function(event) {
+      //debugger;
+      var action = $(this).attr('action')
       var values = $(this).serialize();
-      var posting = $.post(this.action, values);
+      var posting = $.post(action, values);
+      
+      
+      
+
       event.preventDefault();
       posting.done(function(data) {
-        //debugger;
+        debugger;
         // TODO: handle response
       });
     });
@@ -49,6 +55,7 @@ function resetradio () {
   <center><h2>Add a New Chore</h2></center>
   <br>
   <%= form_for([list, list.chores.new]) do |f| %>
+  <% f.hidden_field :list_id, value: list.id %>
     <div class="field">
       <center>
         <%= f.text_field :name, :value => "ex: make bed, feed cats, etc.", :class => 'edit_chore', :maxlength => 100, :size => 60 %><br>

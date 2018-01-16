@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
     <div class="dropdown">
-        <button class="dropbtn">☰</button>
+        <button class="dropbtn">☰</button><h1>SimpleTidy</h1>
         <div class="dropdown-content">
         <%= link_to 'Your Lists', lists_path %>
         <%= link_to 'Your Account', edit_user_registration_path %>
@@ -9,7 +9,7 @@
     </div>
 <% else %>
     <div class="dropdown">
-    <button class="dropbtn">☰</button>
+    <button class="dropbtn">☰</button><h1>SimpleTidy</h1>
     <div class="dropdown-content">
         <%= link_to 'Login', new_user_session_path %>
     </div>

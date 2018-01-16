@@ -6,6 +6,7 @@ class ChoresController < ApplicationController
 
 
   def create
+    #binding.pry
     now = Time.now
     @chore = @list.chores.build(chore_params)
     if @chore.valid?
@@ -13,7 +14,11 @@ class ChoresController < ApplicationController
       @chore.past_due_time = Chore.set_past_due(now, @chore.time_of_day, @chore.reset_time)
       if @chore.save
         flash[:notice] = "New Chore Successfully Created."
-        redirect_to edit_list_path(@list.id)
+        respond_to do |f|
+          f.json { render json: @chore, status: 200}
+          f.html {redirect_to edit_list_path(@list.id)}
+        end
+        
       else
         flash[:notice] = "Oh no! Try that again."
         redirect_to edit_list_path(@list.id)

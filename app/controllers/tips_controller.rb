@@ -5,7 +5,7 @@ class TipsController < ApplicationController
         render json: @tips.to_json, status: 200
     end
 
-
+    
     
 end
 
