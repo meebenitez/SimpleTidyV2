@@ -3,13 +3,13 @@
         <% chore_list.each do |chore| %>
           <% if chore.time_of_day == "morning" %>
             <br>
-            <div class="item <%= chore.frequency %>" id="<%= chore.id%>"><center>☀ <%= chore.name %><br> <%= link_to '✎', edit_list_chore_path(@list, chore) %>      <%= link_to "✖", list_chore_path(@list, chore), :method => "delete"%> <br></center></div>
+            <div class="item <%= chore.frequency %>" id="<%= chore.id%>"><center>☀ <%= chore.name %><br> <%= link_to '✎', edit_list_chore_path(@list, chore) %>      <a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a><br></center></div>
           <% elsif chore.time_of_day == "evening" %>
             <br>
-            <div class="item <%= chore.frequency %>" id="<%= chore.id%>"><center>☾ <%= chore.name %><br> <%= link_to '✎', edit_list_chore_path(@list, chore) %>      <%= link_to "✖", list_chore_path(@list, chore), :method => "delete"%> <br></center></div>
+            <div class="item <%= chore.frequency %>" id="<%= chore.id%>"><center>☾ <%= chore.name %><br> <%= link_to '✎', edit_list_chore_path(@list, chore) %>      <a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a> <br></center></div>
             <% else %>
             <br>
-            <div class="item <%= chore.frequency %>" id="<%= chore.id%>"><center><%= chore.name %><br> <%= link_to '✎', edit_list_chore_path(@list, chore) %>      <%= link_to "✖", list_chore_path(@list, chore), :method => "delete"%> <button class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</button><br></center></div>
+            <div class="item <%= chore.frequency %>" id="<%= chore.id%>"><center><%= chore.name %><br> <%= link_to '✎', edit_list_chore_path(@list, chore) %>      <a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a><br></center></div>
           <% end %>
         <% end %>
       </div>
