@@ -62,7 +62,10 @@ class ChoresController < ApplicationController
     @chore = @list.chores.find(params[:id])
     @chore.destroy
     flash[:notice] = "Chore successfully deleted!"
-    redirect_to edit_list_path(@list)
+    respond_to do |f|
+      f.json { render json: @chore, status: 200}
+      f.html {redirect_to edit_list_path(@list.id)}
+    end
   end
 
   private 

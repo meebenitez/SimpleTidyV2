@@ -23,7 +23,7 @@ function resetradio () {
       }
   }
 
-
+//submit new chore
   $(function () {
     $('form').submit(function(event) {
       //debugger;
@@ -54,6 +54,7 @@ function resetradio () {
 
     function NewChore(chore){
             this.id = chore.id
+            this.list_id = chore.list.id
             this.name = formatName(chore)
             this.time_of_day = chore.time_of_day
             this.frequency = chore.frequency
@@ -73,7 +74,7 @@ function resetradio () {
             //debugger;  
           return `
                     <div class="item">
-                        <center>${this.name}, ${this.id} <br></center>
+                        <center>${this.name} <br><button class="delete-chore" data-id='[${this.id}, ${this.list_id}]'>✖</button><a href="#" class="edit-chore" data-id='[${this.id}, ${this.list_id}]' id="${this.id}">✎</a> </center>
                     </div>
     
                     `
@@ -83,6 +84,33 @@ function resetradio () {
   
   
   });
+
+
+  /// delete chore
+  $(document).on('click','.delete-chore', function(event) {
+    var ids = $(this).data("id");
+    var url = `/lists/${ids[1]}/chores/${ids[0]}`
+    $.ajax ({
+      method: 'DELETE',
+      url: url,
+      chore_id: ids[0],
+      list_id: ids[1],
+      headers: {
+  'X-Transaction': 'POST Example',
+  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+}, 
+    }).done(function(data){
+      if ($(`.${this.frequency}`).length === 1) {
+        $(`#${this.chore_id}`).remove();
+        $(`#${this.frequency}`).html(`<br><br><center>You need to create some ${this.frequency} chores.</center><br>`)
+      } else {
+        $(`#${this.chore_id}`).remove();
+        //$(`#${this.frequency}`).load(location.href+` #${this.frequency}>*`,"");
+      }
+    })
+
+    event.preventDefault();
+  })
 
 
 

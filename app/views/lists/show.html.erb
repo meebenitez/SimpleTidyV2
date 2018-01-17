@@ -91,6 +91,7 @@
                     $(`#${this.chore_id}`).remove();
                     $("#list-container").html("<br><br><center>Woohoo!  All done! Great work!</center><br>");
                 } else {
+                    $(`#${this.chore_id}`).remove();
                     $("#list-container").load(location.href+" #list-container>*","");
                 }
                 $.get("/lists/" + data.id + "/chores/" + this.chore_id + ".json", function(data) {
