@@ -121,7 +121,6 @@
 
   h3 {
     font-size: 18px;
-    line-height: 36px;
     font-family: 'Raleway', sans-serif;
   }
 
@@ -202,6 +201,10 @@
   .right-border {
       border-right: 2px solid rgb(77, 76, 76);
   }
+
+  .bottom-border {
+    border-bottom: 2px solid rgb(77, 76, 76);
+}
 
   img.photo {
     border-radius: 50%;

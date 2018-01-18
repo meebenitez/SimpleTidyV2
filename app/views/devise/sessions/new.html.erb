@@ -3,101 +3,30 @@
 </div>
 
 <div class="row content">
-<div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 padding4">
-  <h3>Let's start working on your chore lists...</h3>
-  <div class="col-xs-12 col-xs-offset-0 col-md-10 col-md-offset-1">
-      
- 
-  </div>
+<div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 bottom-border padding4">
+    <h1 style="font-size: 45px;">SimpleTidy</h1>
+    <h3>Your simple housekeeping app</h3>
 </div>    
 </div>
 <div class="row content">
-<div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 img-rounded index-bg border padding4">
-    <div class="col-xs-4 col-md-4 text-center right-border padding0">
-        <br>
-        <%= image_tag("star_white.png", :class => "star-index") %><br><br>
-        <span style="font-size: 19px">48 stars earned</span><br>
-        <span style="font-size: 12px">(complete your daily goals to earn stars)</span>
-    </div>
-    <div class="col-xs-8 col-md-8">
-      <h2>Tidy Tips</h2><br><br>
-      <span style="font-size: 18px;">Clean Your Microwave Naturally with a Lemon.</span><br>
-      Just squeeze some lemon juice into water, drop the rinds into the water, and microwave. As the liquid boils, it condenses on the sides of the microwave, loosening gunk and dissolving food splatters.         
-      <a href="https://www.thekitchn.com/how-to-clean-your-microwave-with-just-a-lemon-cleaning-lessons-from-the-kitchn-200294">- The Kitchn</a><br>
-      <br>
-      |<a href="#"><--PREV</a>| |<a href="#">NEXT--></a>|   
-    </div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="dummycolumn">
-        .<br>.<br>.<br>
-</div>
-
-
-      <div class="column1">
-        <center>
-          <h1>Simple Tidy</h1>
-          <h3>Your simple housekeeping app</h3>
-        </center>
-      </div>
-
-      
-
-      <div class="column1">
-        <div class="signin">
-            <div class="alignleft_signin">
-              <h2>Log in</h2>
+<div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 padding4">
+    <div class="col-xs-7 col-md-7 text-center right-border">
+        <h2>Log in</h2>
               <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                 <div class="field">
                   <%= f.label :email %><br />
                   <%= f.email_field :email, autofocus: true %>
                 </div>
-
-
                 <div class="field">
                   <%= f.label :password %><br />
                   <%= f.password_field :password, autocomplete: "off" %>
                 </div>
-
-          
-
-
                   <% if devise_mapping.rememberable? -%>
                     <div class="field">
                       <%= f.check_box :remember_me %>
                       <%= f.label :remember_me %> 
                     </div>
                   <% end -%>
-    
-                  
                 <div class="actions">
                   <%= f.submit "Log in" %><br>
                   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
@@ -105,35 +34,31 @@
                       <% end -%>
                 </div>
               <% end %>
-              
-          </div>
-
-          <div class="alignright">
-            <br>
-            <h3>Want it simpler?</h3>
-            <br>
-              <center>
-                <%- if devise_mapping.omniauthable? %>
-                  <%- resource_class.omniauth_providers.each do |provider| %>
-                    <%= link_to "Sign in with Facebook", omniauth_authorize_path(resource_name, provider), :class => "facebook" %>
-                  <% end -%>
-                <% end -%>
-              </center>
-            <br>
-            <br>
-            
-            <h3>No Facebook?  No Account?</h3>
-            <div class="actions">
-              <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-                <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+    </div>
+    <div class="col-xs-5 col-md-5">
+        <br>
+        <h3>Want it simpler?</h3>
+        <br>
+          <center>
+            <%- if devise_mapping.omniauthable? %>
+              <%- resource_class.omniauth_providers.each do |provider| %>
+                <%= link_to "Sign in with Facebook", omniauth_authorize_path(resource_name, provider), :class => "facebook" %>
               <% end -%>
-                  
-            </div>
-          </div>
-
-           <div style="clear: both;"></div>
-        </div>
-
+            <% end -%>
+          </center>
+        <br>
+        <br>
+        
+        <h3>No Facebook?  No Account?</h3>
+        <div class="actions">
+          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+            <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+          <% end -%>
+              
+        </div>  
+    </div>
+</div>
+</div>
 
 
 

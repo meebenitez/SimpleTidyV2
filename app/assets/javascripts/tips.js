@@ -1,7 +1,6 @@
 function generateTip(){
     $.get("/tips/", function(data) {
         var tip = data[Math.floor(Math.random() * data.length )];
-        console.log(tip)
         tipHTML =   `
                     <span style="font-size: 18px;">${tip.title}</span>
                     <p>${tip.tip} - <a href="${tip.source_url}">${tip.source_name}</a>

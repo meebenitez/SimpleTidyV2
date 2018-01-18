@@ -106,7 +106,10 @@ class ListsController < ApplicationController
 
   def update
     @list.update(list_params)
-    redirect_to edit_list_path(@list)
+    respond_to do |f|
+      f.json { render json: @list, status: 200}
+      f.html {redirect_to edit_list_path(@list.id)}
+    end
   end
 
   def edit_members
