@@ -1,11 +1,10 @@
-
-  <center><h1>Add a New Chore</h1></center>
-  <br>
+  <br><br>
+  <center><h3>Chore Name</h3></center>
   <%= form_for([list, list.chores.new], html: {class: "change-name"}) do |f| %>
   <% f.hidden_field :list_id, value: list.id %>
     <div class="field">
       <center>
-        <%= f.text_field :name, :value => "ex: make bed, feed cats, etc.", :class => 'edit_chore', :maxlength => 100, :size => 60 %><br>
+        <%= f.text_field :name, :value => "...", :class => 'edit_chore', :maxlength => 100, :size => 60 %><br>
       </center>
     </div>
 

@@ -107,9 +107,7 @@ $(function () {
       NewChore.prototype.formatCell = function() {
           //debugger;  
         return `
-                  <div class="item ${this.frequency}">
-                      <center>${this.name} <br><a href="#" class="delete-chore" data-id='[${this.id}, ${this.list_id}]'>✖</a><a href="/lists/${this.list_id}/chores/${this.id}">✎</a> </center>
-                  </div>
+                  <li class="${this.frequency}" id="<%= chore.id%>">${this.name} <a href="#" class="delete-chore" data-id='[${this.id}, ${this.list_id}]'>✖</a><a href="/lists/${this.list_id}/chores/${this.id}">✎</a></li>
   
                   `
       }
