@@ -184,11 +184,6 @@
     width: 100%;   
   }
 
-  li {
-    display: inline-block;
-    width: 25%;  
-  }
-
   a {
     text-decoration: none;
   }
@@ -392,6 +387,10 @@
 
   .border {
     border: 2px solid #ccc;
+  }
+
+  .border-lite {
+    border: 1px solid #ccc;
   }
 
   .column1_nopadding {

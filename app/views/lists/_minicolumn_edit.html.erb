@@ -1,18 +1,15 @@
 <% if chore_list != [] %>
-      <div class="items" id="<%= list_frequency %>">
+      <ul id="<%= list_frequency %>">
         <% chore_list.each do |chore| %>
           <% if chore.time_of_day == "morning" %>
-            <br>
-            <div class="item <%= chore.frequency %>" id="<%= chore.id%>"><center>☀ <%= chore.name %><br> <%= link_to '✎', edit_list_chore_path(@list, chore) %>      <a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a><br></center></div>
+            <li class="<%= chore.frequency %> border-lite" id="<%= chore.id%>">☀ <%= chore.name %> <%= link_to '✎', edit_list_chore_path(@list, chore) %><a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a></li>
           <% elsif chore.time_of_day == "evening" %>
-            <br>
-            <div class="item <%= chore.frequency %>" id="<%= chore.id%>"><center>☾ <%= chore.name %><br> <%= link_to '✎', edit_list_chore_path(@list, chore) %>      <a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a> <br></center></div>
+            <li class="<%= chore.frequency %> border-lite" id="<%= chore.id%>">☾ <%= chore.name %> <%= link_to '✎', edit_list_chore_path(@list, chore) %><a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a></li>
             <% else %>
-            <br>
-            <div class="item <%= chore.frequency %>" id="<%= chore.id%>"><center><%= chore.name %><br> <%= link_to '✎', edit_list_chore_path(@list, chore) %>      <a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a><br></center></div>
+            <li class="<%= chore.frequency %> border-lite" id="<%= chore.id%>"><%= chore.name %> <%= link_to '✎', edit_list_chore_path(@list, chore) %><a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a></li>
           <% end %>
         <% end %>
-      </div>
+      </ul>
 <% else %>
   <br><br>
   <center>You have no chores created.</center>

@@ -10,7 +10,6 @@ $(function () {
                 data: values
             }).done(function(data){
                 $(`#list-name`).text(data.name)
-
             })
     
         })

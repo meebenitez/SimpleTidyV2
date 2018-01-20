@@ -8,7 +8,7 @@ $(function () {
           url: url,
           chore_id: ids[0],
           list_id: ids[1]
-      }).done(function(data){
+      }).done(function(){
           if ($(".select-button").length === 1){
               $(`#${this.chore_id}`).remove();
               $("#list-container").html("<br><br><center>Woohoo!  All done! Great work!</center><br>");
@@ -16,7 +16,7 @@ $(function () {
               $(`#${this.chore_id}`).remove();
               $("#list-container").load(location.href+" #list-container>*","");
           }
-          $.get("/lists/" + data.id + "/chores/" + this.chore_id + ".json", function(data) {
+          $.get("/lists/" + this.list_id + "/chores/" + this.chore_id + ".json", function(data) {
               let completedChore = new CompletedChore(data)
               let completedChoreHTML = completedChore.formatButton()
               $(".completed-items").append(completedChoreHTML);

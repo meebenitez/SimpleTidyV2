@@ -4,7 +4,7 @@
 <%= form_for(@list) do |f| %>
   <%= f.fields_for :users, non_creators(@list, @list.users) do |user_field| %>
     <%= user_field.hidden_field :id %>
-    <div class="container" style="border: 2px solid #ccc;">
+    <div class="col-xs-12 col-md-12">
       <%= user_field.object.name %><br>
       <%= link_to image_tag(user_field.object.imgurl, :class => "logo"), user_path(user_field.object.id) %><br>
       <%= link_to 'Remove', remove_from_list_path(@list.id, :user => user_field.object.id) %><br>

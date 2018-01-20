@@ -1,6 +1,5 @@
 
-<div class="column1_line">
-  <center><h2>Add a New Chore</h2></center>
+  <center><h1>Add a New Chore</h1></center>
   <br>
   <%= form_for([list, list.chores.new], html: {class: "change-name"}) do |f| %>
   <% f.hidden_field :list_id, value: list.id %>
@@ -27,8 +26,7 @@
     </div>
 
     <div class="actions">
-      <%= f.submit 'Create Chore', :class => 'create-chore' %>
+      <%= f.submit 'Create Chore', :class => 'create-chore edit_name_button' %>
     </div>
 
   <% end %>
-</div>
