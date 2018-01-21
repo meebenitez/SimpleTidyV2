@@ -111,10 +111,6 @@ class ListsController < ApplicationController
     end
   end
 
-  def edit_members
-
-  end
-
   def destroy
     @list.destroy
     flash[:notice] = "#{@list.name} was deleted."
