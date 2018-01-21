@@ -9,7 +9,11 @@ $(function () {
                 url: action,
                 data: values
             }).done(function(data){
-                $(`#list-name`).text(data.name)
+                var listHTML = 
+                                `
+                                <a href="/lists/${data.id}" class="listname_home">${data.name}</a>
+                                `
+                $(`#list-name`).html(listHTML)
             })
     
         })
