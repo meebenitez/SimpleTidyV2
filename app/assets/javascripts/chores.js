@@ -9,6 +9,7 @@ $(function () {
           chore_id: ids[0],
           list_id: ids[1]
       }).done(function(){
+          //debugger;
           if ($(".select-button").length === 1){
               $(`#${this.chore_id}`).remove();
               $("#list-container").html("<br><br><center>Woohoo!  All done! Great work!</center><br>");
@@ -72,6 +73,7 @@ $(function () {
             var values = $(this).serialize();
             var posting = $.post(action, values);
             posting.done(function(data) {
+                //debugger;
               let newChore = new NewChore(data)
               let newChoreHTML = newChore.formatCell()
               if (data.frequency === "daily") {
