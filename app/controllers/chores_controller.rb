@@ -52,13 +52,12 @@ class ChoresController < ApplicationController
 
   def complete
     @chore = Chore.find(params[:id])
-    #binding.pry
     Chore.complete_chore(@chore)
-    #respond_to do |f|
-      #f.json { render json: @chore, status: 200}
-      #f.html {redirect_to list_path(@chore.list)}
-    #end
-    redirect_to list_path(@chore.list)
+    respond_to do |f|
+      f.json { render json: @chore, status: 200}
+      f.html {redirect_to list_path(@chore.list)}
+    end
+    #redirect_to list_path(@chore.list)
   end
 
 

@@ -32,7 +32,6 @@ class ListsController < ApplicationController
       List.create_starter_list(@list)
       # assign invites
       List.send_invites_on_list_create(@list)
-
       if @list.save
         ListsUser.set_admin(@list, current_user)
         flash[:notice] = ""

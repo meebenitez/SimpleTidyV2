@@ -1,5 +1,6 @@
 $(function () {
-    $("#change-name").click(function(){
+    $("#change-name").removeAttr("data-disable-with")
+    //$("#change-name").click(function(){
         $('.edit_list').submit(function(event) {
             event.preventDefault();
             var action = $(this).attr('action')
@@ -17,5 +18,5 @@ $(function () {
             })
     
         })
-    })
+    //})
 });

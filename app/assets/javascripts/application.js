@@ -14,7 +14,6 @@
 //= require rails-ujs
 //= require bootstrap
 //= require active_admin
-//= require_tree .
-//= require lists
 //= require chores
+//= require lists
 //= require tips

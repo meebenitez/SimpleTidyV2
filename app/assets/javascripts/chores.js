@@ -5,23 +5,19 @@ $(function () {
       var url = `/lists/${ids[1]}/chores/${ids[0]}/complete`
       $.ajax ({
           method: "GET",
-          url: url,
-          chore_id: ids[0],
-          list_id: ids[1]
-      }).done(function(){
+          url: url
+      }).done(function(data){
           //debugger;
           if ($(".select-button").length === 1){
-              $(`#${this.chore_id}`).remove();
+              $(`#${data.id}`).remove();
               $("#list-container").html("<br><br><center>Woohoo!  All done! Great work!</center><br>");
           } else {
-              $(`#${this.chore_id}`).remove();
+              $(`#${data.id}`).remove();
               $("#list-container").load(location.href+" #list-container>*","");
           }
-          $.get("/lists/" + this.list_id + "/chores/" + this.chore_id + ".json", function(data) {
-              let completedChore = new CompletedChore(data)
-              let completedChoreHTML = completedChore.formatButton()
-              $(".completed-items").append(completedChoreHTML);
-          })
+            let completedChore = new CompletedChore(data)
+            let completedChoreHTML = completedChore.formatButton()
+            $(".completed-items").append(completedChoreHTML);
 
       })
       e.preventDefault
@@ -66,7 +62,8 @@ $(function () {
 
 
 $(function () {
-    $(".create-chore").click(function(){
+    $(".create-chore").removeAttr("data-disable-with")
+    //$(".create-chore").click(function(){
         $('#new_chore').submit(function(event) {
             event.preventDefault();
             var action = $(this).attr('action')
@@ -84,7 +81,7 @@ $(function () {
                 $("#monthly").append(newChoreHTML);
               }
             });
-    })
+    //})
   
 });
 
