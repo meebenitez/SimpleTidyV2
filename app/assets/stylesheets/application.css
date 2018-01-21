@@ -41,9 +41,10 @@
 .height60 {
     height: 60px
 }
-.goals {
-    padding-right: 20px;
-    padding-bottom: 3px;
+
+.listname_home {
+    font-size: 24px;
+    font-family: 'Lato', sans-serif;
 }
 
 

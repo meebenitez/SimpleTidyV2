@@ -8,12 +8,12 @@ module ChoresHelper
      end
   end
 
-  #def create_chore_array_view(frequency, all_chores)
-  #  sorted_chores = all_chores.where(frequency: frequency, status: "not done")
-  #end
+  def create_chore_array_view_frequency(frequency, all_chores)
+    sorted_chores = all_chores.where(frequency: frequency, status: "not done")
+  end
 
   def create_chore_array_view(all_chores)
-    sorted_chores = all_chores.where(status: "not done")
+    sorted_chores = all_chores.where(status: "not done").order(:reset_time)
   end
 
   def create_chore_array_view_completed(all_chores)

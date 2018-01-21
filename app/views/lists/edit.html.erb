@@ -8,8 +8,8 @@
         <div class="col-xs-8 col-md-8 height60 padding2">
             <div class="col-xs-12 col-md-12 align-text-bottom text-left padding0">
                 <span style="display: inline-block; vertical-align: bottom;">
-                    <span id="list-name" style="font-size: 24px; font-family: 'Lato', sans-serif;">
-                    <%= @list.name %>
+                    <span id="list-name">
+                    <%= link_to @list.name, @list, {:class => "listname_home"} %>
                     </span>
                     <span sytle="font-size: 18px;">
                         (EDIT MODE)
