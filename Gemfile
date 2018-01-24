@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
  gem 'activeadmin', github: 'activeadmin'
 
  gem 'pry'
+ gem 'poltergeist'
 
  gem 'devise'
  gem 'omniauth-facebook'

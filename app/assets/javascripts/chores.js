@@ -7,7 +7,6 @@ $(function () {
           method: "GET",
           url: url
       }).done(function(data){
-          //debugger;
           if ($(".select-button").length === 1){
               $(`#${data.id}`).remove();
               $("#list-container").html("<br><br><center>Woohoo!  All done! Great work!</center><br>");

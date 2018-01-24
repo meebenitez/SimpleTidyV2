@@ -6,11 +6,13 @@ $(function () {
             event.preventDefault();
             var action = $(this).attr('action')
             var values = $(this).serialize();
+       
             $.ajax({
-                type: "Post",
+                type: "PUT",
                 url: action,
                 data: values
             }).done(function(data){
+         
                 var listHTML = 
                                 `
                                 <a href="/lists/${data.id}" class="listname_home">${data.name}</a>
