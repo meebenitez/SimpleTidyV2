@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   protect_from_forgery with: :exception
 
+
   rescue_from CanCan::AccessDenied do |exception|  
     flash[:error] = "Access denied!"  
     redirect_to lists_path
@@ -17,5 +18,6 @@ class ApplicationController < ActionController::Base
     #binding.pry
     request.env['omniauth.origin'] || lists_path
   end
+  
 
 end

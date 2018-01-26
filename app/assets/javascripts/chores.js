@@ -69,7 +69,7 @@ $(function () {
             var values = $(this).serialize();
             var posting = $.post(action, values);
             posting.done(function(data) {
-                //debugger;
+                debugger;
               let newChore = new NewChore(data)
               let newChoreHTML = newChore.formatCell()
               if (data.frequency === "daily") {
