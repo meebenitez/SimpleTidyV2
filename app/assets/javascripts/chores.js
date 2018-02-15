@@ -21,7 +21,7 @@ function formatName(chore){
 Chore.prototype.formatEditListing = function() {
     //debugger;  
   return `
-            <li class="${this.frequency}" id="<%= chore.id%>">${this.name} <a href="#" class="delete-chore" data-id='[${this.id}, ${this.list_id}]'>✖</a><a href="/lists/${this.list_id}/chores/${this.id}">✎</a></li>
+            <li class="${this.frequency}" id="<%= chore.id%>">${this.name} <a href="#" class="delete-chore" data-id='[${this.id}, ${this.listID}]'>✖</a><a href="/lists/${this.listID}/chores/${this.id}">✎</a></li>
 
             `
 }
