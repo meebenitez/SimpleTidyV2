@@ -1,6 +1,49 @@
+////////////////// OBJECT CREATION, PROTOTYPE, AND TEMPLATE
+
+function Chore(chore){
+    this.id = chore.id
+    this.listID = chore.list.id
+    this.name = formatName(chore)
+    this.timeOfay = chore.time_of_day
+    this.frequency = chore.frequency
+}
+
+function formatName(chore){
+    if (chore.time_of_day === "morning"){
+        return `☀ ${chore.name}`
+    } else if (chore.time_of_day === "evening"){
+        return `☾ ${chore.name}`
+    } else {
+        return `${chore.name}`
+    }
+}
+
+Chore.prototype.formatEditListing = function() {
+    //debugger;  
+  return `
+            <li class="${this.frequency}" id="<%= chore.id%>">${this.name} <a href="#" class="delete-chore" data-id='[${this.id}, ${this.list_id}]'>✖</a><a href="/lists/${this.list_id}/chores/${this.id}">✎</a></li>
+
+            `
+}
+
+Chore.prototype.formatCompletedButton = function() {
+    return `
+            <div class="completed-item">
+                <button class="chore completed" id="${this.id}">
+                    ${this.name}
+                </button>
+            </div>
+
+            `
+}
+
+
+
+
 //////////////////////////CHORE COMPLETION
 $(function () {
     $(document).on('click', ".select-button", function(e) {
+        //debugger
         var ids = $(this).data("id");
       var url = `/lists/${ids[1]}/chores/${ids[0]}/complete`
       $.ajax ({
@@ -14,10 +57,9 @@ $(function () {
               $(`#${data.id}`).remove();
               $("#list-container").load(location.href+" #list-container>*","");
           }
-            let completedChore = new CompletedChore(data)
-            let completedChoreHTML = completedChore.formatButton()
-            $(".completed-items").append(completedChoreHTML);
-
+            var chore = new Chore(data)
+            var choreHTML = chore.formatCompletedButton()
+            $(".completed-items").append(choreHTML);
       })
       e.preventDefault
     });
@@ -30,33 +72,7 @@ $(function () {
 
   });
 
-  function CompletedChore(chore){
-      this.id = chore.id
-      this.name = formatName(chore)
-      this.time_of_day = chore.time_of_day
-      this.frequency = chore.frequency
-  }
-
-  function formatName(chore){
-      if (chore.time_of_day === "morning"){
-          return `☀ ${chore.name}`
-      } else if (chore.time_of_day === "evening"){
-          return `☾ ${chore.name}`
-      } else {
-          return `${chore.name}`
-      }
-  }
-
-  CompletedChore.prototype.formatButton = function() {
-      return `
-              <div class="completed-item">
-                  <button class="chore completed" id="${this.id}">
-                      ${this.name}
-                  </button>
-              </div>
-
-              `
-  }
+  
 //////////////////////////CHORE CREATION
 
 
@@ -69,47 +85,19 @@ $(function () {
             var values = $(this).serialize();
             var posting = $.post(action, values);
             posting.done(function(data) {
-                debugger;
-              let newChore = new NewChore(data)
-              let newChoreHTML = newChore.formatCell()
+              var chore = new Chore(data)
+              var choreHTML = chore.formatEditListing()
               if (data.frequency === "daily") {
-                $("#daily").append(newChoreHTML);
+                $("#daily").append(choreHTML);
               } else if (data.frequency === "weekly") {
-                $("#weekly").append(newChoreHTML);
+                $("#weekly").append(choreHTML);
               } else {
-                $("#monthly").append(newChoreHTML);
+                $("#monthly").append(choreHTML);
               }
             });
-    //})
-  
+    });
 });
-
-  function NewChore(chore){
-          this.id = chore.id
-          this.list_id = chore.list.id
-          this.name = formatName(chore)
-          this.time_of_day = chore.time_of_day
-          this.frequency = chore.frequency
-      }
-
-      function formatName(chore){
-          if (chore.time_of_day === "morning"){
-              return `☀ ${chore.name}`
-          } else if (chore.time_of_day === "evening"){
-              return `☾ ${chore.name}`
-          } else {
-              return `${chore.name}`
-          }
-      }
-
-      NewChore.prototype.formatCell = function() {
-          //debugger;  
-        return `
-                  <li class="${this.frequency}" id="<%= chore.id%>">${this.name} <a href="#" class="delete-chore" data-id='[${this.id}, ${this.list_id}]'>✖</a><a href="/lists/${this.list_id}/chores/${this.id}">✎</a></li>
   
-                  `
-      }
-});
 
 ////setup radio buttons
 function resetradio () {
@@ -160,3 +148,4 @@ $(function () {
         event.preventDefault();
     })
 })
+

@@ -1,21 +1,27 @@
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-   <%= devise_error_messages! %>
-   <%= f.hidden_field :reset_password_token %>
+
+<%# form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+   <%# devise_error_messages! %>
+   <%# f.hidden_field :reset_password_token %>
  
    <div class="field">
-     <%= f.label :password, "New password" %><br />
-     <% if @minimum_password_length %>
-       <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-     <% end %>
-     <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+     <%# f.label :password, "New password" %><br />
+     <%# if @minimum_password_length %>
+     New Password:<br>
+     <input type="text" value="this feature is disabled for testing">
+       <%# @minimum_password_length %><br />
+     <%# end %>
+     <%# f.password_field :password, autofocus: true, autocomplete: "off" %>
    </div>
  
    <div class="field">
-     <%= f.label :password_confirmation, "Confirm new password" %><br />
-     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      Confirm Password:<br>
+      <input type="text" value="this feature is disabled for testing">
+     <%# f.label :password_confirmation, "Confirm new password" %><br />
+     <%# f.password_field :password_confirmation, autocomplete: "off" %>
    </div>
 
    <div class="actions">
-     <%= f.submit "Change my password" %>
+     <button>Change Password</button>
+     <%# f.submit "Change my password" %>
    </div>
- <% end %>
+ <%# end %>
