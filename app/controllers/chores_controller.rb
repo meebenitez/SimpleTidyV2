@@ -4,7 +4,6 @@ class ChoresController < ApplicationController
   load_and_authorize_resource :chore, :through => :list
   before_action :authenticate_user!
 
-
   def create
     #binding.pry
     now = Time.now

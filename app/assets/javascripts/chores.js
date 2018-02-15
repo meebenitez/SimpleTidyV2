@@ -26,6 +26,14 @@ Chore.prototype.formatEditListing = function() {
             `
 }
 
+function formatEditListing (chore, listID) {
+    //debugger;  
+  return `
+            <li class="${chore.frequency}" id="<%= chore.id%>">${chore.name} <a href="#" class="delete-chore" data-id='[${chore.id}, ${listID}]'>✖</a><a href="/lists/${listID}/chores/${chore.id}">✎</a></li>
+
+            `
+}
+
 Chore.prototype.formatCompletedButton = function() {
     return `
             <div class="completed-item">
@@ -84,16 +92,33 @@ $(function () {
             var action = $(this).attr('action')
             var values = $(this).serialize();
             var posting = $.post(action, values);
+            
             posting.done(function(data) {
-              var chore = new Chore(data)
-              var choreHTML = chore.formatEditListing()
-              if (data.frequency === "daily") {
-                $("#daily").append(choreHTML);
-              } else if (data.frequency === "weekly") {
-                $("#weekly").append(choreHTML);
-              } else {
-                $("#monthly").append(choreHTML);
-              }
+              $.get(`/lists/${data.list.id}`, function(response){
+                  //grab all chores with the same frequency as the newly created chore
+                var chores = response.chores.filter(chore => chore.frequency === data.frequency)
+                if (chores.length > 1) {
+                    var sorted = chores.sort(function(a,b){
+                        //sort chores alphabetically
+                    if (a.name.toLowerCase() < b.name.toLowerCase()){
+                        return -1
+                    }
+                    if (a.name.toLowerCase() > b.name.toLowerCase()){
+                        return 1
+                    }
+                    return 0
+                  })
+                  $(`#${data.frequency} > li`).remove()
+                  sorted.forEach(function(chore){
+                    var choreHTML = formatEditListing(chore, data.list.id)
+                        $(`#${chore.frequency}`).append(choreHTML);
+                  })
+                } else {
+                    $(`#${data.frequency}`).empty()
+                    var choreHTML = formatEditListing(data, data.list.id)
+                        $(`#${data.frequency}`).append(choreHTML);
+                }
+              }) 
             });
     });
 });
