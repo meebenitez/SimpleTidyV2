@@ -4,7 +4,7 @@ function Chore(chore){
     this.id = chore.id
     this.listID = chore.list.id
     this.name = formatName(chore)
-    this.timeOfay = chore.time_of_day
+    this.timeOfDay = chore.time_of_day
     this.frequency = chore.frequency
 }
 
