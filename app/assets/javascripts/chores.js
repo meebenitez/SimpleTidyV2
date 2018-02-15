@@ -52,9 +52,7 @@ function formatEditListing (chore, listID) {
             <li class="${chore.frequency}" id="<%= chore.id%>">${chore.name} <a href="#" class="delete-chore" data-id='[${chore.id}, ${listID}]'>✖</a><a href="/lists/${listID}/chores/${chore.id}">✎</a></li>
 
             `
-}
-
-  
+} 
 //////////////////////////CHORE CREATION
 
 $(function () {
@@ -138,7 +136,6 @@ function setradio () {
 //////////////////////////CHORE COMPLETION
 $(function () {
     $(document).on('click', ".select-button", function(e) {
-        //debugger
         var ids = $(this).data("id");
       var url = `/lists/${ids[1]}/chores/${ids[0]}/complete`
       $.ajax ({

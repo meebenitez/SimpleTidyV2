@@ -15,8 +15,7 @@ class ChoresController < ApplicationController
         respond_to do |f|
           f.json { render json: @chore, status: 200}
           f.html {redirect_to edit_list_path(@list.id)}
-        end
-        
+        end    
       else
         flash[:notice] = "Oh no! Try that again."
         redirect_to edit_list_path(@list.id)

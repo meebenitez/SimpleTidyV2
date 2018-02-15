@@ -46,7 +46,7 @@ module ChoresHelper
 
 
   def create_chore_array_edit(frequency, all_chores)
-    sorted_chores = all_chores.where(frequency: frequency)
+    sorted_chores = all_chores.where(frequency: frequency).order(:name)
   end
 
   def calculate_monthly_goal(chore_count)
