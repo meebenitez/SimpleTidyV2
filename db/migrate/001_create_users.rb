@@ -5,6 +5,10 @@ class CreateUsers < ActiveRecord::Migration[5.1]
         t.string :name,               null: false, default: ""
         t.string :email,              null: false, default: ""
         t.string :encrypted_password, null: false, default: ""
+        t.string :imgurl              null: false, default: "user.png"
+        t.boolean :admin              null: false, default: false
+        t.boolean :member             null: false, default: true
+
 
         ## Recoverable
         t.string   :reset_password_token
