@@ -379,6 +379,7 @@
 
   .list-container {
       max-width: 500px;
+      text-align: center;
   }
 
   .edit_container {
