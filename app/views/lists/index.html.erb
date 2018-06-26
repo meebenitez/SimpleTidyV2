@@ -10,9 +10,10 @@
   </div>
 </div>
 <div class="row content">
-  <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 padding4 align-items-center">
+  <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 padding4">
     <h3>Click on one of your chore lists or create a new list...</h3>
-    <div class="list-container lists">
+    <div class="col-xs-8 col-md-offset-4 lists">
+      <div class="list-container">  
         <% @lists.each do |list| %>
           <div class="list">
             <%= link_to image_tag((list_type_photo list), :class => "list_icon"), list_path(list.id) %><br>
@@ -21,6 +22,7 @@
               <span style="color: #FF3067">PAST DUE</span>
             <% end %>
           </div>
+        </div>
         <% end %>
         <% @invites.each do |invite| %>
         <% if (list_name invite.list_id) != nil  && invite.status != "closed" %>
