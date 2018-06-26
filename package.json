@@ -1,5 +1,7 @@
 {
   "name": "ChoreTrackerOnRails_app",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "uglify-es": "^3.3.9"
+  }
 }
