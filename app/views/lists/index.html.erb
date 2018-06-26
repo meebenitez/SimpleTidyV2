@@ -12,7 +12,7 @@
 <div class="row content">
   <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 padding4">
     <h3>Click on one of your chore lists or create a new list...</h3>
-    <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 lists">
+    <div class="list-container lists">
         <% @lists.each do |list| %>
           <div class="list">
             <%= link_to image_tag((list_type_photo list), :class => "list_icon"), list_path(list.id) %><br>

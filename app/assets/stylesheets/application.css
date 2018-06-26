@@ -377,6 +377,10 @@
 
   }
 
+  .list-container {
+      max-width: 500px;
+  }
+
   .edit_container {
     display: flex;
   }
