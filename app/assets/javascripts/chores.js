@@ -9,9 +9,9 @@ function Chore(chore){
 }
 
 function formatName(chore){
-    if (chore.time_of_day === "morning"){
+    if (chore.timeOfDay === "morning"){
         return `☀ ${chore.name}`
-    } else if (chore.time_of_day === "evening"){
+    } else if (chore.timeOfDay === "evening"){
         return `☾ ${chore.name}`
     } else {
         return `${chore.name}`
@@ -31,7 +31,7 @@ Chore.prototype.formatCompletedButton = function() {
 /////////////////////////HELPER FUNCITONS
 
 function sortChoresABC(chores, data){
-    var sorted = chores.sort(function(a,b){
+    var sorted = chores.sort((a,b) => {
         if (a.name.toLowerCase() < b.name.toLowerCase()){
             return -1
         }
@@ -57,13 +57,11 @@ function formatEditListing (chore, listID) {
 
 $(function () {
     $(".create-chore").removeAttr("data-disable-with")
-    //$(".create-chore").click(function(){
         $('#new_chore').submit(function(event) {
             event.preventDefault();
             var action = $(this).attr('action')
             var values = $(this).serialize();
-            var posting = $.post(action, values);
-            
+            var posting = $.post(action, values);      
             posting.done(function(data) {
               $.get(`/lists/${data.list.id}`, function(response){
                   //grab all chores with the same frequency as the newly created chore
@@ -84,6 +82,7 @@ $(function () {
 
 $(function () {
     $(document).on('click','.delete-chore', function(event) {
+        //debugger;
         var ids = $(this).data("id");
         var url = `/lists/${ids[1]}/chores/${ids[0]}`
         $.ajax ({
