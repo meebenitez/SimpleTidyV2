@@ -1,6 +1,6 @@
 <% if chore_list != [] %>
       <div id="list-container">
-      <div class="items">
+      <div class="items zero-padding">
       <% chore_list.each do |chore| %>
           <div class="item">
             <button class="<%= decide_button_class(chore.past_due, chore.frequency)%> select-button" id="<%= chore.id%>" data-id="<%= [chore.id, list.id] %>">

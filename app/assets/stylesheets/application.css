@@ -13,6 +13,21 @@
 
   }
 
+  .zero-padding {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .fixed-sidebar {
+    position: fixed;
+    width: 25%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  
+
   .border {
       border-width: medium;
   }
@@ -160,9 +175,22 @@
 .items .item {
     flex: 1 0 25%;
     box-sizing: border-box;
-    padding: 10px;
-    flex-basis: 30%;
+    flex-basis: 100%;
 }
+
+@media screen and (max-width: 992px) and (min-width: 575px) {
+    .items .item {
+        flex-basis: 50%;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .items .item {
+        flex-basis: 100%;
+    }
+}
+
+
 
 .lists {
     display: flex;
@@ -378,7 +406,6 @@
   }
 
   .list-container {
-      max-width: 500px;
       text-align: center;
   }
 
@@ -587,21 +614,22 @@ input[type=submit] {
 }
 
 button.chore {
-    width: 90%;
-    height: 50px;
-    padding: 10px;
-    margin: 8px 0;
+    width: 100%;
+    height: auto;
+    padding: 20px;
     color: white;
     border: none;
-    border-radius: 10px;
     cursor: pointer;
     text-align: center;
-    font-size: 90%;
-    white-space: normal;
+    font-size: 2em;
+    border: 1px solid #313131;
+    border-bottom: 0px;
 }
 
 button.daily {
-    background-color: #70c1b3;
+    color: #70c1b3;
+    border: 1px solid #538d83;
+    border-bottom: 0px;
 }
 
 button.daily:hover {
@@ -617,7 +645,9 @@ button.pastdue:hover {
 }
 
 button.weekly {
-    background-color: #F9C563;
+    color: #F9C563;
+    border: 1px solid rgb(238, 169, 40);
+    border-bottom: 0px;
 }
 
 button.weekly:hover {
@@ -625,7 +655,9 @@ button.weekly:hover {
 }
 
 button.monthly {
-    background-color: #247BA0;
+    color: #247BA0;
+    border: 1px solid rgb(37, 87, 109);
+    border-bottom: 0px;
 }
 
 button.monthly:hover {
@@ -741,4 +773,11 @@ input.edit_name_button:hover {
     background-color: #5B7BD5;
 }
 
+
+
+/*-----------New Layout CSS ------------*/
+
+.bottom-line {
+    border-bottom: rgb(185, 185, 185) 1px solid;
+}
 

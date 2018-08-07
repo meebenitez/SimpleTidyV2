@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20180113074427) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.string "author_type"
-    t.integer "author_id"
+    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
@@ -92,8 +95,12 @@ ActiveRecord::Schema.define(version: 20180113074427) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "imgurl", default: "user.png", null: false
+    t.boolean "admin", default: false, null: false
+    t.boolean "member", default: true, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -104,10 +111,6 @@ ActiveRecord::Schema.define(version: 20180113074427) do
     t.string "last_sign_in_ip"
     t.string "provider"
     t.string "uid"
-    t.string "name"
-    t.boolean "member", default: true
-    t.boolean "admin", default: false
-    t.string "imgurl", default: "user.png"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["imgurl"], name: "index_users_on_imgurl"
     t.index ["name"], name: "index_users_on_name"
