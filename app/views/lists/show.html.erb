@@ -5,7 +5,9 @@
 <div class="row">
     <div class="col-sm-3 col-xs-12 zero-padding">
         <div class="fixed-sidebar zero-padding">
-                info bar placeholder
+                <div class="col-xs-12">
+                    <%= render 'layouts/navbar' %>
+                </div>
         </div>
     </div>
     <div class="col-sm-9 col-xs-12 zero-padding">
@@ -65,9 +67,7 @@
             <%= calculate_monthly_goal @monthly_chores.count %> monthly
         </span> |
     </div>    
-    <div class="row content padding0">
-        <%= render partial: "minicolumn", locals: {chore_list: @todo_chores.all, list: @list } %>      
-    </div>
+
     <div class="row content padding0">
         <div class="show-completed"><a href="">Toggle Completed Chores</a></div>
         <div class="completed-chores">
