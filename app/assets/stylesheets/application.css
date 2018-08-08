@@ -260,7 +260,7 @@
 
   /* RESPONSIVE NAVBAR */
   .dropbtn {
-      color: #FF3B3F;
+      color: black;
       padding: 8px;
       font-size: 26px;
       border: none;
@@ -604,52 +604,48 @@ input[type=submit] {
 button.chore {
     width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: 10px;
     color: white;
     border: none;
     cursor: pointer;
     text-align: center;
     font-size: 2em;
-    border: 1px solid #313131;
     border-bottom: 0px;
 }
 
 button.daily {
-    color: #70c1b3;
-    border: 1px solid #538d83;
+    background-color: #77C9D4;
     border-bottom: 0px;
 }
 
 button.daily:hover {
-    background-color: #b2dbbf;
+    background-color: rgb(210, 238, 241);
 }
 
 button.pastdue {
-    background-color: #FF3067;
+    background-color: #FF533D;
 }
 
 button.pastdue:hover {
-    background-color: #FF779B;
+    background-color: rgb(253, 147, 133);
 }
 
 button.weekly {
-    color: #F9C563;
-    border: 1px solid rgb(238, 169, 40);
+    background-color: #57BC90;
     border-bottom: 0px;
 }
 
 button.weekly:hover {
-    background-color: #F9EC95;
+    background-color: rgb(172, 214, 196);
 }
 
 button.monthly {
-    color: #247BA0;
-    border: 1px solid rgb(37, 87, 109);
+    background-color: #015249;
     border-bottom: 0px;
 }
 
 button.monthly:hover {
-    background-color: #86CAE8;
+    background-color: #57a89f;
 }
 
 button.completed {
