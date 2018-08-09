@@ -151,7 +151,7 @@ $(function () {
             var chore = new Chore(data)
             var choreHTML = chore.formatCompletedButton()
             $(".completed-items").append(choreHTML);
-            $("#completed-list-container").load(location.href+" #completed-list-container>*","");
+            $("#completed-list-container").load(location.href+" #completed-list-container>*</div>","");
 
       })
       e.preventDefault
