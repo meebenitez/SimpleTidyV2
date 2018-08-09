@@ -3,7 +3,7 @@
     <div class="col-sm-3 col-xs-12 zero-padding fixed white-background">
         <div class="fixed-sidebar zero-padding">
                 <div class="col-xs-12 zero-padding">
-                    <div>
+                    <div class="nav-bar">
                         <%= render partial: "list_navbar", locals: {list: @list} %>
                     </div>
                     <div class="right-bar align-text-bottom text-right">
@@ -14,6 +14,22 @@
                             <%= link_to image_tag('gear.png', :class =>"photo"), edit_list_path(@list.id) %>
                         <% end %>  
                     </div>
+                    
+                    <div class="title">
+                        <div class="col-xs-12 zero-padding">
+                            test
+                        </div>
+                    </div>
+                    <div class="users-bar">
+                        <div class="col-xs-12 zero-padding">
+                            <% @list.users.each do |user| %>
+                            <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %>
+                            <% end %>
+                            <% if can? :edit, @list %>
+                                <%= link_to image_tag('gear.png', :class =>"photo"), edit_list_path(@list.id) %>
+                            <% end %>  
+                        </div>
+                    </div>
                 </div>
         </div>
     </div>
@@ -22,21 +38,23 @@
             <%= render partial: "minicolumn", locals: {chore_list: @todo_chores.all, list: @list } %>      
         </div>
     </div>
-
-</div>
-
-
-<div class="row content padding0">
-    <div class="show-completed"><a href="">Toggle Completed Chores</a></div>
-    <div class="completed-chores">
-        <div class="completed-items">
-            <% @done_chores.each do |chore| %>
-                <div class="completed-item">
-                    <button class="chore completed" id="<%= chore.id %>">
-                        <%= decide_time_of_day chore %>
-                    </button>
-                </div>
-            <% end %>
+    <div class="row content chore-container">
+            <div class="row col-xs-12 zero-padding">
+                    <div class="show-completed"><a href="">Toggle Completed Chores</a></div>
+                    <div class="row col-xs-12 completed-chores zero-padding">
+                        <div class="completed-items">
+                            <% @done_chores.each do |chore| %>
+                                <div class="completed-item">
+                                    <button class="chore completed" id="<%= chore.id %>">
+                                        <%= decide_time_of_day chore %>
+                                    </button>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+            </div>
         </div>
-    </div>
+
 </div>
+
+

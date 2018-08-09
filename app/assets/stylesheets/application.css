@@ -19,7 +19,7 @@
   }
 
   .fixed-sidebar {
-    position: relative;
+    position: fixed;
     width: 25%;
     height: 100%;
     margin: 0px;
@@ -29,6 +29,11 @@
 
   .right-bar {
       visibility: hidden;
+  }
+
+  .users-bar {
+      padding: 0px;
+      text-align: left;
   }
 
   .white-background {
@@ -104,8 +109,11 @@
 }
 
 .chore-container {
+    margin-left: 25%;
+    margin-right: 0px;
     padding: 0px;
     background-color: white;
+    width: 75%;
 }
 
 .fixed {
@@ -254,6 +262,8 @@
 
 
 
+
+
   /* RESPONSIVE NAVBAR */
   .dropbtn {
       color: rgb(128, 126, 126);
@@ -262,7 +272,7 @@
       margin-right: 2px;
       margin-top: 3px;
       margin-bottom: 0px;
-      font-size: 1em;
+      font-size: 1.75em;
       border: none;
       cursor: pointer;
       height: auto;
@@ -650,6 +660,11 @@ button.completed {
     background-color: #b8b8b8;
 }
 
+.list-name {
+    display: inline-block;
+    font-size: 1.25em;
+}
+
 
 input.chore_weekly_click {
     width: 100%;
@@ -755,6 +770,15 @@ input.edit_name_button:hover {
     background-color: #5B7BD5;
 }
 
+.nav-bar {
+    visibility: hidden;
+}
+
+.title {
+    padding: 0px;
+    text-align: left;
+}
+
 
 
 /*-----------New Layout CSS ------------*/
@@ -789,12 +813,14 @@ input.edit_name_button:hover {
 
     .chore-container {
         margin-top: 25px;
+        margin-left: 0;
+        width: 100%;
     }
 
 
     .right-bar {
-        float: right;
         visibility: visible;
+        float: right;
         margin-right: 2px;
     }
 
@@ -818,6 +844,27 @@ input.edit_name_button:hover {
         padding: 5px;
         font-size: 1em;
     }
+
+    .list-name {
+        font-size: 1em;
+    }
+
+    .dropbtn {
+        font-size: 1em;
+    }
+
+    .users-bar {
+        visibility: hidden;
+    }
+
+    .nav-bar {
+        visibility: visible;
+    }
+
+    .title {
+        visibility: hidden;
+    }
+    
   
 }
 
