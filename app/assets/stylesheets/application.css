@@ -50,6 +50,31 @@
       background-color: white;
   }
 
+.legend {
+    font-size: .9em;
+    padding: 3px;
+    max-width: 35%;
+    color: white;
+    margin-bottom: 2px;
+}
+
+.daily {
+    background-color: rgb(69, 193, 209);
+}
+
+.weekly {
+    background-color: #57BC90;
+}
+
+.monthly {
+    background-color: #015249;
+}
+
+.pastdue {
+    background-color: #FF533D;
+}
+
+
   
 
   .border {
