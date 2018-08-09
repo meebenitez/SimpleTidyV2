@@ -29,12 +29,22 @@
 
   .right-bar {
       visibility: hidden;
+      display: none;
   }
 
   .users-bar {
-      padding: 0px;
+      padding-top: 0px;
+      margin-left: 5px;
+      margin-top: 15px;
       text-align: left;
   }
+
+  .edit-bar {
+    padding-top: 0px;
+    margin-left: 5px;
+    margin-top: 10px;
+    text-align: left;
+}
 
   .white-background {
       background-color: white;
@@ -224,9 +234,8 @@
 
   img.photo {
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    vertical-align: bottom;
+    width: 30px;
+    height: 30px;
   }
 
   img.list_icon {
@@ -662,7 +671,7 @@ button.completed {
 
 .list-name {
     display: inline-block;
-    font-size: 1.25em;
+    font-size: 1em;
 }
 
 
@@ -772,6 +781,7 @@ input.edit_name_button:hover {
 
 .nav-bar {
     visibility: hidden;
+    display: none;
 }
 
 .title {
@@ -820,6 +830,7 @@ input.edit_name_button:hover {
 
     .right-bar {
         visibility: visible;
+        display: block;
         float: right;
         margin-right: 2px;
     }
@@ -855,15 +866,28 @@ input.edit_name_button:hover {
 
     .users-bar {
         visibility: hidden;
+        display: none;
+    }
+    .edit-bar {
+        visibility: hidden;
+        display: none;
     }
 
     .nav-bar {
         visibility: visible;
+        display: block;
     }
 
     .title {
         visibility: hidden;
+        display: none;
     }
+
+    img.photo {
+        width: 20px;
+        height: 20px;
+        vertical-align: bottom;
+      }
     
   
 }

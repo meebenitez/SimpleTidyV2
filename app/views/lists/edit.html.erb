@@ -26,7 +26,7 @@
                     <%= link_to image_tag((list_type_photo @list), :class=> "logo"), @list %><br>
                     <%= form_for(@list) do |f| %>
                         <h2>Change List Name</h2><br>
-                        <%= f.text_field :name, :value => @list.name, :class => 'edit_name', :maxlength => 15, :size => 40 %><br>
+                        <%= f.text_field :name, :value => @list.name, :class => 'edit_name', :maxlength => 10, :size => 40 %><br>
                         <%= f.submit 'Change Name', :class => 'edit_name_button', :id => 'change-name' %>
                     <% end %>
                     <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2">

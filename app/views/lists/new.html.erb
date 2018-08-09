@@ -13,7 +13,7 @@
         <%= f.radio_button :list_type, 'Car' %> Car  |
         <%= f.radio_button :list_type, 'Tech' %>  Tech<br><br>
         Now give it a name...<br>
-        <%= f.text_field :name, :value => "My Tidy Home", :class => 'edit_name' %>
+        <%= f.text_field :name, :value => "My Tidy Home", :class => 'edit_name', :maxlength => 10, :size => 40 %>
           <br>
           <br>
           <br>
