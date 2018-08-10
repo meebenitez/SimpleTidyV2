@@ -136,7 +136,7 @@ function setradio () {
 $(function () {
     $(document).on('click', ".select-button", function(e) {
         var ids = $(this).data("id");
-      var url = `/lists/${ids[1]}/chores/${ids[0]}/complete`
+        var url = `/lists/${ids[1]}/chores/${ids[0]}/complete`
       $.ajax ({
           method: "GET",
           url: url
@@ -151,11 +151,16 @@ $(function () {
             var chore = new Chore(data)
             var choreHTML = chore.formatCompletedButton()
             $(".completed-items").append(choreHTML);
-            $("#completed-list-container").load(location.href+" #completed-list-container>*</div>","");
-
+            //debugger;
+            //if ($(".completed-item").length > 0) {
+            if( $.trim( $('.show-completed').html() ) === "" ) {
+                $(".show-completed").html("<a href=''>Toggle Completed Chores</a>")
+            }
+            //}
       })
       e.preventDefault
     });
+    //$(".show-completed").load(location.href+" .show-completed>*</div>","");
     $('.completed-chores').hide();
     $(document).on('click','.show-completed', function(e){
       e.preventDefault();

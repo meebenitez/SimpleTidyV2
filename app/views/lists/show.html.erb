@@ -51,7 +51,10 @@
             <div class="row col-xs-12 zero-padding">
                 <div id="completed-list-container">
                     <% if @done_chores.length > 0 %>        
-                        <div class="show-completed"><a href="">Toggle Completed Chores</a></div>
+                        <div class="show-completed"><a href=''>Toggle Completed Chores</a></div>
+                    <% else %>
+                        <div class="show-completed"></div>
+                    <% end %>
                         <div class="row col-xs-12 completed-chores zero-padding">
                             <div class="completed-items">
                                 <% @done_chores.each do |chore| %>
@@ -63,7 +66,6 @@
                                 <% end %>
                             </div>
                         </div>
-                    <% end %>
                 </div>
             </div>
         </div>
