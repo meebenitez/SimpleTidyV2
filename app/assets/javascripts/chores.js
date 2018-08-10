@@ -160,7 +160,6 @@ $(function () {
       })
       e.preventDefault
     });
-    //$(".show-completed").load(location.href+" .show-completed>*</div>","");
     $('.completed-chores').hide();
     $(document).on('click','.show-completed', function(e){
       e.preventDefault();
