@@ -10,6 +10,7 @@ function Chore(chore){
 
 function formatName(chore){
     if (chore.timeOfDay === "morning"){
+        debugger;
         return `☀ ${chore.name}`
     } else if (chore.timeOfDay === "evening"){
         return `☾ ${chore.name}`
@@ -40,18 +41,28 @@ function sortChoresABC(chores, data){
         }
         return 0
     })
-    $(`#${data.frequency} > li`).remove()
+    $(`#${data.frequency} > div`).remove()
     sorted.forEach(function(chore){
         var choreHTML = formatEditListing(chore, data.list.id)
             $(`#${chore.frequency}`).append(choreHTML);
     })
 }
 
+function formatEditName(chore){
+    if (chore.time_of_day === "morning"){
+        debugger;
+        return `☀ ${chore.name}`
+    } else if (chore.time_of_day === "evening"){
+        return `☾ ${chore.name}`
+    } else {
+        return `${chore.name}`
+    }
+}
+
 function formatEditListing (chore, listID) {
   return `
-            <li class="${chore.frequency}" id="<%= chore.id%>">${chore.name} <a href="#" class="delete-chore" data-id='[${chore.id}, ${listID}]'>✖</a><a href="/lists/${listID}/chores/${chore.id}">✎</a></li>
-
-            `
+            <div class="${chore.frequency} edit-button" id="<%= chore.id%>">${formatEditName(chore)} -- <a href="/lists/${listID}/chores/${chore.id}"> (edit) </a><a href="#" class="delete-chore" data-id='[${chore.id}, ${listID}]'>✖</a></div>
+        `
 } 
 //////////////////////////CHORE CREATION
 
