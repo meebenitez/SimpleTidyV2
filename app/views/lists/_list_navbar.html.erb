@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
     <div class="dropdown">
-        <button class="dropbtn">☰ <div class="list-name"><span id="list-name"><%= list.name %></span></div></button>
+        <button class="dropbtn">☰ <div class="list-name"><span id="list-name"><%= link_to @list.name, @list %></a></span></div></button>
         <div class="dropdown-content">
         <%= link_to 'Your Lists', lists_path %>
         <%= link_to 'Your Account', edit_user_registration_path %>

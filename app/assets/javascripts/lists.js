@@ -15,7 +15,7 @@ $(function () {
          
                 var listHTML = 
                                 `
-                                <a href="/lists/${data.id}" class="listname_home">${data.name}</a>
+                                <a href="/lists/${data.id}">${data.name}</a>
                                 `
                 $(`#list-name`).html(listHTML)
             })
