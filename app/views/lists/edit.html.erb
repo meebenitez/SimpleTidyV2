@@ -63,15 +63,24 @@
         </div>
         <div class="row content chore-container">
                 <div class="col-xs-12">
-                        <h3>Add/Edit/Delete Chores</32>
+                        <h3>Edit Your Chore List</h2>
                 </div>
                 <div class="col-xs-12">
+                    <div>
+                        <span class="daily-text">DAILY</span>
+                    </div>
                     <%= render partial: "minicolumn_edit", locals: {chore_list: @daily_chores, :list_frequency => "daily" } %>
                 </div>
                 <div class="col-xs-12">
+                    <div>
+                        <span class="weekly-text">WEEKLY</span>
+                    </div>
                     <%= render partial: "minicolumn_edit", locals: {chore_list: @weekly_chores, :list_frequency => "weekly" } %>
                 </div>
                 <div class="col-xs-12">
+                    <div>
+                        <span class="monthly-text">MONTHLY</span>
+                    </div>
                     <%= render partial: "minicolumn_edit", locals: {chore_list: @monthly_chores, :list_frequency => "monthly" } %>
                 </div>
                 <div class="col-xs-12">

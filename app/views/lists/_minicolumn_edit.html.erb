@@ -1,15 +1,17 @@
 <% if chore_list != [] %>
-      <ul id="<%= list_frequency %>">
-        <% chore_list.each do |chore| %>
-          <% if chore.time_of_day == "morning" %>
-            <li class="<%= chore.frequency %>" id="<%= chore.id%>">☀ <%= chore.name %> <%= link_to '✎', edit_list_chore_path(@list, chore) %><a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a></li>
-          <% elsif chore.time_of_day == "evening" %>
-            <li class="<%= chore.frequency %>" id="<%= chore.id%>">☾ <%= chore.name %> <%= link_to '✎', edit_list_chore_path(@list, chore) %><a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a></li>
-            <% else %>
-            <li class="<%= chore.frequency %>" id="<%= chore.id%>"><%= chore.name %> <%= link_to '✎', edit_list_chore_path(@list, chore) %><a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a></li>
+      <center>
+        <div id="<%= list_frequency %>">
+          <% chore_list.each do |chore| %>
+            <% if chore.time_of_day == "morning" %>
+              <div class="<%= chore.frequency %> edit-button" id="<%= chore.id%>">☀ <%= chore.name %> -- <%= link_to ' (edit) ', edit_list_chore_path(@list, chore) %><a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a></div>
+            <% elsif chore.time_of_day == "evening" %>
+              <div class="<%= chore.frequency %> edit-button" id="<%= chore.id%>">☾ <%= chore.name %> -- <%= link_to ' (edit) ', edit_list_chore_path(@list, chore) %><a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a></div>
+              <% else %>
+              <div class="<%= chore.frequency %> edit-button" id="<%= chore.id%>"><%= chore.name %> -- <%= link_to ' (edit) ', edit_list_chore_path(@list, chore) %><a href="#" class="delete-chore" data-id='[<%=chore.id%>, <%=@list.id%>]'>✖</a></div>
+            <% end %>
           <% end %>
-        <% end %>
-      </ul>
+        </div>
+    </center>
 <% else %>
   <br><br>
   <center>You have no chores created.</center>

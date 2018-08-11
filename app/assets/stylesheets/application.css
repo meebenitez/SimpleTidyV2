@@ -659,6 +659,32 @@ button.chore {
     border: none;
 }
 
+.edit-button {
+    width: 100%;
+    padding: 5px;
+    color: white;
+    text-align: center;
+    font-size: 1em;
+    border: none;
+    margin: 5px;
+}
+
+.daily-text {
+    color: rgb(69, 193, 209)
+}
+
+.weekly-text {
+    color: #57BC90
+}
+
+.monthly-text {
+    color: #015249
+}
+
+.edit-button a {
+    color: white;
+}
+
 button.daily {
     background-color: rgb(69, 193, 209);
 }
@@ -877,6 +903,8 @@ input.edit_name_button:hover {
         color: #015249;
     }
 
+
+
     button.chore {
         padding: 5px;
         font-size: 1em;
@@ -898,6 +926,8 @@ input.edit_name_button:hover {
         visibility: hidden;
         display: none;
     }
+
+
 
     .nav-bar {
         visibility: visible;
