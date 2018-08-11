@@ -1,18 +1,18 @@
  <div class="col-xs-12 line">
-    <center><h3>Chore Name</h3></center>
+    <center><h3>Add New Chore</h3></center>
     <%= form_for([list, list.chores.new], html: {class: "change-name"}) do |f| %>
     <% f.hidden_field :list_id, value: list.id %>
       <div class="field">
         <div class="new-chore-error">
         </div>
         <center>
-          <%= f.text_field :name, :value => "", :class => 'edit_chore', :maxlength => 100, :size => 60 %><br>
+          <%= f.text_field :name, :value => "", :class => 'edit_chore', :maxlength => 100, :size => 80 %><br>
         </center>
       </div>
   
     <div class="field">
       <center>
-        <h3>Frequency</h3>
+        <div>Frequency</div>
         <%= f.radio_button :frequency, 'daily', onClick: "resetradio()", :checked => true %> Daily |
         <%= f.radio_button :frequency, 'weekly', onClick: "resetradio()", :checked => false %> Weekly |
         <%= f.radio_button :frequency, 'monthly', onClick: "resetradio()", :checked => false %> Monthly
@@ -29,6 +29,8 @@
       <div class="actions">
         <%= f.submit 'Create Chore', :class => 'create-chore edit_name_button' %>
       </div>
+      <br>
+      <br>
       
   
     <% end %>
