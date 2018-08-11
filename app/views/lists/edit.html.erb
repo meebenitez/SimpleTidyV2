@@ -61,7 +61,7 @@
                 <% end %>
             </div>
         </div>
-        <div class="row content chore-container">
+        <div class="row content chore-container lists-border">
                 <div class="col-xs-12">
                         <h3>Edit Your Chore List</h2>
                 </div>
@@ -88,9 +88,11 @@
                 </div>
             </div>
             <% if can? :manage, @list %>
-                <div class="col-xs-12 col-md-12 line">
-                    <h3><%= link_to "Delete This List", list_path(@list.id), :method=>"delete" %></h3><span>This action cannot be undone.</span>
-                    <br>
+                <div class="chore-container col-xs-12 lists-border">
+                    
+                        <h3><%= link_to "Delete This List", list_path(@list.id), :method=>"delete" %></h3><span>This action cannot be undone.</span>
+                        <br>
+                    
                 </div>
             <% end %>
     
