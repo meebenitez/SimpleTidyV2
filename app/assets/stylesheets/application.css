@@ -859,6 +859,17 @@ input.edit_name_button:hover {
         width: 100%;
 
     } 
+
+    .lists-container {
+        width: 80%;
+    }
+
+
+    h1 {
+        font-size: 1.25em;
+      }
+
+
     input.chore_daily {
         font-size: 10px;
     }

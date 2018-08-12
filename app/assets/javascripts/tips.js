@@ -1,4 +1,4 @@
-function generateTip(){
+/*function generateTip(){
     $.get("/tips/", function(data) {
         var tip = data[Math.floor(Math.random() * data.length )];
         tipHTML =   `
@@ -19,4 +19,4 @@ function generateTip(){
             e.preventDefault();
         })
     })
-  
+  */
