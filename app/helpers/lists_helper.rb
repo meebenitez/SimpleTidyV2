@@ -2,12 +2,19 @@ module ListsHelper
 
 
   def list_type_photo(list)
-      if list.list_type == "Home"
-        url = "house.png"
+      pastdue = check_list_past_due(list)
+      if list.list_type == "Home" && pastdue
+        url = "home_red.png"
+      elsif list.list_type == "Home"
+        url = "home_black.png"
+      elsif list.list_type == "Car" && pastdue
+        url = "car_red.png"
       elsif list.list_type == "Car"
-        url = "car.png"
+        url = "car_black.png"
+      elsif pastdue
+        url = "laptop_red.png"
       else
-        url = "laptop.png"
+        url = "laptop_black.png"
       end
   end
 

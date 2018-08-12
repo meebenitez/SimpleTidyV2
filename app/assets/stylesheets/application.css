@@ -226,7 +226,8 @@
 .lists .list {
     flex: 1 0 25%;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 0px;
+    margin: 10px;
     background-color: white;
     border-radius: 8px;
 }
@@ -264,7 +265,6 @@
   }
 
   img.list_icon {
-    width: 50px;
     height: 50px;
   }
 
@@ -756,6 +756,10 @@ input.chore_monthly_click {
 
 input.chore_monthly_click:hover {
     background-color: #86CAE8;
+}
+
+.lists-container {
+    width: 40%;
 }
 
 
