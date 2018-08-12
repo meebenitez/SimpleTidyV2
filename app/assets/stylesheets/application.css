@@ -865,10 +865,6 @@ input.edit_name_button:hover {
     }
 
 
-    h1 {
-        font-size: 1.25em;
-      }
-
 
     input.chore_daily {
         font-size: 10px;
@@ -962,4 +958,17 @@ input.edit_name_button:hover {
     
   
 }
+
+@media screen and (max-width: 340px) {
+
+    img.list_icon {
+        height: 30px;
+      }
+
+      h1 {
+        font-size: 1.25em;
+      }
+
+}
+
 
