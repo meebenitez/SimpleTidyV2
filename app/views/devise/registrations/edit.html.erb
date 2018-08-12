@@ -1,39 +1,35 @@
-
-<div class="dummycolumn">
-  .<br>.<br>.<br>
+<div class="row content padding1">
+    <%= render 'layouts/messages' %><br>
 </div>
-<div class="column1">
-    <center><h1>Your Profile</h1></center>
+<div class="row content">
+  <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 text-left bottom-border padding4">
+      <span style="display: inline-block; vertical-align: bottom;">
+          <%= render "layouts/navbar" %>
+      </span> 
   </div>
-<div class="column1_line">
-  <div class="signin">
-    <div class="alignleft_signin">
-      <h3>Your Email:</h3>
-      <%= current_user.email %><br><br>
-      <%= render 'devise/passwords/edit_form' %>
-    </div>
-  <div class="alignright">
-    <center>
-      <br>
-      <br>
-      <br>
-      <%= image_tag(current_user.imgurl, :class => "list_icon")%><br>
-      <h2><%= current_user.name %></h2><br>
-    </center>
-  </div>
-  <div style="clear: both;">
-
-  <div class="column1_line">
-    <center>
-      <h3>Looking to leave?</h3>
-      <button>Delete My Account</button>
-      <%# button_to "Cancel your account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-      (This feature is disabled for testing)
-    </center>
-  </div>
-
-  </div>
-
 </div>
-  
+<div class="row content">
+  <div class="col-xs-12 padding6">
+      <center>
+          <h3>Your Profile</h3><br>
+          <%= image_tag(current_user.imgurl, :class => "user-photo")%><br>
+          <div><%= current_user.name %></div>
+          <div>
+              <h3>Your Email:</h3>
+              <%= current_user.email %><br><br>
+              <%= render 'devise/passwords/edit_form' %>
+              <h3>Looking to leave?</h3>
+              <button>Delete My Account</button>
+              <%= button_to "Cancel your account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+          </div>
+        </center>
+  </div>    
 </div>
+
+
+
+
+
+
+
+
