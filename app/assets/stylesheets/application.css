@@ -598,13 +598,15 @@
 /*-------------------fields*/
 
 input[type=text], select {
-    width: 100%;
-    padding: 12px 20px;
+    width: 50%;
+    padding: 5px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    text-align: center;
+    font-size: 1em;
 }
 
 input[type=name], select {
@@ -631,9 +633,9 @@ input[type=email], select {
 
 
 input[type=password], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    width: 70%;
+    padding: 0px;
+    margin: 0px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -821,8 +823,23 @@ input.edit_name_button {
     white-space: normal;
 }
 
+
 input.edit_name_button:hover {
     background-color: #999999;
+}
+
+input.cancel_account {
+    width: 70%;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1em;
+    white-space: normal;
 }
 
 
@@ -976,6 +993,10 @@ input.edit_name_button:hover {
       h1 {
         font-size: 1.25em;
       }
+
+      input.edit_name {
+        width: 100%;
+    }
 
 }
 

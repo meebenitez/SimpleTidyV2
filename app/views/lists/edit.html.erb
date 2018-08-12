@@ -68,8 +68,7 @@
             </div>
             <% if can? :manage, @list %>
                 <div class="chore-container col-xs-12 lists-border">
-                    
-                        <h3><%= link_to "Delete This List", list_path(@list.id), :method=>"delete" %></h3><span>This action cannot be undone.</span>
+                        <h3><%= link_to "Delete This List", list_path(@list.id), data: { confirm: "Are you sure you want to delete your list?" }, :method=>"delete" %></h3><span>This action cannot be undone.</span>
                         <br>
                     
                 </div>
