@@ -15,8 +15,10 @@
                             <% end %>  
                         </div>
                         
-                        <div class="col-xs-12 zero-padding title">
-                            <%= render partial: "list_navbar", locals: {list: @list} %>
+                        <div class="col-xs-12 zero-padding">
+                            <div class="title">
+                                <%= render partial: "list_navbar", locals: {list: @list} %>
+                            </div>
                         </div>
                         <div class="users-bar col-xs-12 zero-padding">
                             <% @list.users.each do |user| %>
@@ -51,7 +53,7 @@
                     <div class="col-xs-12">
                         <%= form_for(@list) do |f| %>
                             <h3>Edit List Name</h3>
-                            <%= f.text_field :name, :value => @list.name, :class => 'edit_name', :maxlength => 10, :size => 40 %><br>
+                            <%= f.text_field :name, :value => @list.name, :class => 'edit_name', :maxlength => 12, :size => 40 %><br>
                             <%= f.submit 'Update', :class => 'edit_name_button', :id => 'change-name' %>
                         <% end %>
                         <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2">

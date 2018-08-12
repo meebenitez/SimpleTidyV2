@@ -12,12 +12,15 @@ $(function () {
                 url: action,
                 data: values
             }).done(function(data){
-         
+                debugger;
                 var listHTML = 
                                 `
                                 <a href="/lists/${data.id}">${data.name}</a>
                                 `
-                $(`#list-name`).html(listHTML)
+
+                debugger;
+                $(`.list-name-html`).html(listHTML)
+                debugger;
             })
     
         })
