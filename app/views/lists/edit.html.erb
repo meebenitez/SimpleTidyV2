@@ -7,12 +7,7 @@
                             <%= render partial: "list_navbar", locals: {list: @list} %>
                         </div>
                         <div class="right-bar align-text-bottom text-right">
-                            <% @list.users.each do |user| %>
-                                <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %>
-                            <% end %>
-                            <% if can? :edit, @list %>
-                                <%= link_to image_tag('gear.png', :class =>"photo"), edit_list_path(@list.id) %>
-                            <% end %>  
+                            (EDIT MODE)
                         </div>
                         
                         <div class="col-xs-12 zero-padding">
@@ -21,25 +16,7 @@
                             </div>
                         </div>
                         <div class="users-bar col-xs-12 zero-padding">
-                            <% @list.users.each do |user| %>
-                            <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %>
-                            <% end %>
-                            <% if can? :edit, @list %>
-                                 <%= link_to image_tag('plus.png', :class =>"photo"), new_list_invite_path(@list.id) %>
-                             <% end %>
-    
-                        </div>
-                        <div class="users-bar col-xs-12 zero-padding">
-                            <% if can? :edit, @list %>
-                                <%= link_to image_tag('gear.png', :class =>"photo"), edit_list_path(@list.id) %>
-                            <% end %>  
-                        </div>
-                        <div class="users-bar col-xs-12 zero-padding">
-                            <div><span style="font-size: .9em;">Legend:</span></div>
-                            <div class="legend daily">Daily</div>
-                            <div class="legend weekly">Weekly</div> 
-                            <div class="legend monthly">Monthly</div> 
-                            <div class="legend pastdue">Past Due</div> 
+                            (EDIT MODE)
                         </div>
                     </div>
             </div>
