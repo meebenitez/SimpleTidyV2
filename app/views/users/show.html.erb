@@ -1,20 +1,45 @@
-<div class="dummycolumn">
-  .<br>.<br>.<br>
+<div class="row content padding1">
+    <%= render 'layouts/messages' %><br>
+</div>
+<div class="row content">
+  <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 text-left bottom-border padding4">
+      <span style="display: inline-block; vertical-align: bottom;">
+          <%= render "layouts/navbar" %>
+      </span> 
+  </div>
+</div>
+<div class="row content">
+  <div class="col-xs-12 padding6">
+      <center>
+          <h3>User Profile</h3><br>
+          <%= image_tag(@user.imgurl, :class => "user-photo") %><br>
+          <%= @user.name %><br><br>
+          <% if @user == current_user %>
+            <%= link_to 'Edit your Profile', edit_user_registration_path %>
+          <% end %>
+          <br><br>
+      
+          <br><br>
+          <%= link_to "Back", :back %>
+        </center>
+  </div>    
 </div>
 
-<div class="column1_header">
-  <center>
-    <h2>User Profile</h2><br>
-    <%= image_tag(@user.imgurl) %><br>
-    <%= @user.name %><br><br>
-    <% if @user == current_user %>
-      <%= link_to 'Edit your Profile', edit_user_registration_path %>
-    <% end %>
-    <br><br>
-
-    <br><br>
-    <%= link_to "Back", :back %>
-  </center>
 
 
-</div>
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
