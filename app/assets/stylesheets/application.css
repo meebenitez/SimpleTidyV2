@@ -632,6 +632,7 @@ input[type=email], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    text-align: center;
 }
 
 
@@ -643,6 +644,7 @@ input[type=password], select {
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
+    text-align: center;
     box-sizing: border-box;
 }
 
