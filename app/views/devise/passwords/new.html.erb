@@ -1,16 +1,35 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<div class="row content padding1">
+    <%= render 'layouts/messages' %><br>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+  
+  <div class="row content">
+    <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 bottom-border padding4">
+        <h2>SimpleTidy</h2>
+        <h3>Your simple housekeeping app</h3>
+    </div>    
   </div>
-<% end %>
+  <div class="row content">
+  <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 padding4">
+      <div class="col-xs-12 text-center">
+          <h3>Forgot your password?</h3>
 
-<%= render "devise/shared/links" %>
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+            <%= devise_error_messages! %>
+
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Send password reset email", class: "edit_name_button" %>
+            </div>
+          <% end %>
+
+          <% if controller_name != 'sessions' %>
+                <%= link_to "Back to the login page", new_session_path(resource_name) %><br />
+          <% end %>
+      </div>
+  </div>
+</div>
+  

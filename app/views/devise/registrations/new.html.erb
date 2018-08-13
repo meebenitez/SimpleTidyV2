@@ -47,16 +47,12 @@
           
           <h3>Already a member?</h3>
           <div class="actions">
-            <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-              <%= link_to "Log in here", new_session_path(resource_name) %><br />
-            <% end -%>
+              <% if controller_name != 'sessions' %>
+                <%= link_to "Log in", new_session_path(resource_name) %><br />
+              <% end %>
                 
           </div>  
       </div>
   </div>
 </div>
   
-  
-  
-  
-
