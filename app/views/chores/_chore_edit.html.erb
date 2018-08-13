@@ -17,11 +17,38 @@
       
 
       <div class="buttons" >
+          <script type="text/javascript">
+            if ($(":input#chore_frequency_daily").is(':checked')){
+              document.querySelector('.buttons').style.display = 'block';
+            } else {
+              document.querySelector('.buttons').style.display = 'none';
+            }
+          
+            function resetradio () {
+              var radio = document.getElementsByName('chore[frequency]')[0];
+              var buttons = document.querySelector('.buttons');
+              var radios = document.getElementsByName('chore[time_of_day]');
+              radios[0].checked = false;
+              if (radio.checked == true ) {
+                  buttons.style.display = 'block';
+              }
+              else {
+                  buttons.style.display = 'none';
+              }
+          }
+          
+          function setradio () {
+              var radio = document.getElementsByName('chore[frequency]')[0];
+              if (radio.checked == false) {
+                  radio.checked = true;
+              }
+          }
+          </script>
         <br>
         When should this chore be completed?<br>
-        <%= f.radio_button :time_of_day, 'morning', onClick:"setradio()", :checked => chore.time_of_day == "daily" %> Morning | 
-        <%= f.radio_button :time_of_day, 'evening', onClick:"setradio()", :checked => chore.time_of_day == "evening" %> Evening |
-        <%= f.radio_button :time_of_day, nil, onClick:"setradio()", :checked => chore.time_of_day == nil %> Any Time
+        <div class="time-of-day-button"><%= f.radio_button :time_of_day, 'morning', onClick:"setradio()", :checked => chore.time_of_day == "daily" %> Morning </div>
+        <div class="time-of-day-button"><%= f.radio_button :time_of_day, 'evening', onClick:"setradio()", :checked => chore.time_of_day == "evening" %> Evening </div> 
+        <div class="time-of-day-button"><%= f.radio_button :time_of_day, nil, onClick:"setradio()", :checked => chore.time_of_day == nil %> Any Time </div>
       </div>
     </center>
     </div>
@@ -33,30 +60,3 @@
   <% end %>
 </div>
 
-<script type="text/javascript">
-  if ($(":input#chore_frequency_daily").is(':checked')){
-    document.querySelector('.buttons').style.display = 'block';
-  } else {
-    document.querySelector('.buttons').style.display = 'none';
-  }
-
-  function resetradio () {
-    var radio = document.getElementsByName('chore[frequency]')[0];
-    var buttons = document.querySelector('.buttons');
-    var radios = document.getElementsByName('chore[time_of_day]');
-    radios[0].checked = false;
-    if (radio.checked == true ) {
-        buttons.style.display = 'block';
-    }
-    else {
-        buttons.style.display = 'none';
-    }
-}
-
-function setradio () {
-    var radio = document.getElementsByName('chore[frequency]')[0];
-    if (radio.checked == false) {
-        radio.checked = true;
-    }
-}
-</script>

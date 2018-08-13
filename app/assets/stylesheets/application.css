@@ -879,6 +879,12 @@ input.cancel_account {
     max-width: 80%
 }
 
+.time-of-day-button {
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
 
 
 /*-----------New Layout CSS ------------*/
@@ -893,6 +899,11 @@ input.cancel_account {
         width: 100%;
 
     } 
+
+    .time-of-day-button {
+        display: block;
+    }
+    
 
     .lists-container {
         width: 80%;
