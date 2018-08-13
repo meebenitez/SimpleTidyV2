@@ -625,8 +625,8 @@ input[type=name], select {
 
 
 input[type=email], select {
-    width: 100%;
-    padding: 12px 20px;
+    width: 50%;
+    padding: 5px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -637,9 +637,9 @@ input[type=email], select {
 
 
 input[type=password], select {
-    width: 70%;
-    padding: 0px;
-    margin: 0px;
+    width: 50%;
+    padding: 5px;
+    margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -815,7 +815,7 @@ input.email_invite {
 
 input.edit_name_button {
     width: auto;
-    background-color: #000000;
+    background-color: #ff7c40;
     color: white;
     padding: 5px;
     margin: 8px 0;

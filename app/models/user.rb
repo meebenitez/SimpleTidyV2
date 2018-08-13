@@ -5,6 +5,8 @@ class User < ApplicationRecord
           :rememberable, :trackable, :validatable, :omniauthable, 
           omniauth_providers: [:facebook]
 
+          validates :name, presence: true
+
   has_many :lists_users
   has_many :lists, through: :lists_users
   has_many :chores, through: :lists

@@ -1,68 +1,81 @@
-<div class="row content padding1">
-  <%= render 'layouts/messages' %><br>
-</div>
-  
 <div class="row content">
-  <div class="col-xs-12 col-xs-offset-0 col-md-6 col-md-offset-3 bottom-border padding4">
-      <h1 style="font-size: 45px;">SimpleTidy</h1>
-      <h3>Your simple housekeeping app</h3>
-  </div>    
-</div>
-<div class="row content">
-  <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 padding4">
-    <h2>Sign up for a New Account</h2>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
-
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
+    <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 text-left bottom-border padding4">
+        <span style="display: inline-block; vertical-align: bottom;">
+            <%= render "layouts/navbar" %>
+        </span> 
     </div>
-
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Sign up" %>
-    </div>
-
-    <div class="actions">
-      <br>
-      <center>
-        <h2>Or</h2>
-        <br>
+  </div>
+  <div class="row content">
+    <center>
+        <div class="lists-container">
+            <%= render 'layouts/messages' %><br>
+            <h3>Let's make housekeeping simple.</h3>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <span style="color: red"><%= devise_error_messages! %></span>
+            <div class="field">
+                <%= f.label :name %>: 
+                <%= f.text_field :name, placeholder: "What should we call you?" %>
+              </div>
           
-            <% if devise_mapping.omniauthable? %>
-              <% resource_class.omniauth_providers.each do |provider| %>
-                <%= link_to "Sign up with Facebook", omniauth_authorize_path(resource_name, provider), :class => "facebook" %>
+              <div class="field">
+                <%= f.label :email %>: 
+                <%= f.email_field :email, autofocus: true, placeholder: "your email address" %>
+              </div>
+          
+              <div class="field">
+                <%= f.label :password %>
+                <%= f.password_field :password, autocomplete: "off" %>
+              </div>
+          
+              <div class="field">
+                <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "confirm password" %>
+              </div>
+          
+              <div class="actions">
+                <%= f.submit "Create Your New Account", :class => "edit_name_button" %>
+                
+              </div>
               <% end %>
-            <% end %>
-        <br>
-        <br>
-        <br>
-        <h3>Already have an account?</h3>
-          <% if controller_name != 'sessions' %>
-            <%= link_to "Log in", new_session_path(resource_name) %><br />
-          <% end %>
-      </center>
-    </div>
-</div>
-<% end %>
+              <div>
+                Or...<br><br>
+              </div>
+              <div class="actions">
+                  <% if devise_mapping.omniauthable? %>
+                  <% resource_class.omniauth_providers.each do |provider| %>
+                    <%= link_to "Sign up with Facebook", omniauth_authorize_path(resource_name, provider), :class => "facebook" %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div>
+                  <h3>Already have an account?</h3>
+                  <% if controller_name != 'sessions' %>
+                    <%= link_to "Log in", new_session_path(resource_name) %><br />
+                  <% end %>
+              </div>
+           
+      </div>    
+    </center>
+    
+  </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
 
 
 

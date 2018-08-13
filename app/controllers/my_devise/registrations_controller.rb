@@ -2,8 +2,10 @@ class MyDevise::RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    current_user.update(name: params[:user][:name])
-    current_user.invites << Invite.all.select {|invite| invite.email == current_user.email }
+    if current_user
+      current_user.update(name: params[:user][:name])
+      current_user.invites << Invite.all.select {|invite| invite.email == current_user.email }
+    end
   end
 
   def destroy
