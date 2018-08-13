@@ -1,80 +1,62 @@
-<div class="row content">
-    <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 text-left bottom-border padding4">
-        <span style="display: inline-block; vertical-align: bottom;">
-            <%= render "layouts/navbar" %>
-        </span> 
-    </div>
+<div class="row content padding1">
+    <%= render 'layouts/messages' %><br>
+  </div>
+  
+  <div class="row content">
+  <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 bottom-border padding4">
+      <h2>SimpleTidy</h2>
+      <h3>Your simple housekeeping app</h3>
+  </div>    
   </div>
   <div class="row content">
-    <center>
-        <div class="lists-container">
-            <%= render 'layouts/messages' %><br>
-            <h3>Let's make housekeeping simple.</h3>
-            <div>
-                <span style="color: red"><%= devise_error_messages! %></span>
-            </div>
+  <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 padding4">
+      <div class="col-xs-12 col-md-7 text-center right-border">
+          <h3>Register</h3>
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <div class="field">
+              <div class="field">
                 <%= f.label :name %><br>
                 <%= f.text_field :name %>
               </div>
-          
               <div class="field">
-                <%= f.label :email %><br>
+                <%= f.label :email %><br />
                 <%= f.email_field :email, autofocus: true %>
               </div>
-          
               <div class="field">
-                <%= f.label :password %><br>
-                <%= f.password_field :password, autocomplete: "off" %><br>
+                <%= f.label :password %><br />
+                <%= f.password_field :password, autocomplete: "off" %>
                 <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "confirm password" %>
               </div>
+              <div class="actions">
+                <%= f.submit "Sign Up", class: "edit_name_button" %><br>
+              </div>
+            <% end %>
+      </div>
+      <div class="col-xs-12 col-md-5">
+          <br>
+          <h3>Want it simpler?</h3>
+          <br>
+            <center>
+              <%- if devise_mapping.omniauthable? %>
+                <%- resource_class.omniauth_providers.each do |provider| %>
+                  <div class="facebook"><%= link_to "Sign up with Facebook", omniauth_authorize_path(resource_name, provider) %></div>
+                <% end -%>
+              <% end -%>
+            </center>
+          <br>
+          <br>
           
-              <div class="actions">
-                <%= f.submit "Create Your New Account", :class => "edit_name_button" %>
+          <h3>Already a member?</h3>
+          <div class="actions">
+            <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+              <%= link_to "Log in here", new_session_path(resource_name) %><br />
+            <% end -%>
                 
-              </div>
-              <% end %>
-              <div>
-                Or...<br><br>
-              </div>
-              <div class="actions">
-                  <% if devise_mapping.omniauthable? %>
-                  <% resource_class.omniauth_providers.each do |provider| %>
-                    <%= link_to "Sign up with Facebook", omniauth_authorize_path(resource_name, provider), :class => "facebook" %>
-                  <% end %>
-                <% end %>
-              </div>
-              <div>
-                  <h3>Already have an account?</h3>
-                  <% if controller_name != 'sessions' %>
-                    <%= link_to "Log in", new_session_path(resource_name) %><br />
-                  <% end %>
-              </div>
-           
-      </div>    
-    </center>
-    
+          </div>  
+      </div>
   </div>
+</div>
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
+  
+  
+  
 
