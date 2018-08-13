@@ -869,9 +869,14 @@ input.cancel_account {
     display: none;
 }
 
+
 .title {
     padding: 0px;
     text-align: left;
+}
+
+.edit-chore {
+    max-width: 80%
 }
 
 
@@ -965,6 +970,10 @@ input.cancel_account {
     .edit-bar {
         visibility: hidden;
         display: none;
+    }
+
+    .edit-chore {
+        max-width: 90%
     }
 
 

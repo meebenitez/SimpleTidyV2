@@ -1,26 +1,4 @@
-<script type="text/javascript">
-    function resetradio () {
-      var radio = document.getElementsByName('chore[frequency]')[0];
-      var buttons = document.querySelector('.buttons');
-      var radios = document.getElementsByName('chore[time_of_day]');
-      radios[0].checked = false;
-      if (radio.checked == true) {
-          buttons.style.display = 'block';
-      }
-      else {
-          buttons.style.display = 'none';
-      }
-  }
-
-  function setradio () {
-      var radio = document.getElementsByName('chore[frequency]')[0];
-      if (radio.checked == false) {
-          radio.checked = true;
-      }
-  }
-</script>
-
-<div class="column1_line">
+<div>
 
   <%= form_for [list, chore] do |f| %>
     <div class="field">
@@ -35,7 +13,10 @@
       <%= f.radio_button :frequency, 'daily', onClick: "resetradio()", :checked => chore.frequency == "daily" %> Daily |
       <%= f.radio_button :frequency, 'weekly', onClick: "resetradio()", :checked => chore.frequency == "weekly" %> Weekly |
       <%= f.radio_button :frequency, 'monthly', onClick: "resetradio()", :checked => chore.frequency == "monthly" %> Monthly
-      <div class="buttons">
+
+      
+
+      <div class="buttons" >
         <br>
         When should this chore be completed?<br>
         <%= f.radio_button :time_of_day, 'morning', onClick:"setradio()", :checked => chore.time_of_day == "daily" %> Morning | 
@@ -46,8 +27,36 @@
     </div>
 
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "Submit", class: 'edit_name_button' %>
     </div>
 
   <% end %>
 </div>
+
+<script type="text/javascript">
+  if ($(":input#chore_frequency_daily").is(':checked')){
+    document.querySelector('.buttons').style.display = 'block';
+  } else {
+    document.querySelector('.buttons').style.display = 'none';
+  }
+
+  function resetradio () {
+    var radio = document.getElementsByName('chore[frequency]')[0];
+    var buttons = document.querySelector('.buttons');
+    var radios = document.getElementsByName('chore[time_of_day]');
+    radios[0].checked = false;
+    if (radio.checked == true ) {
+        buttons.style.display = 'block';
+    }
+    else {
+        buttons.style.display = 'none';
+    }
+}
+
+function setradio () {
+    var radio = document.getElementsByName('chore[frequency]')[0];
+    if (radio.checked == false) {
+        radio.checked = true;
+    }
+}
+</script>
