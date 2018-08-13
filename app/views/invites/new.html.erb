@@ -1,28 +1,26 @@
-<div class="dummycolumn">
-  .<br>.<br>.<br>
-</div>
-
-<div class="column1_header">
-    <div class="alignleft_header">
-        <%= link_to image_tag((list_type_photo @list), :class=> "logo"), @list %> <%= @list.name %>
+<div class="row content">
+    <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 text-left bottom-border padding4">
+        <span style="display: inline-block; vertical-align: bottom;">
+          <%= render partial: "/lists/list_navbar", locals: {list: @list} %>
+        </span> 
     </div>
-    <div class="alignright_header">
-      <br><br>
-      (EDIT MODE)
-    </div>
-    
-    <div style="clear: both;"></div>
-</div>
-  <div class="column1_line">
-    <center>
-      <% @list.users.each do |user| %>
-        <%= link_to image_tag(user.imgurl, :class => "photo"), user_path(user.id) %>
-      <% end %>
-      <br>
-      <h3>Invite another friend to help you with "<%= @list.name %>"?</h3>
-      Enter their email below.<br>
-      <%= render partial: 'new', locals: {list: @list} %>
-      <br><br>
-      <%= link_to "Back", :back %>
-    </center>
   </div>
+  <div class="row content">
+    <div class="col-xs-12 padding6">
+        <center>
+            <div class="edit-chore">
+              <div class="row content padding1" id="notice">
+                  <%= render 'layouts/messages' %><br>
+              </div>
+              <br>
+              <h3>Invite another friend to help you with "<%= @list.name %>"?</h3>
+              Enter their email below.<br>
+                <%= render partial: 'new', locals: {list: @list} %>
+              <br><br>
+              <%= link_to "Back", edit_list_path(@list) %>
+            </div>
+          </center>
+    </div>    
+  </div>
+  
+
