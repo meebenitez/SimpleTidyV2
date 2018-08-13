@@ -67,7 +67,7 @@ module Constants
       ["Tidy computer/laptop desktop", "daily", "", "not done", false],
       ["Delete your downloads folder", "weekly", "", "not done", false],
       ["Delete 10 obsolete bookmarks", "weekly", "", "not done", false],
-      ["Sort 10 userful bookmarks", "weekly", "", "not done", false],
+      ["Sort 10 useful bookmarks", "weekly", "", "not done", false],
       ["Optimize computer/laptop with a cleaner software", "monthly", "", "not done", false],
       ["Respond to all emails", "daily", "", "not done", false],
       ["Unsubscribe from 5 facebook pages", "weekly", "", "not done", false],
