@@ -218,9 +218,26 @@
 .items .item {
     flex: 1 0 25%;
     box-sizing: border-box;
-    flex-basis: 31%;
+    flex-basis: 20%;
     margin: 2px;
 }
+
+.users {
+    display: flex;
+    flex-wrap: wrap;
+}
+.users .user {
+    flex: 1 0 25%;
+    box-sizing: border-box;
+    flex-basis: 31%;
+    margin: 5px;
+    padding: 5px;
+}
+
+.users-edit-container {
+    width: 62%;
+}
+
 
 
 
