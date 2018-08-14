@@ -306,6 +306,12 @@
     height: 150px;
   }
 
+  .dropbtn-holder {
+      padding: 0px;
+      margin: 0px;
+      display:inline-block;
+  }
+
 
 
 
@@ -718,7 +724,10 @@ button.completed {
 
 .list-name {
     display: inline-block;
-    font-size: 1em;
+    font-size: 1.5em;
+    vertical-align: top;
+    line-height: 2.1;
+
 }
 
 
@@ -958,7 +967,9 @@ input.cancel_account {
         visibility: visible;
         display: block;
         float: right;
+        margin-top: 2px;
         margin-right: 2px;
+        line-height: .5;
     }
 
     .right-bar-daily {
@@ -1010,6 +1021,8 @@ input.cancel_account {
     .nav-bar {
         visibility: visible;
         display: block;
+        float: left;
+        text-align: left;
     }
 
     .title {
