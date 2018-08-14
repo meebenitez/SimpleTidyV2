@@ -218,7 +218,7 @@
 .items .item {
     flex: 1 0 25%;
     box-sizing: border-box;
-    flex-basis: 20%;
+    flex-basis: 31%;
     margin: 2px;
 }
 
