@@ -15,7 +15,7 @@
             <%= f.fields_for :users, non_creators(list, list.users) do |user_field| %>
               <%= user_field.hidden_field :id %>
               <div class="item">
-                <%= user_field.object.name %><br>
+                <%= user_field.object.name.split(" ").first %><br>
                 <%= link_to image_tag(user_field.object.imgurl, :class => "logo"), user_path(user_field.object.id) %><br>
                 <%= link_to 'Remove', remove_from_list_path(list.id, :user => user_field.object.id) %><br>
                 Admin?<br>
