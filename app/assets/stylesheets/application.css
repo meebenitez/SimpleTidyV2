@@ -914,7 +914,8 @@ input.cancel_account {
 
     .chore-container {
         margin-top: 25px;
-        margin-left: 0;
+        margin-left: 0px;
+        margin-right: 0px;
         padding: 5px;
         width: 100%;
     }
