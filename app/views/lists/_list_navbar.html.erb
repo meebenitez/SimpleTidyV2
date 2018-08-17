@@ -11,10 +11,13 @@
     </div>
     <div class="list-name"><span class="list-name-html"><%= link_to @list.name, @list %></span></div>
 <% else %>
-    <div class="dropdown">
-    <button class="dropbtn">☰</button>
-    <div class="dropdown-content">
-        <%= link_to 'Login', new_user_session_path %>
+    <div class="dropbtn-holder">
+        <div class="dropdown">
+            <button class="dropbtn">☰</button>
+            <div class="dropdown-content">
+                <%= link_to 'Login', new_user_session_path %>
+            </div>
+        </div>
     </div>
-    </div>
+    <div class="list-name"><span class="list-name-html"><%= link_to "SimpleTidy", lists_path %></span></div>
 <% end %>
