@@ -2,20 +2,24 @@ module ListsHelper
 
 
   def list_type_photo(list)
-      pastdue = check_list_past_due(list)
-      if list.list_type == "Home" && pastdue
-        url = "home_red.png"
-      elsif list.list_type == "Home"
+      if list.list_type == "Home"
         url = "home_black.png"
-      elsif list.list_type == "Car" && pastdue
-        url = "car_red.png"
       elsif list.list_type == "Car"
         url = "car_black.png"
-      elsif pastdue
-        url = "laptop_red.png"
       else
         url = "laptop_black.png"
       end
+  end
+
+  #had to duplicate this because of some weird Heroku performance issue, will DRY up later
+  def list_type_photo_pastdue(list)
+    if list.list_type == "Home"
+      url = "home_red.png"
+    elsif list.list_type == "Car"
+      url = "car_red.png"
+    else
+      url = "laptop_red.png"
+    end
   end
 
   def check_list_past_due(list)

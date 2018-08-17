@@ -16,10 +16,11 @@
           <div class="lists">  
                 <% @lists.each do |list| %>
                   <div class="list">
-                    <%= link_to image_tag((list_type_photo list), :class => "list_icon"), list_path(list.id) %><br>
                     <% if (check_list_past_due list) == true %>
+                      <%= link_to image_tag((list_type_photo_pastdue list), :class => "list_icon"), list_path(list.id) %><br>
                       <span style='color: red'><%= list.name %></span><br>
                     <% else %>
+                      <%= link_to image_tag((list_type_photo list), :class => "list_icon"), list_path(list.id) %><br>
                       <span><%= list.name %></span><br>
                     <% end %>
                   </div>
