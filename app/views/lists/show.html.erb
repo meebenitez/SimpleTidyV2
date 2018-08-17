@@ -46,9 +46,7 @@
         <div class="row col-xs-12 zero-padding">
             <%= render partial: "minicolumn", locals: {chore_list: @todo_chores.all, list: @list } %>      
         </div>
-    </div>
-    <div class="row content chore-container">
-            <div class="row col-xs-12 zero-padding">
+        <div class="row col-xs-12 zero-padding">
                 <div id="completed-list-container">
                     <% if @done_chores.length > 0 %>        
                         <div class="show-completed"><a href=''>Toggle Completed Chores</a></div>
@@ -68,8 +66,7 @@
                         </div>
                 </div>
             </div>
-        </div>
-
+    </div>
 </div>
 
 
