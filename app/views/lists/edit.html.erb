@@ -39,40 +39,43 @@
                     </div>
                 <% end %>
             </div>
-        </div>
-        <div class="row content chore-container lists-border">
-                <div class="col-xs-12">
-                        <h3>Edit Your Chore List</h2>
-                </div>
-                <div class="col-xs-12">
-                    <div>
-                        <span class="daily-text">DAILY</span>
+            <div class="col-xs-12 lists-border">
+                    <div class="col-xs-12">
+                            <h3>Edit Your Chore List</h2>
                     </div>
-                    <%= render partial: "minicolumn_edit", locals: {chore_list: @daily_chores, :list_frequency => "daily" } %>
-                </div>
-                <div class="col-xs-12">
-                    <div>
-                        <span class="weekly-text">WEEKLY</span>
+                    <div class="col-xs-12">
+                        <div>
+                            <span class="daily-text">DAILY</span>
+                        </div>
+                        <%= render partial: "minicolumn_edit", locals: {chore_list: @daily_chores, :list_frequency => "daily" } %>
                     </div>
-                    <%= render partial: "minicolumn_edit", locals: {chore_list: @weekly_chores, :list_frequency => "weekly" } %>
-                </div>
-                <div class="col-xs-12">
-                    <div>
-                        <span class="monthly-text">MONTHLY</span>
+                    <div class="col-xs-12">
+                        <div>
+                            <span class="weekly-text">WEEKLY</span>
+                        </div>
+                        <%= render partial: "minicolumn_edit", locals: {chore_list: @weekly_chores, :list_frequency => "weekly" } %>
                     </div>
-                    <%= render partial: "minicolumn_edit", locals: {chore_list: @monthly_chores, :list_frequency => "monthly" } %>
-                </div>
-                <div class="col-xs-12">
-                    <%= render partial: 'chores/chore_new', locals: {chore: @chore, list: @list } %>
-                </div>
+                    <div class="col-xs-12">
+                        <div>
+                            <span class="monthly-text">MONTHLY</span>
+                        </div>
+                        <%= render partial: "minicolumn_edit", locals: {chore_list: @monthly_chores, :list_frequency => "monthly" } %>
+                    </div>
+                    <div class="col-xs-12">
+                        <%= render partial: 'chores/chore_new', locals: {chore: @chore, list: @list } %>
+                    </div>
+                    <% if can? :manage, @list %>
+                        <div class="chore-container col-xs-12 lists-border">
+                            <h3><%= link_to "Delete This List", list_path(@list.id), data: { confirm: "Are you sure you want to delete your list?" }, :method=>"delete" %></h3><span>This action cannot be undone.</span>
+                            <br>
+                            
+                        </div>
+                    <% end %>
+
             </div>
-            <% if can? :manage, @list %>
-                <div class="chore-container col-xs-12 lists-border">
-                        <h3><%= link_to "Delete This List", list_path(@list.id), data: { confirm: "Are you sure you want to delete your list?" }, :method=>"delete" %></h3><span>This action cannot be undone.</span>
-                        <br>
-                    
-                </div>
-            <% end %>
+            
+        </div>
+
     
     </div>
     
