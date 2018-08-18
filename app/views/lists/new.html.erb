@@ -1,44 +1,41 @@
-<div class="dummycolumn">
-  .<br>.<br>.<br>
-   <%= render 'layouts/messages' %>
+
+<div class="row content">
+  <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 text-left bottom-border padding4">
+      <span style="display: inline-block; vertical-align: bottom;">
+          <%= render "layouts/navbar" %>
+      </span> 
+  </div>
 </div>
-
-<div class="column1_header">
-  <center>
-    <h1>Create a New List</h1>
-    <%= form_for(@list) do |f| %>
-      <div class="field">
-        This list will be for tidying your... <br><br>
-        | <%= f.radio_button :list_type, 'Home', :checked => true %> House  | 
-        <%= f.radio_button :list_type, 'Car' %> Car  |
-        <%= f.radio_button :list_type, 'Tech' %>  Tech<br><br>
-        Now give it a name...<br>
-        <%= f.text_field :name, :value => "", :class => 'edit_name', :maxlength => 10, :size => 40 %>
-          <br>
-          <br>
-          <br>
-          Would you like to invite anyone to help out with this list?<br>
-          Enter their emails below.<br>
-          <%= f.fields_for :invites do |invite| %>
-            <%= invite.text_field :email, :class =>"email_invite" %>
-          <% end %>
+<div class="row content">
+  <div class="col-xs-12 padding6">
+    <%= render 'layouts/messages' %><br>
+    <center>
+      <div class="lists-container">
+        <h1>Create a New List</h1>
+        <%= form_for(@list) do |f| %>
+          <div class="field">
+            This list will be for tidying your... <br><br>
+            | <%= f.radio_button :list_type, 'Home', :checked => true %> House  | 
+            <%= f.radio_button :list_type, 'Car' %> Car  |
+            <%= f.radio_button :list_type, 'Tech' %>  Tech<br><br>
+            Now give it a name...<br>
+            <%= f.text_field :name, :value => "", :class => 'edit_name', :maxlength => 10, :size => 40 %>
+              <br>
+              <br>
+              <br>
+              Would you like to invite anyone to help out with this list?<br>
+              Enter their emails below.<br>
+              <%= f.fields_for :invites do |invite| %>
+                <%= invite.text_field :email, :class =>"email_invite" %>
+              <% end %>
+          </div>
+    
+          <div class="actions">
+            <%= f.submit "Let's get started!", :class => 'edit_name_button'%>
+          </div>
+    
+        <% end %>
       </div>
-
-      <div class="actions">
-        <%= f.submit "Let's get started!", :class => 'edit_name_button'%>
-      </div>
-
-    <% end %>
-  </center>
+    </center>
+  </div>    
 </div>
-
-
-
-
-
-
-
-
-
-
-
