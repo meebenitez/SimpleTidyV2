@@ -16,10 +16,14 @@
               <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                 <div class="field">
                   <%= f.label :email %><br />
+                  <span style="font-style: italic">(recruiters: test@email.com)</span>
+                  <br />
                   <%= f.email_field :email, autofocus: true %>
                 </div>
                 <div class="field">
                   <%= f.label :password %><br />
+                  <span style="font-style: italic">(recruiters: password1234)</span>
+                  <br />
                   <%= f.password_field :password, autocomplete: "off" %>
                 </div>
                   <% if devise_mapping.rememberable? -%>
